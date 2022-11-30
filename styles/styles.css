@@ -1,0 +1,23 @@
+.resultsElevatorContainer, .resultsEscalatorContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.elevatorOutages, .elevatorOutagesHeader, .escalatorOutages {
+  display: flex;
+  flex-direction: column;
+  width: 85%;
+  margin: 0 auto;
+}
+
+.stationGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.stationGrid div {
+  border: 1px solid black;
+  overflow: hidden;
+  text-align: left;
+}

@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Edmonton Transit Alerts</title>
-  <link rel="stylesheet" href="" class="rel">
+  <link rel="stylesheet" href="/styles/styles.css" class="rel">
 </head>
 <body>
   <header>
@@ -23,8 +23,29 @@
     </div>
 
     <div class="resultsElevatorContainer">
-      <h3>Current Elevator Outages</h3>
+      <h3>Current Elevator Outages (updated every 5 minutes)</h3>
+      <ul class="elevatorOutagesHeader">
+        <li class="stationGrid"> 
+          <div> 
+            STATION
+          </div>
+          <div> 
+            LOCATION
+          </div>
+          <div> 
+            STATUS
+          </div>
+          <div> 
+            OUTAGE SINCE
+          </div>
+          <div> 
+            LAST UPDATED
+          </div>
+        </li>
+      </ul>
+
       <ul class="elevatorOutages">
+        
         <!--Dynamic content here-->
       </ul>
     </div>
@@ -34,7 +55,6 @@
         <!--Dynamic content here-->
       </ul>
     </div>
-
 
   </main>
   <script src="./script.js" ></script>
