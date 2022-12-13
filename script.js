@@ -28,6 +28,34 @@ setInterval(app.refreshTime, 1000)
 
 
 
+//FUNCTION FOR FETCHING ALL DISRUPTIONS
+
+app.fetchDisruptions = async () => {
+  try {
+    const url = "https://data.edmonton.ca/resource/5yvt-mcye.json"
+    url.search = new URLSearchParams ({
+      "$$app_token": app.token
+    });
+    
+    const response = await fetch(url);
+    const data = await response.json();
+    return data;
+
+  } catch (error) {
+
+    // document.querySelector(".elevatorOutages").replaceChildren();
+    // const newLi = document.createElement("li");
+    // newLi.classList.add("apiError");
+    // newLi.innerHTML = `Sorry, information on elevator outages is not available at the moment. Please try again later`
+    // document.querySelector(".elevatorOutages").append(newLi)
+    console.log("error")
+  return error
+  }
+}
+
+
+
+
 //FUNCTION FOR FETCHING ELEVATOR OUTAGES 
 
 app.fetchElevator = async () => {
@@ -79,6 +107,12 @@ app.fetchEscalator = async () => {
 }
 
 const callAllPromises = () => { 
+
+  app.fetchDisruptions().then((disruption)=>{
+    console.log(disruption)
+
+
+  })
 
   app.fetchElevator().then((elevator)=> {
     if (elevator.length === 0) {
