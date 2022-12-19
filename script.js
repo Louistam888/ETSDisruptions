@@ -50,16 +50,21 @@ app.fetchDisruptions = async () => {
 }
 
 const callDisruptions = () => {app.fetchDisruptions().then((disruption) => {
-  const time = document.querySelector(".time")
+  
+  const timeNow = (new Date).toLocaleString('en-CA', {timeZone: "America/Edmonton", year:"numeric", month:"numeric", day:"numeric", hour12:false, hour: "numeric", minute:"2-digit", second: "2-digit"})
+
+  const timeCleaned = Date.parse(timeNow.replace(",", ""))
+
+
  
-  const currentTime = (document.querySelector(".time").innerHTML);
+  //need to convert back into dateobject 
 
   // const convertToUnix = (date) => {
   //   Math.floor(date.getTime() / 1000);
   // }
 
   // const currentUnixTime = convertToUnix(currentTime)
-  console.log(typeof currentTime, currentTime)
+  console.log(timeNow, timeCleaned)
 
 })}
 
