@@ -55,30 +55,19 @@ const callDisruptions = () => {app.fetchDisruptions().then((disruption) => {
 
   const currentTimeUnix = Date.parse(currentTime.replace(",", ""))
 
-  const filteredArray = disruption.filter((entry)=> {
 
+//FUNCTION TO FETCH ALL DISRUPTIONS DECLARED IN THE LAST 24 HOURS 
+  const filteredArray = disruption.filter((entry)=> {
       const disruptionStart = Date.parse(entry.start_dttm);
       const timeDifference = currentTimeUnix - disruptionStart
-   
-
+  
       if (timeDifference <= 86400000 && timeDifference >= 0) {
         return entry;
       } 
-
   })
 
 console.log(filteredArray)
 console.table(disruption)
-    //convert all start dttm to unix. return if currentTimeUnix-start_dttm less than 24 
-  
-  //need to convert back into dateobject 
-
-  // const convertToUnix = (date) => {
-  //   Math.floor(date.getTime() / 1000);
-  // }
-
-  // const currentUnixTime = convertToUnix(currentTime)
-
 
 })}
 
