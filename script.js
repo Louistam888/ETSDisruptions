@@ -49,33 +49,6 @@ app.fetchDisruptions = async () => {
   }
 }
 
-const callDisruptions = () => {app.fetchDisruptions().then((disruption) => {
-  
-  const currentTime = (new Date).toLocaleString('en-CA', {timeZone: "America/Edmonton", year:"numeric", month:"numeric", day:"numeric", hour12:false, hour: "numeric", minute:"2-digit", second: "2-digit"})
-
-  const currentTimeUnix = Date.parse(currentTime.replace(",", ""))
-
-
-//FUNCTION TO FETCH ALL DISRUPTIONS DECLARED IN THE LAST 24 HOURS 
-  const filteredArray = disruption.filter((entry)=> {
-      const disruptionStart = Date.parse(entry.start_dttm);
-      const timeDifference = currentTimeUnix - disruptionStart
-  
-      if (timeDifference <= 86400000 && timeDifference >= 0) {
-        return entry;
-      } 
-  })
-
-console.log(filteredArray)
-console.table(disruption)
-
-})}
-
-
-callDisruptions()
-setInterval(callDisruptions, 100000000)
-
-
 //FUNCTION FOR FETCHING ELEVATOR OUTAGES 
 
 app.fetchElevator = async () => {
@@ -126,11 +99,34 @@ app.fetchEscalator = async () => {
   }
 }
 
-const callEleEscPromises = () => { 
+const callAllPromises = () => {
+
+  app.fetchDisruptions().then((disruption) => {
+  
+    const currentTime = (new Date).toLocaleString('en-CA', {timeZone: "America/Edmonton", year:"numeric", month:"numeric", day:"numeric", hour12:false, hour: "numeric", minute:"2-digit", second: "2-digit"})
+    const currentTimeUnix = Date.parse(currentTime.replace(",", ""))
+  
+    const filteredArray = disruption.filter((entry)=> {
+        const disruptionStart = Date.parse(entry.start_dttm);
+        const timeDifference = currentTimeUnix - disruptionStart
+    
+        if (timeDifference <= 86400000 && timeDifference >= 0) {
+          return entry;
+        } 
+    })
+
+
+  
+  // console.log(filteredArray)
+  // // console.table(disruption)
+  
+  })
+
 
   app.fetchElevator().then((elevator)=> {
+    document.querySelector(".elevatorOutages").replaceChildren();
+
     if (elevator.length === 0) {
-      document.querySelector(".elevatorOutages").replaceChildren();
       const newLi = document.createElement("li");
       newLi.classList.add("apiError");
       newLi.innerHTML = `All elevators are currently operational`
@@ -139,7 +135,7 @@ const callEleEscPromises = () => {
     } else {
 
       elevator.forEach((elevatorObj)=>{
-          
+              
         const stationName = elevatorObj.lrt_station_name;
         const deviceLocation = elevatorObj.lrt_device_location 
         const device_op_status = elevatorObj.device_op_status;
@@ -172,8 +168,10 @@ const callEleEscPromises = () => {
   })
 
   app.fetchEscalator().then((escalator)=> {
+  
+    document.querySelector(".escalatorOutages").replaceChildren();
+
     if (escalator.length === 0) {
-      document.querySelector(".escalatorOutages").replaceChildren();
       const newLi = document.createElement("li");
       newLi.classList.add("apiError");
       newLi.innerHTML = `All escalators are currently operational`
@@ -215,10 +213,8 @@ const callEleEscPromises = () => {
   })
 }
 
-callEleEscPromises()
-setInterval(callEleEscPromises, 300000)
-
-
+callAllPromises()
+setInterval(callAllPromises, 60000)
 
 
 
