@@ -51,12 +51,26 @@ app.fetchDisruptions = async () => {
 
 const callDisruptions = () => {app.fetchDisruptions().then((disruption) => {
   
-  const timeNow = (new Date).toLocaleString('en-CA', {timeZone: "America/Edmonton", year:"numeric", month:"numeric", day:"numeric", hour12:false, hour: "numeric", minute:"2-digit", second: "2-digit"})
+  const currentTime = (new Date).toLocaleString('en-CA', {timeZone: "America/Edmonton", year:"numeric", month:"numeric", day:"numeric", hour12:false, hour: "numeric", minute:"2-digit", second: "2-digit"})
 
-  const timeCleaned = Date.parse(timeNow.replace(",", ""))
+  const currentTimeUnix = Date.parse(currentTime.replace(",", ""))
 
+  const filteredArray = disruption.filter((entry)=> {
 
- 
+      const disruptionStart = Date.parse(entry.start_dttm);
+      const timeDifference = currentTimeUnix - disruptionStart
+   
+
+      if (timeDifference <= 86400000 && timeDifference >= 0) {
+        return entry;
+      } 
+
+  })
+
+console.log(filteredArray)
+console.table(disruption)
+    //convert all start dttm to unix. return if currentTimeUnix-start_dttm less than 24 
+  
   //need to convert back into dateobject 
 
   // const convertToUnix = (date) => {
@@ -64,7 +78,7 @@ const callDisruptions = () => {app.fetchDisruptions().then((disruption) => {
   // }
 
   // const currentUnixTime = convertToUnix(currentTime)
-  console.log(timeNow, timeCleaned)
+
 
 })}
 
