@@ -16,6 +16,7 @@ const convertTime = (timeObj) => {
   })
 }
 
+
 //FUNCTION FOR RETRIEVING AND UPDATING CURRENT EDMONTON TIME 
 app.refreshTime = () => {
   const timeNow = (new Date).toLocaleString('en-CA', {timeZone: "America/Edmonton", year:"numeric", month:"short", weekday: "long", day:"numeric", hour12:true, hour: "numeric", minute:"2-digit", second: "2-digit"})
@@ -23,6 +24,7 @@ app.refreshTime = () => {
   const time = document.querySelector(".time")
   time.innerHTML = `${timeNow}`
 }
+
 app.refreshTime()
 setInterval(app.refreshTime, 1000)
 
@@ -38,21 +40,32 @@ app.fetchDisruptions = async () => {
     });
     const response = await fetch(url);
     const data = await response.json();
+  
     return data;
 
   } catch (error) {
-
-    // document.querySelector(".elevatorOutages").replaceChildren();
-    // const newLi = document.createElement("li");
-    // newLi.classList.add("apiError");
-    // newLi.innerHTML = `Sorry, information on elevator outages is not available at the moment. Please try again later`
-    // document.querySelector(".elevatorOutages").append(newLi)
     console.log("error")
   return error
   }
 }
 
+const callDisruptions = () => {app.fetchDisruptions().then((disruption) => {
+  const time = document.querySelector(".time")
+ 
+  const currentTime = (document.querySelector(".time").innerHTML);
 
+  // const convertToUnix = (date) => {
+  //   Math.floor(date.getTime() / 1000);
+  // }
+
+  // const currentUnixTime = convertToUnix(currentTime)
+  console.log(typeof currentTime, currentTime)
+
+})}
+
+
+callDisruptions()
+setInterval(callDisruptions, 100000000)
 
 
 //FUNCTION FOR FETCHING ELEVATOR OUTAGES 
@@ -105,13 +118,7 @@ app.fetchEscalator = async () => {
   }
 }
 
-const callAllPromises = () => { 
-
-  app.fetchDisruptions().then((disruption)=>{
-    console.log(disruption)
-
-
-  })
+const callEleEscPromises = () => { 
 
   app.fetchElevator().then((elevator)=> {
     if (elevator.length === 0) {
@@ -200,8 +207,8 @@ const callAllPromises = () => {
   })
 }
 
-callAllPromises()
-setInterval(callAllPromises, 300000)
+callEleEscPromises()
+setInterval(callEleEscPromises, 300000)
 
 
 
