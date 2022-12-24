@@ -102,6 +102,8 @@ app.fetchEscalator = async () => {
 const callAllPromises = () => {
 
   app.fetchDisruptions().then((disruption) => {
+
+    document.querySelector(".serviceDisruptions").replaceChildren();
   
     const currentTime = (new Date).toLocaleString('en-CA', {timeZone: "America/Edmonton", year:"numeric", month:"numeric", day:"numeric", hour12:false, hour: "numeric", minute:"2-digit", second: "2-digit"})
     const currentTimeUnix = Date.parse(currentTime.replace(",", ""))
@@ -115,7 +117,7 @@ const callAllPromises = () => {
         } 
     })
 
-    console.log(filteredArray)
+    // console.log(filteredArray)
     filteredArray.forEach((log)=> {
 
       const route = log.route_id;
@@ -126,8 +128,21 @@ const callAllPromises = () => {
       const end = log.end_dttm;
       const stop = log.stop_id
 
-      
-    console.log(route, routeName, stop, description, cause, start, end)
+      const newLi = document.createElement("li");
+      newLi.classList.add("stationGrid");
+      newLi.innerHTML = `
+      ${route  
+        ? route
+        : "N/A"
+      }
+
+      ${routeName
+        ? routeName
+        : "N/A"
+      }
+    `
+    document.querySelector(".serviceDisruptions").append(newLi)
+    // console.log(route, routeName, stop, description, cause, start, end)
 
     })
 
