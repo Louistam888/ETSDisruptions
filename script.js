@@ -108,9 +108,9 @@ const callAllPromises = () => {
   
     const filteredArray = disruption.filter((entry)=> {
         const disruptionStart = Date.parse(entry.start_dttm);
-        const timeDifference = currentTimeUnix - disruptionStart
+        const disruptionEnd = Date.parse(entry.end_dttm) 
     
-        if (timeDifference <= 86400000 && timeDifference >= 0) {
+        if (currentTimeUnix >= disruptionStart && currentTimeUnix <= disruptionEnd) {
           return entry;
         } 
     })
