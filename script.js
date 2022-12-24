@@ -115,11 +115,22 @@ const callAllPromises = () => {
         } 
     })
 
+    console.log(filteredArray)
+    filteredArray.forEach((log)=> {
 
-  
-  // console.log(filteredArray)
-  // // console.table(disruption)
-  
+      const route = log.route_id;
+      const routeName = log.route_long_name;
+      const cause = log.cause;
+      const description = log.description_text; 
+      const start = log.start_dttm;
+      const end = log.end_dttm;
+      const stop = log.stop_id
+
+      
+    console.log(route, routeName, stop, description, cause, start, end)
+
+    })
+
   })
 
 
