@@ -128,6 +128,8 @@ const callAllPromises = () => {
       const end = log.end_dttm;
       const stop = log.stop_id
 
+      console.log(description)
+
       const newLi = document.createElement("li");
       newLi.classList.add("stationGrid");
       newLi.innerHTML = `

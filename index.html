@@ -9,72 +9,76 @@
 </head>
 <body>
   <header>
-    
+    <div class="wrapper">
+      <h2>Current Edmonton Time: <span class="time">""</span></h2>
+    </div>
   </header>
   
   <main>
-
-    <h2>Current Edmonton Time: <span class="time">""</span></h2>
-    <div class="disruptionsContainer">
-      <h3>Service disruptions currently in effect</h3>
-      <ul class="serviceDisruptions">
-        <!--Dynamic content here-->
-      </ul>
-    </div>
-
-    <div class="resultsElevatorContainer">
-      <h3>Current Elevator Outages</h3>
-      <ul class="elevatorOutagesHeader">
-        <li class="stationGrid"> 
-          <div> 
-            STATION
-          </div>
-          <div> 
-            LOCATION
-          </div>
-          <div> 
-            STATUS
-          </div>
-          <div> 
-            OUTAGE SINCE
-          </div>
-          <div> 
-            LAST UPDATE FROM ETS
-          </div>
-        </li>
-      </ul>
-
-      <ul class="elevatorOutages">
-        <!--Dynamic content here-->
-      </ul>
-    </div>
-
-    <div class="resultsEscalatorContainer">
-      <h3>Current Escalator Outages</h3>
-      <ul class="elevatorOutagesHeader">
-        <li class="stationGridHeader"> 
-          <div> 
-            STATION
-          </div>
-          <div> 
-            LOCATION
-          </div>
-          <div> 
-            STATUS
-          </div>
-          <div> 
-            OUTAGE SINCE
-          </div>
-          <div> 
-            LAST UPDATE FROM ETS
-          </div>
-        </li>
-      </ul>
-
-      <ul class="escalatorOutages">
-        <!--Dynamic content here-->
-      </ul>
-    </div>
+    <section class="disruptions">
+      <div class="wrapper">
+        <div class="disruptionsContainer">
+          <h3>Service disruptions currently in effect</h3>
+          <ul class="serviceDisruptions">
+            <!--Dynamic content here-->
+          </ul>
+        </div>
+        <div class="resultsElevatorContainer">
+          <h3>Current Elevator Outages</h3>
+          <ul class="elevatorOutagesHeader">
+            <li class="stationGrid"> 
+              <div> 
+                STATION
+              </div>
+              <div> 
+                LOCATION
+              </div>
+              <div> 
+                STATUS
+              </div>
+              <div> 
+                OUTAGE SINCE
+              </div>
+              <div> 
+                LAST UPDATE FROM ETS
+              </div>
+            </li>
+          </ul>
+          <ul class="elevatorOutages">
+            <!--Dynamic content here-->
+          </ul>
+        </div>
+    
+        <div class="resultsEscalatorContainer">
+          <h3>Current Escalator Outages</h3>
+          <ul class="elevatorOutagesHeader">
+            <li class="stationGridHeader"> 
+              <div> 
+                STATION
+              </div>
+              <div> 
+                LOCATION
+              </div>
+              <div> 
+                STATUS
+              </div>
+              <div> 
+                OUTAGE SINCE
+              </div>
+              <div> 
+                LAST UPDATE FROM ETS
+              </div>
+            </li>
+          </ul>
+    
+          <ul class="escalatorOutages">
+            <!--Dynamic content here-->
+          </ul>
+        </div>
+      </div>
+    </section>
+    
+    
 
   </main>
   <script src="./script.js" ></script>
