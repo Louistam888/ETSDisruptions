@@ -11,13 +11,22 @@
   margin: 0 auto;
 }
 
-.stationGrid {
+.stationGrid, .stationGridHeader {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
-
-.stationGrid div {
+.stationGrid div, .stationGridHeader div {
   border: 1px solid black;
   overflow: hidden;
   text-align: left;
+}
+
+@media (max-width: 768px) {
+  .stationGrid {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .elevatorOutagesHeader {
+    display: none;
+  }
 }
