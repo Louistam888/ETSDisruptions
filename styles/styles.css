@@ -264,6 +264,10 @@ ul {
   width: 100%;
 }
 
+.accordionItem {
+  border: 2px solid red;
+}
+
 .accordion {
   border-bottom: 2px solid white;
 }

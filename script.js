@@ -117,7 +117,7 @@ const callAllPromises = () => {
         } 
     })
 
-    // console.log(filteredArray)
+    
     filteredArray.forEach((log)=> {
 
       const route = log.route_id;
@@ -128,9 +128,7 @@ const callAllPromises = () => {
       const start = log.start_dttm;
       const end = log.end_dttm;
       const stop = log.stop_id
-  
 
-      // console.table(log)
 
       const newLi = document.createElement("li");
       newLi.classList.add("disruptionsHeader");
@@ -171,8 +169,24 @@ const callAllPromises = () => {
     `
     document.querySelector(".serviceDisruptions").append(newLi)
     // console.log(route, routeName, stop, description, cause, start, end)
-
     })
+
+    const accordionItemHeader = document.querySelectorAll(".accordionItemHeader");
+    accordionItemHeader.forEach(header => {
+   
+      header.addEventListener("click", (event) => {
+        header.classList.toggle("active");
+        console.log("clicked")
+      
+        const accordionItemBody = header.nextElementSibling;
+   
+        if (header.classList.contains("active")) {    
+          accordionItemBody.style.maxHeight = accordionItemBody.scrollHeight + "px";  
+        } else {
+          accordionItemBody.style.maxHeight = 0;
+        }
+      });
+    });
 
   })
 
