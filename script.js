@@ -123,25 +123,51 @@ const callAllPromises = () => {
       const route = log.route_id;
       const routeName = log.route_long_name;
       const cause = log.cause;
+      const effect = log.effect;
       const description = log.description_text; 
       const start = log.start_dttm;
       const end = log.end_dttm;
       const stop = log.stop_id
+  
 
-      console.log(description)
+      // console.table(log)
 
       const newLi = document.createElement("li");
-      newLi.classList.add("stationGrid");
-      newLi.innerHTML = `
-      ${route  
-        ? route
-        : "N/A"
-      }
-
-      ${routeName
-        ? routeName
-        : "N/A"
-      }
+      newLi.classList.add("disruptionsHeader");
+      newLi.innerHTML = 
+        `
+          <div class="accordion">
+            <div class="accordionItem">
+              <div class="accordionItemHeader">
+                ${route  
+                  ? route
+                  : stop
+                }
+                ${routeName
+                  ? routeName
+                  : ""
+                }
+                ${effect
+                  ? effect
+                  : ""
+                }
+            
+              </div>
+              <div class="accordionItemBody">
+                <div class="accordionContent">
+                  <div>
+                    CAUSE: ${cause}
+                  </div>
+                  <div>
+                    DISRUPTION START: ${start}
+                  </div>
+                  <div>
+                    DISRUPTION END: ${end}
+                  </div>
+                </div><!--accordionContent div end -->
+              </div> <!--accordionitembody div end-->
+            </div><!--accordionItem div end-->
+          </div><!--accordion div end-->
     `
     document.querySelector(".serviceDisruptions").append(newLi)
     // console.log(route, routeName, stop, description, cause, start, end)
@@ -243,7 +269,3 @@ const callAllPromises = () => {
 
 callAllPromises()
 setInterval(callAllPromises, 60000)
-
-
-
-

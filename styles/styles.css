@@ -241,6 +241,77 @@ html {
   font-size: 62.5%;
 }
 
+ul {
+  list-style: none;
+}
+
+.disruptionsHeader {
+  width: 100%;
+}
+
+.disruptionsContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid black;
+}
+.disruptionsContainer div {
+  width: 100%;
+}
+
+.route {
+  display: flex;
+  width: 100%;
+}
+
+.accordion {
+  border-bottom: 2px solid white;
+}
+
+.accordionItemHeader {
+  cursor: pointer;
+  position: relative;
+  color: white;
+  display: flex;
+  align-items: center;
+  background-color: #161515;
+  padding: 10px;
+}
+
+.accordionItemHeader::after, .accordionItemHeader.active::after {
+  font-size: 3.5rem;
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 100%;
+  padding: 0 10px;
+}
+
+.accordionItemHeader::after {
+  content: "+";
+}
+
+.accordionItemHeader.active::after {
+  content: "-";
+}
+
+.accordionContent {
+  padding: 10px;
+  color: black;
+  font-size: 2.4rem;
+  border: 2px solid #161515;
+}
+
+.accordionItemBody {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0;
+  transition: max-height 0.5s ease-out;
+}
+
 .resultsElevatorContainer, .resultsEscalatorContainer {
   display: flex;
   flex-direction: column;
