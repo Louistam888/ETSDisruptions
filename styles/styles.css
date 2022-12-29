@@ -264,10 +264,6 @@ ul {
   width: 100%;
 }
 
-.accordionItem {
-  border: 2px solid red;
-}
-
 .accordion {
   border-bottom: 2px solid white;
 }
@@ -283,7 +279,6 @@ ul {
 }
 
 .accordionItemHeader::after, .accordionItemHeader.active::after {
-  font-size: 3.5rem;
   position: absolute;
   right: 0;
   top: 0;
@@ -305,7 +300,6 @@ ul {
 .accordionContent {
   padding: 10px;
   color: black;
-  font-size: 2.4rem;
   border: 2px solid #161515;
 }
 

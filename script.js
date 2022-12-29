@@ -103,6 +103,8 @@ const callAllPromises = () => {
 
   app.fetchDisruptions().then((disruption) => {
 
+    console.log("fetched")
+
     document.querySelector(".serviceDisruptions").replaceChildren();
   
     const currentTime = (new Date).toLocaleString('en-CA', {timeZone: "America/Edmonton", year:"numeric", month:"numeric", day:"numeric", hour12:false, hour: "numeric", minute:"2-digit", second: "2-digit"})
@@ -133,42 +135,52 @@ const callAllPromises = () => {
       const newLi = document.createElement("li");
       newLi.classList.add("disruptionsHeader");
       newLi.innerHTML = 
-        `
-          <div class="accordion">
-            <div class="accordionItem">
-              <div class="accordionItemHeader">
-                ${route  
-                  ? route
-                  : stop
-                }
-                ${routeName
-                  ? routeName
-                  : ""
-                }
-                ${effect
-                  ? effect
-                  : ""
-                }
-            
+        
+        `<div class="accordion">
+          <div class="accordionItem">
+            <div class="accordionItemHeader">
+              ${route  
+                ? route
+                : stop
+              }
+              ${routeName
+                ? routeName
+                : ""
+              }
+              ${effect
+                ? effect
+                : ""
+              }
+          
+            </div>
+            <div class="accordionItemBody">
+              <div class="accordionContent">
+                <div>
+                  ${description
+                    ? description 
+                    : "Information not available"}
+                </div>
+                <div>
+                    ${cause
+                    ? `CAUSE: ${cause}`
+                    : "No cause specified"}
+                </div>
+                <div>
+                    ${start
+                    ? `DISRUPTION START: ${start}`
+                    : "No disruption start time specifed"}
+                </div>
+                <div>
+                ${end
+                  ? `DISRUPTION START: ${end}`
+                  : "No disruption end time specifed"}
               </div>
-              <div class="accordionItemBody">
-                <div class="accordionContent">
-                  <div>
-                    CAUSE: ${cause}
-                  </div>
-                  <div>
-                    DISRUPTION START: ${start}
-                  </div>
-                  <div>
-                    DISRUPTION END: ${end}
-                  </div>
-                </div><!--accordionContent div end -->
-              </div> <!--accordionitembody div end-->
-            </div><!--accordionItem div end-->
-          </div><!--accordion div end-->
-    `
-    document.querySelector(".serviceDisruptions").append(newLi)
-    // console.log(route, routeName, stop, description, cause, start, end)
+              </div><!--accordionContent div end -->
+            </div> <!--accordionitembody div end-->
+          </div><!--accordionItem div end-->
+        </div><!--accordion div end-->`
+        
+      document.querySelector(".serviceDisruptions").append(newLi)
     })
 
     const accordionItemHeader = document.querySelectorAll(".accordionItemHeader");

@@ -18,11 +18,6 @@
   width: 100%;
 }
 
-.accordionItem {
-  border: 2px solid red;
-}
-
-
 .accordion {
   border-bottom: 2px solid white;
 }
@@ -37,13 +32,9 @@
   padding: 10px;
 }
 
-// h3 {
-//   font-size: 2.4rem;
-//   text-transform: uppercase;
-// }
+
 
 .accordionItemHeader::after, .accordionItemHeader.active::after {
-  font-size: 3.5rem;
   position: absolute;
   right: 0;
   top: 0;
@@ -65,7 +56,6 @@
 .accordionContent {
   padding: 10px;
   color: black;
-  font-size: 2.4rem;
   border: 2px solid #161515;
 }
 
