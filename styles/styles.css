@@ -264,6 +264,21 @@ ul {
   width: 100%;
 }
 
+.doubleInfoContainer {
+  width: 100%;
+  display: flex;
+}
+.doubleInfoContainer .doubleLeft, .doubleInfoContainer .doubleRight {
+  width: 50%;
+  display: flex;
+}
+.doubleInfoContainer .doubleLeft {
+  justify-content: flex-end;
+}
+.doubleInfoContainer .doubleRight {
+  justify-content: flex-start;
+}
+
 .accordion {
   border-bottom: 2px solid white;
 }

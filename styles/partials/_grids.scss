@@ -18,6 +18,24 @@
   width: 100%;
 }
 
+.doubleInfoContainer {
+  width: 100%;
+  display: flex;
+
+  .doubleLeft, .doubleRight {
+    width: 50%;
+    display: flex;
+  }
+
+  .doubleLeft {
+    justify-content: flex-end;
+  }
+
+  .doubleRight {
+    justify-content: flex-start;
+  }
+}
+
 .accordion {
   border-bottom: 2px solid white;
 }

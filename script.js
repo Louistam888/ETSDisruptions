@@ -122,16 +122,18 @@ const callAllPromises = () => {
     
     filteredArray.forEach((log)=> {
 
+      console.table(log)
+
       const route = log.route_id;
       const routeName = log.route_long_name;
       const cause = log.cause;
       const effect = log.effect;
       const description = log.description_text; 
-      const start = log.start_dttm;
-      const end = log.end_dttm;
+      const shortDescription = log.header_text;
+      const start = convertTime(log.start_dttm);
+      const end = convertTime(log.end_dttm);
       const stop = log.stop_id
-
-
+      
       const newLi = document.createElement("li");
       newLi.classList.add("disruptionsHeader");
       newLi.innerHTML = 
@@ -141,7 +143,7 @@ const callAllPromises = () => {
             <div class="accordionItemHeader">
               ${route  
                 ? route
-                : stop
+                : shortDescription
               }
               ${routeName
                 ? routeName
@@ -160,20 +162,36 @@ const callAllPromises = () => {
                     ? description 
                     : "Information not available"}
                 </div>
-                <div>
+                <div class="doubleInfoContainer">
                     ${cause
-                    ? `CAUSE: ${cause}`
+                    ? `<div class="doubleLeft">
+                        CAUSE:
+                      </div>
+                      <div class="doubleRight">
+                        ${cause}
+                      </div>
+                     `
                     : "No cause specified"}
                 </div>
-                <div>
-                    ${start
-                    ? `DISRUPTION START: ${start}`
+                <div class="doubleInfoContainer">
+                  ${start
+                    ? `<div class="doubleLeft">
+                        DISRUPTION START:
+                      </div>
+                      <div class="doubleRight">
+                        ${start}
+                      </div>`
                     : "No disruption start time specifed"}
                 </div>
-                <div>
-                ${end
-                  ? `DISRUPTION START: ${end}`
-                  : "No disruption end time specifed"}
+                <div class="doubleInfoContainer">
+                  ${end
+                    ? `<div class="doubleLeft">
+                        DISRUPTION END:
+                      </div>
+                      <div class="doubleRight">
+                        ${end}
+                      </div>`
+                    : "No disruption end time specifed"}
               </div>
               </div><!--accordionContent div end -->
             </div> <!--accordionitembody div end-->
