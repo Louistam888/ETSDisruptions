@@ -1,0 +1,26 @@
+@use "./variables" as *;
+
+header {
+  height: 265px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.65) 30%, rgba(0, 0, 0, 0.65) 60%, rgba(0, 0, 0, 0.65) 100%), url(../../assets/valley_line_LRT_carousel.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center 62%;
+}
+
+h1 {
+  text-transform: uppercase;
+  color: $blue;
+}
+
+h1, h2, .headerDescription {
+  width: 100%;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+}
+

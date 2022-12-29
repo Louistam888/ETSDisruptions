@@ -113,16 +113,22 @@ const callAllPromises = () => {
     const filteredArray = disruption.filter((entry)=> {
         const disruptionStart = Date.parse(entry.start_dttm);
         const disruptionEnd = Date.parse(entry.end_dttm) 
-    
+           
         if (currentTimeUnix >= disruptionStart && currentTimeUnix <= disruptionEnd) {
           return entry;
         } 
     })
-
+ 
     
+    filteredArray.sort(function (a,b) {
+      if (a.route_id < b.route_id) return -1;
+      if (a.route_id > b.route_id) return 1;
+      return 0;
+    })
+
     filteredArray.forEach((log)=> {
 
-      console.table(log)
+      // console.table(log)
 
       const route = log.route_id;
       const routeName = log.route_long_name;

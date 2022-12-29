@@ -1,3 +1,5 @@
+@use "partials/variables" as *;
 @use "partials/setup";
+@use "partials/header";
 @use "partials/grids";
 @use "partials/mediaQueries";
