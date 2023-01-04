@@ -6,15 +6,21 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.65) 30%, rgba(0, 0, 0, 0.65) 60%, rgba(0, 0, 0, 0.65) 100%), url(../../assets/valley_line_LRT_carousel.jpg);
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.65) 30%, rgba(0, 0, 0, 0.75) 50%, rgba(0, 0, 0, 0.85) 100%), url(../../assets/valley_line_LRT_carousel.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center 62%;
 }
 
-h1 {
-  text-transform: uppercase;
-  color: $blue;
+.headerContainer {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid red;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  align-items: center;
+  justify-content: center;
 }
 
 h1, h2, .headerDescription {
@@ -22,5 +28,37 @@ h1, h2, .headerDescription {
   display: flex; 
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
+
+h1 {
+  text-transform: uppercase;
+  color: $blue;
+  font-family: $latoBold;
+  font-size: 6.5rem;
+  text-shadow: -1.5px -1.5px 0 $white, 1.5px -1.5px 0 $white, -1.5px 1.5px 0 $white, 1.5px 1.5px 0 $white;
+  white-space: pre;
+  margin: 15px 0;
+}
+
+.h1span {
+  color: $orange;
+}
+
+h2 {
+  color: $white;
+  font-size: 3rem;
+  text-shadow: -1.5px -1.5px 0 $navy, 1.5px -1.5px 0 $navy, -1.5px 1.5px 0 $navy, 1.5px 1.5px 0 $navy;
+  white-space: pre;
+  margin: 2.5px 0;
+}
+
+.headerDescription {
+  font-size: 2rem;
+
+  color: $white;
+  // text-shadow: -0.5px -0.5px 0 $white, 0.5px -0.5px 0 $white, -0.5px 0.5px 0 $white, 0.5px 0.5px 0 $white;
+}
+
+
 
