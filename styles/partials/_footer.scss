@@ -1,0 +1,12 @@
+@use "./variables" as *;
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: $edmontonBlue;
+  color: $white;
+  font-size: 2rem;
+  padding: 15px 10px;
+}

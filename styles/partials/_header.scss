@@ -10,7 +10,6 @@ header {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center 62%;
-  border-bottom: 2px solid $white;
 }
 
 h1, h2, .headerDescription {
@@ -29,6 +28,7 @@ h1 {
   text-shadow: -1.5px -1.5px 0 $white, 1.5px -1.5px 0 $white, -1.5px 1.5px 0 $white, 1.5px 1.5px 0 $white;
   white-space: pre;
   margin: 15px 0;
+  letter-spacing: 0.35rem;
 }
 
 .h1span {

@@ -274,7 +274,6 @@ header {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center 62%;
-  border-bottom: 2px solid #DDE3E6;
 }
 
 h1, h2, .headerDescription {
@@ -293,10 +292,11 @@ h1 {
   text-shadow: -1.5px -1.5px 0 #DDE3E6, 1.5px -1.5px 0 #DDE3E6, -1.5px 1.5px 0 #DDE3E6, 1.5px 1.5px 0 #DDE3E6;
   white-space: pre;
   margin: 15px 0;
+  letter-spacing: 0.35rem;
 }
 
 .h1span {
-  color: #DB463D;
+  color: #ED2D2C;
 }
 
 h2 {
@@ -328,6 +328,8 @@ main {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center 90%;
+  border-top: 2px solid #DDE3E6;
+  border-bottom: 2px solid #DDE3E6;
 }
 
 .disruptions {
@@ -453,6 +455,17 @@ main {
   border: 1px solid black;
   overflow: hidden;
   text-align: left;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  background-color: #005087;
+  color: #DDE3E6;
+  font-size: 2rem;
+  padding: 15px 10px;
 }
 
 @media (max-width: 768px) {
