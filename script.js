@@ -1,7 +1,7 @@
 const app = {};
 
 app.token = "J33yX1FYA0vwnOA36tGBFLd6l"
-app.escalatorEscalatorURL = "https://data.edmonton.ca/resource/snws-u3zx.json"
+// app.escalatorEscalatorURL = "https://data.edmonton.ca/resource/snws-u3zx.json"
 
 const convertTime = (timeObj) => { 
   return new Date(timeObj).toLocaleDateString("en-us", {

@@ -1,3 +1,4 @@
+@charset "UTF-8";
 @font-face {
   font-family: "Lato-Regular";
   src: url("/fonts/Lato/Lato-Regular.ttf");
@@ -369,17 +370,19 @@ main {
 }
 
 .accordion {
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid #DDE3E6;
 }
 
 .accordionItemHeader {
+  font-size: 2rem;
   cursor: pointer;
   position: relative;
   color: white;
   display: flex;
   align-items: center;
-  background-color: #161515;
-  padding: 10px;
+  background-color: #1F4480;
+  padding: 10px 15px;
+  color: #DDE3E6;
 }
 
 .accordionItemHeader::after, .accordionItemHeader.active::after {
@@ -394,11 +397,11 @@ main {
 }
 
 .accordionItemHeader::after {
-  content: "+";
+  content: "✚";
 }
 
 .accordionItemHeader.active::after {
-  content: "-";
+  content: "✖";
 }
 
 .accordionContent {

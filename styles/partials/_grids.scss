@@ -63,17 +63,20 @@ main {
 }
 
 .accordion {
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid $white;
+
 }
 
 .accordionItemHeader {
+  font-size: 2rem;
   cursor: pointer;
   position: relative;
   color: white;
   display: flex;
   align-items: center;
-  background-color: #161515;
-  padding: 10px;
+  background-color: $blue;
+  padding: 10px 15px;
+  color: $white;
 }
 
 .accordionItemHeader::after, .accordionItemHeader.active::after {
@@ -88,11 +91,12 @@ main {
 }
 
 .accordionItemHeader::after {
-  content: "\002B";
+  content: "\271A";
+
 }
 
 .accordionItemHeader.active::after {
-  content: "\002D";   
+  content: "\2716";   
 }
 
 .accordionContent {
