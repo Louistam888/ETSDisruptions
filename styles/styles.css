@@ -332,26 +332,6 @@ main {
   border-bottom: 2px solid #DDE3E6;
 }
 
-.disruptions {
-  border-top: 3px solid black;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
-  background-color: #F9D41B;
-}
-
-.disruptionsHeader {
-  width: 100%;
-}
-
-.disruptionsContainer {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.disruptionsContainer div {
-  width: 100%;
-}
-
 .route {
   display: flex;
   width: 100%;
@@ -421,6 +401,7 @@ main {
   align-items: center;
   text-align: center;
   font-family: "Lato-Black";
+  padding-bottom: 10px;
 }
 
 .doubleInfoContainer {
@@ -440,6 +421,26 @@ main {
   padding-left: 2.5px;
 }
 
+.disruptions {
+  border-top: 3px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  background-color: #F9D41B;
+}
+
+.disruptionsHeader {
+  width: 100%;
+}
+
+.disruptionsContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.disruptionsContainer div {
+  width: 100%;
+}
+
 .elevatorOutages, .elevatorOutagesHeader, .escalatorOutages, .escalatorOutagesHeader {
   display: flex;
   flex-direction: column;
@@ -447,14 +448,32 @@ main {
   margin: 0 auto;
 }
 
-.stationGridElevator, .stationGridEscalator {
+.stationHeaders {
+  font-family: "Lato-Bold";
+  display: flex;
+}
+.stationHeaders div {
+  background-color: #986FAF;
+  height: 35px;
+}
+
+.stationGridElevator, .stationGridEscalator, .stationHeaders {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  background-color: #DDE3E6;
+  font-size: 2rem;
 }
-.stationGridElevator div, .stationGridEscalator div {
+.stationGridElevator div, .stationGridEscalator div, .stationHeaders div {
   border: 1px solid black;
   overflow: hidden;
   text-align: left;
+  display: flex;
+  align-items: center;
+  padding: 0 5px;
+}
+
+.stationGridElevator, .stationGridEscalator {
+  background-color: #C7D0D4;
 }
 
 footer {
@@ -469,7 +488,7 @@ footer {
 }
 
 @media (max-width: 768px) {
-  .stationGrid {
+  .stationGridElevator, .stationGridEscalator {
     display: grid;
     grid-template-columns: 1fr;
   }

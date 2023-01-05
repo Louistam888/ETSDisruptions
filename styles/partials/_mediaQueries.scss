@@ -2,7 +2,7 @@
 
 @media (max-width: 768px) {
   
-  .stationGrid {
+  .stationGridElevator, .stationGridEscalator {
     display: grid;
     grid-template-columns: 1fr;
   }

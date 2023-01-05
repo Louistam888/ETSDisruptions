@@ -20,26 +20,7 @@ main {
   border-bottom: 2px solid $white;
 }
 
-.disruptions {
-  border-top: 3px solid black;
-  border-left: 1px solid black;
-  border-right: 1px solid black;
-  background-color: $yellow;
-}
-
-.disruptionsHeader {
-  width: 100%;
-}
-
-.disruptionsContainer {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-
-  div {
-    width: 100%;
-  }
-}
+//ACCORDION CONTENT 
 
 .route {
   display: flex;
@@ -106,15 +87,13 @@ main {
   text-align: center;
 }
 
-
-//ACCORDION CONTENT 
-
 .briefDescription {
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   font-family: $latoBlack;
+  padding-bottom: 10px;
 }
 
 .doubleInfoContainer {
@@ -138,7 +117,28 @@ main {
 }
 
 
-//ELEVATORS
+//ELEVATORS AND ESCALATORS
+
+.disruptions {
+  border-top: 3px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  background-color: $yellow;
+}
+
+.disruptionsHeader {
+  width: 100%;
+}
+
+.disruptionsContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  div {
+    width: 100%;
+  }
+}
 
 .elevatorOutages, .elevatorOutagesHeader, .escalatorOutages, .escalatorOutagesHeader {
   display: flex;
@@ -147,16 +147,34 @@ main {
   margin: 0 auto;
 }
 
-.stationGridElevator, .stationGridEscalator {
+.stationHeaders {
+  font-family: $latoBold;
+  display: flex;
+
+  div {
+    background-color: #986FAF;
+    height: 35px;
+  }
+}
+
+.stationGridElevator, .stationGridEscalator, .stationHeaders {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  background-color: $white;
+  font-size: 2rem;
 
   div {
     border: 1px solid black; 
     overflow: hidden; 
     text-align: left;
+    display: flex;
+    align-items: center;
+    padding: 0 5px;
   }
 }
 
+.stationGridElevator, .stationGridEscalator {
+  background-color: $lightGreen;
+}
 
 

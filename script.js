@@ -18,7 +18,7 @@ const convertTime = (timeObj) => {
 //FUNCTION FOR RETRIEVING AND UPDATING CURRENT EDMONTON TIME 
 app.refreshTime = () => {
 
-  let t = 0
+  let t = 0;
 
   const timeNow = (new Date).toLocaleString('en-CA', {timeZone: "America/Edmonton", year:"numeric", month:"short", weekday: "long", day:"numeric", hour12:true, hour: "numeric", minute:"2-digit", second: "2-digit"}).replace(/,/g, match => ++t === 3 ? ' |' : match)
 
@@ -141,8 +141,8 @@ const callAllPromises = () => {
         const route = log.route_id;
         const routeName = log.route_long_name;
         const causeRaw = log.cause;
-        const cause = causeRaw.charAt(0).toUpperCase()+causeRaw.slice(1).toLowerCase();
-        const effect = log.effect;
+        const cause = causeRaw.charAt(0).toUpperCase()+causeRaw.slice(1).toLowerCase().replace("_", " ");
+        const effect = log.effect.replace("_", " ");
         const description = log.description_text; 
         const shortDescription = log.header_text;
         const start = convertTime(log.start_dttm).replace(/,/g, match => ++t1 === 3 ? ' @' : match);
@@ -165,7 +165,9 @@ const callAllPromises = () => {
                   : ""
                 }
                 ${effect
-                  ? effect
+                  ? effect === "UNKNOWN EFFECT"
+                    ? ""
+                    : effect 
                   : ""
                 }
             
@@ -221,7 +223,7 @@ const callAllPromises = () => {
      
         header.addEventListener("click", (event) => {
           header.classList.toggle("active");
-          console.log("clicked")
+          // console.log("clicked")
         
           const accordionItemBody = header.nextElementSibling;
      
@@ -249,13 +251,15 @@ const callAllPromises = () => {
     } else {
 
       elevator.forEach((elevatorObj)=>{
+
+        let t1 = 0;
+        let t2 = 0;
               
         const stationName = elevatorObj.lrt_station_name;
         const deviceLocation = elevatorObj.lrt_device_location 
         const device_op_status = elevatorObj.device_op_status;
-        const offlineStartDate = convertTime(elevatorObj.since_time_stamp);
-        const lastUpdated = convertTime(elevatorObj.polled_time_stamp);
-    
+        const offlineStartDate = convertTime(elevatorObj.since_time_stamp).replace(/,/g, match => ++t1 === 3 ? ' @' : match);
+        const lastUpdated = convertTime(elevatorObj.polled_time_stamp).replace(/,/g, match => ++t2 === 3 ? ' @' : match);;
         const newLi = document.createElement("li");
         newLi.classList.add("stationGridElevator");
         newLi.innerHTML = 
@@ -297,12 +301,15 @@ const callAllPromises = () => {
     } else {
   
       escalator.forEach((escalatorObj)=>{
+
+        let t1 = 0;
+        let t2 = 0;
           
         const stationName = escalatorObj.lrt_station_name;
         const deviceLocation = escalatorObj.lrt_device_location 
         const device_op_status = escalatorObj.device_op_status;
-        const offlineStartDate = convertTime(escalatorObj.since_time_stamp);
-        const lastUpdated = convertTime(escalatorObj.polled_time_stamp);
+        const offlineStartDate = convertTime(escalatorObj.since_time_stamp).replace(/,/g, match => ++t1 === 3 ? ' @' : match);;
+        const lastUpdated = convertTime(escalatorObj.polled_time_stamp).replace(/,/g, match => ++t2 === 3 ? ' @' : match);;
     
         const newLi = document.createElement("li");
         newLi.classList.add("stationGridEscalator");
