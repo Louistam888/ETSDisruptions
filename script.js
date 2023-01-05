@@ -11,8 +11,7 @@ const convertTime = (timeObj) => {
     day: "numeric",
     hour12: true,
     hour: "numeric",
-    minute: "2-digit",
-    second: "2-digit"
+    minute: "2-digit"
   })
 }
 
@@ -131,16 +130,20 @@ const callAllPromises = () => {
 
     filteredArray.forEach((log)=> {
 
-      // console.table(log)
+      console.log(log)
+
+      let t1 = 0;
+      let t2 = 0;
 
       const route = log.route_id;
       const routeName = log.route_long_name;
-      const cause = log.cause;
+      const causeRaw = log.cause;
+      const cause = causeRaw.charAt(0).toUpperCase()+causeRaw.slice(1).toLowerCase();
       const effect = log.effect;
       const description = log.description_text; 
       const shortDescription = log.header_text;
-      const start = convertTime(log.start_dttm);
-      const end = convertTime(log.end_dttm);
+      const start = convertTime(log.start_dttm).replace(/,/g, match => ++t1 === 3 ? ' @' : match);
+      const end = convertTime(log.end_dttm).replace(/,/g, match => ++t2 === 3 ? ' @' : match);
       const stop = log.stop_id
       
       const newLi = document.createElement("li");
@@ -166,7 +169,7 @@ const callAllPromises = () => {
             </div>
             <div class="accordionItemBody">
               <div class="accordionContent">
-                <div>
+                <div class="briefDescription">
                   ${description
                     ? description 
                     : "Information not available"}

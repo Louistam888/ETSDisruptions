@@ -7,7 +7,8 @@ h3 {
   display: flex;
   justify-content: center;
   margin: 10px 0;
-  color: $blue;
+  color: $edmontonBlue;
+  font-family: $latoBold
 }
 
 main {
@@ -38,33 +39,13 @@ main {
   }
 }
 
-
 .route {
   display: flex;
   width: 100%;
 }
 
-.doubleInfoContainer {
-  width: 100%;
-  display: flex;
-
-  .doubleLeft, .doubleRight {
-    width: 50%;
-    display: flex;
-  }
-
-  .doubleLeft {
-    justify-content: flex-end;
-  }
-
-  .doubleRight {
-    justify-content: flex-start;
-  }
-}
-
 .accordion {
   border-bottom: 2px solid $white;
-
 }
 
 .accordionItemHeader {
@@ -92,7 +73,7 @@ main {
 
 .accordionItemHeader::after {
   content: "\271A";
-
+  
 }
 
 .accordionItemHeader.active::after {
@@ -102,7 +83,12 @@ main {
 .accordionContent {
   padding: 10px;
   color: black;
-  border: 2px solid #161515;
+  background-color: $lightGreen;
+  font-size: 2rem;
+
+  div {
+    margin: 1.5px 0;
+  }
 }
 
 .accordionItemBody {
@@ -117,6 +103,40 @@ main {
   flex-direction: column;
   text-align: center;
 }
+
+
+//ACCORDION CONTENT 
+
+.briefDescription {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: $latoBlack;
+}
+
+.doubleInfoContainer {
+  width: 100%;
+  display: flex;
+
+  .doubleLeft, .doubleRight {
+    width: 50%;
+    display: flex;
+  }
+
+  .doubleLeft {
+    justify-content: flex-end;
+    padding-right: 2.5px;
+  }
+
+  .doubleRight {
+    justify-content: flex-start;
+    padding-left: 2.5px;
+  }
+}
+
+
+//ELEVATORS
 
 .elevatorOutages, .elevatorOutagesHeader, .escalatorOutages, .escalatorOutagesHeader {
   display: flex;

@@ -287,7 +287,7 @@ h1, h2, .headerDescription {
 
 h1 {
   text-transform: uppercase;
-  color: #1F4480;
+  color: #005087;
   font-family: "Lato-Bold";
   font-size: 6.5rem;
   text-shadow: -1.5px -1.5px 0 #DDE3E6, 1.5px -1.5px 0 #DDE3E6, -1.5px 1.5px 0 #DDE3E6, 1.5px 1.5px 0 #DDE3E6;
@@ -319,7 +319,8 @@ h3 {
   display: flex;
   justify-content: center;
   margin: 10px 0;
-  color: #1F4480;
+  color: #005087;
+  font-family: "Lato-Bold";
 }
 
 main {
@@ -352,21 +353,6 @@ main {
 .route {
   display: flex;
   width: 100%;
-}
-
-.doubleInfoContainer {
-  width: 100%;
-  display: flex;
-}
-.doubleInfoContainer .doubleLeft, .doubleInfoContainer .doubleRight {
-  width: 50%;
-  display: flex;
-}
-.doubleInfoContainer .doubleLeft {
-  justify-content: flex-end;
-}
-.doubleInfoContainer .doubleRight {
-  justify-content: flex-start;
 }
 
 .accordion {
@@ -407,7 +393,11 @@ main {
 .accordionContent {
   padding: 10px;
   color: black;
-  border: 2px solid #161515;
+  background-color: #C7D0D4;
+  font-size: 2rem;
+}
+.accordionContent div {
+  margin: 1.5px 0;
 }
 
 .accordionItemBody {
@@ -421,6 +411,31 @@ main {
   display: flex;
   flex-direction: column;
   text-align: center;
+}
+
+.briefDescription {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: "Lato-Black";
+}
+
+.doubleInfoContainer {
+  width: 100%;
+  display: flex;
+}
+.doubleInfoContainer .doubleLeft, .doubleInfoContainer .doubleRight {
+  width: 50%;
+  display: flex;
+}
+.doubleInfoContainer .doubleLeft {
+  justify-content: flex-end;
+  padding-right: 2.5px;
+}
+.doubleInfoContainer .doubleRight {
+  justify-content: flex-start;
+  padding-left: 2.5px;
 }
 
 .elevatorOutages, .elevatorOutagesHeader, .escalatorOutages, .escalatorOutagesHeader {
