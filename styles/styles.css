@@ -447,11 +447,11 @@ main {
   margin: 0 auto;
 }
 
-.stationGrid, .stationGridHeader {
+.stationGridElevator, .stationGridEscalator {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
 }
-.stationGrid div, .stationGridHeader div {
+.stationGridElevator div, .stationGridEscalator div {
   border: 1px solid black;
   overflow: hidden;
   text-align: left;

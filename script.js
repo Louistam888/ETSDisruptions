@@ -1,7 +1,6 @@
 const app = {};
 
 app.token = "J33yX1FYA0vwnOA36tGBFLd6l"
-// app.escalatorEscalatorURL = "https://data.edmonton.ca/resource/snws-u3zx.json"
 
 const convertTime = (timeObj) => { 
   return new Date(timeObj).toLocaleDateString("en-us", {
@@ -42,11 +41,15 @@ app.fetchDisruptions = async () => {
     });
     const response = await fetch(url);
     const data = await response.json();
-  
     return data;
 
   } catch (error) {
-    console.log("error")
+    document.querySelector(".serviceDisruptions").replaceChildren();
+    const newLi = document.createElement("li");
+    newLi.classList.add("apiError");
+    newLi.innerHTML = `Sorry information on service outages is not available at this time, please try again later.`
+    document.querySelector(".serviceDisruptions").append(newLi)
+
   return error
   }
 }
@@ -91,11 +94,11 @@ app.fetchEscalator = async () => {
 
   } catch (error) {
     
-    document.querySelector(".escalatorOutages").replaceChildren();
+    document.querySelector(".escalatorOutagesHeader").replaceChildren();
     const newLi = document.createElement("li");
     newLi.classList.add("apiError");
     newLi.innerHTML = `Sorry, information on escalator outages is not available at the moment. Please try again later`
-    document.querySelector(".escalatorOutages").append(newLi)
+    document.querySelector(".escalatorOutagesHeader").append(newLi)
     
     return error
   }
@@ -105,138 +108,138 @@ const callAllPromises = () => {
 
   app.fetchDisruptions().then((disruption) => {
 
-    console.log("fetched")
-
-    document.querySelector(".serviceDisruptions").replaceChildren();
-  
     const currentTime = (new Date).toLocaleString('en-CA', {timeZone: "America/Edmonton", year:"numeric", month:"numeric", day:"numeric", hour12:false, hour: "numeric", minute:"2-digit", second: "2-digit"})
     const currentTimeUnix = Date.parse(currentTime.replace(",", ""))
   
+    // const filteredArray = [];
+
     const filteredArray = disruption.filter((entry)=> {
-        const disruptionStart = Date.parse(entry.start_dttm);
-        const disruptionEnd = Date.parse(entry.end_dttm) 
-           
-        if (currentTimeUnix >= disruptionStart && currentTimeUnix <= disruptionEnd) {
-          return entry;
-        } 
-    })
- 
-    
-    filteredArray.sort(function (a,b) {
+      const disruptionStart = Date.parse(entry.start_dttm);
+      const disruptionEnd = Date.parse(entry.end_dttm) 
+          
+      if (currentTimeUnix >= disruptionStart && currentTimeUnix <= disruptionEnd) {
+        return entry;
+      } 
+    }).sort(function (a,b) {
       if (a.route_id < b.route_id) return -1;
       if (a.route_id > b.route_id) return 1;
       return 0;
     })
 
-    filteredArray.forEach((log)=> {
-
-      console.log(log)
-
-      let t1 = 0;
-      let t2 = 0;
-
-      const route = log.route_id;
-      const routeName = log.route_long_name;
-      const causeRaw = log.cause;
-      const cause = causeRaw.charAt(0).toUpperCase()+causeRaw.slice(1).toLowerCase();
-      const effect = log.effect;
-      const description = log.description_text; 
-      const shortDescription = log.header_text;
-      const start = convertTime(log.start_dttm).replace(/,/g, match => ++t1 === 3 ? ' @' : match);
-      const end = convertTime(log.end_dttm).replace(/,/g, match => ++t2 === 3 ? ' @' : match);
-      const stop = log.stop_id
-      
+    if (filteredArray.length === 0 ) {
       const newLi = document.createElement("li");
-      newLi.classList.add("disruptionsHeader");
-      newLi.innerHTML = 
-        
-        `<div class="accordion">
-          <div class="accordionItem">
-            <div class="accordionItemHeader">
-              ${route  
-                ? route
-                : shortDescription
-              }
-              ${routeName
-                ? routeName
-                : ""
-              }
-              ${effect
-                ? effect
-                : ""
-              }
-          
-            </div>
-            <div class="accordionItemBody">
-              <div class="accordionContent">
-                <div class="briefDescription">
-                  ${description
-                    ? description 
-                    : "Information not available"}
-                </div>
-                <div class="doubleInfoContainer">
-                    ${cause
-                    ? `<div class="doubleLeft">
-                        CAUSE:
-                      </div>
-                      <div class="doubleRight">
-                        ${cause}
-                      </div>
-                     `
-                    : "No cause specified"}
-                </div>
-                <div class="doubleInfoContainer">
-                  ${start
-                    ? `<div class="doubleLeft">
-                        DISRUPTION START:
-                      </div>
-                      <div class="doubleRight">
-                        ${start}
-                      </div>`
-                    : "No disruption start time specifed"}
-                </div>
-                <div class="doubleInfoContainer">
-                  ${end
-                    ? `<div class="doubleLeft">
-                        DISRUPTION END:
-                      </div>
-                      <div class="doubleRight">
-                        ${end}
-                      </div>`
-                    : "No disruption end time specifed"}
-              </div>
-              </div><!--accordionContent div end -->
-            </div> <!--accordionitembody div end-->
-          </div><!--accordionItem div end-->
-        </div><!--accordion div end-->`
-        
+      newLi.classList.add("apiError");
+      newLi.innerHTML = `There are no current service disruptions`
       document.querySelector(".serviceDisruptions").append(newLi)
-    })
-
-    const accordionItemHeader = document.querySelectorAll(".accordionItemHeader");
-    accordionItemHeader.forEach(header => {
-   
-      header.addEventListener("click", (event) => {
-        header.classList.toggle("active");
-        console.log("clicked")
-      
-        const accordionItemBody = header.nextElementSibling;
-   
-        if (header.classList.contains("active")) {    
-          accordionItemBody.style.maxHeight = accordionItemBody.scrollHeight + "px";  
-        } else {
-          accordionItemBody.style.maxHeight = 0;
-        }
+    } else { 
+      filteredArray.forEach((log)=> {
+    
+        let t1 = 0;
+        let t2 = 0;
+  
+        const route = log.route_id;
+        const routeName = log.route_long_name;
+        const causeRaw = log.cause;
+        const cause = causeRaw.charAt(0).toUpperCase()+causeRaw.slice(1).toLowerCase();
+        const effect = log.effect;
+        const description = log.description_text; 
+        const shortDescription = log.header_text;
+        const start = convertTime(log.start_dttm).replace(/,/g, match => ++t1 === 3 ? ' @' : match);
+        const end = convertTime(log.end_dttm).replace(/,/g, match => ++t2 === 3 ? ' @' : match);
+        const stop = log.stop_id
+        
+        const newLi = document.createElement("li");
+        newLi.classList.add("disruptionsHeader");
+        newLi.innerHTML = 
+          
+          `<div class="accordion">
+            <div class="accordionItem">
+              <div class="accordionItemHeader">
+                ${route  
+                  ? route
+                  : shortDescription
+                }
+                ${routeName
+                  ? routeName
+                  : ""
+                }
+                ${effect
+                  ? effect
+                  : ""
+                }
+            
+              </div>
+              <div class="accordionItemBody">
+                <div class="accordionContent">
+                  <div class="briefDescription">
+                    ${description
+                      ? description 
+                      : "Information not available"}
+                  </div>
+                  <div class="doubleInfoContainer">
+                      ${cause
+                      ? `<div class="doubleLeft">
+                          CAUSE:
+                        </div>
+                        <div class="doubleRight">
+                          ${cause}
+                        </div>
+                       `
+                      : "No cause specified"}
+                  </div>
+                  <div class="doubleInfoContainer">
+                    ${start
+                      ? `<div class="doubleLeft">
+                          DISRUPTION START:
+                        </div>
+                        <div class="doubleRight">
+                          ${start}
+                        </div>`
+                      : "No disruption start time specifed"}
+                  </div>
+                  <div class="doubleInfoContainer">
+                    ${end
+                      ? `<div class="doubleLeft">
+                          DISRUPTION END:
+                        </div>
+                        <div class="doubleRight">
+                          ${end}
+                        </div>`
+                      : "No disruption end time specifed"}
+                </div>
+                </div><!--accordionContent div end -->
+              </div> <!--accordionitembody div end-->
+            </div><!--accordionItem div end-->
+          </div><!--accordion div end-->`
+          
+        document.querySelector(".serviceDisruptions").append(newLi)
+      })
+    
+      const accordionItemHeader = document.querySelectorAll(".accordionItemHeader");
+      accordionItemHeader.forEach(header => {
+     
+        header.addEventListener("click", (event) => {
+          header.classList.toggle("active");
+          console.log("clicked")
+        
+          const accordionItemBody = header.nextElementSibling;
+     
+          if (header.classList.contains("active")) {    
+            accordionItemBody.style.maxHeight = accordionItemBody.scrollHeight + "px";  
+          } else {
+            accordionItemBody.style.maxHeight = 0;
+          }
+        });
       });
-    });
-
+    }
   })
-
 
   app.fetchElevator().then((elevator)=> {
     document.querySelector(".elevatorOutages").replaceChildren();
+    // const testArray = []
 
     if (elevator.length === 0) {
+      document.querySelector(".stationGridElevator").style.display = "none"
       const newLi = document.createElement("li");
       newLi.classList.add("apiError");
       newLi.innerHTML = `All elevators are currently operational`
@@ -253,7 +256,7 @@ const callAllPromises = () => {
         const lastUpdated = convertTime(elevatorObj.polled_time_stamp);
     
         const newLi = document.createElement("li");
-        newLi.classList.add("stationGrid");
+        newLi.classList.add("stationGridElevator");
         newLi.innerHTML = 
     
             `<div> 
@@ -279,9 +282,12 @@ const callAllPromises = () => {
 
   app.fetchEscalator().then((escalator)=> {
   
-    document.querySelector(".escalatorOutages").replaceChildren();
+    document.querySelector(".escalatorOutages").replaceChildren();  
+
+    // let test = []
 
     if (escalator.length === 0) {
+      document.querySelector(".stationGridEscalator").style.display = "none"
       const newLi = document.createElement("li");
       newLi.classList.add("apiError");
       newLi.innerHTML = `All escalators are currently operational`
@@ -298,7 +304,7 @@ const callAllPromises = () => {
         const lastUpdated = convertTime(escalatorObj.polled_time_stamp);
     
         const newLi = document.createElement("li");
-        newLi.classList.add("stationGrid");
+        newLi.classList.add("stationGridEscalator");
         newLi.innerHTML = 
     
             `<div> 
