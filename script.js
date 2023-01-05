@@ -132,8 +132,9 @@ const callAllPromises = () => {
       newLi.innerHTML = `There are no current service disruptions`
       document.querySelector(".serviceDisruptions").append(newLi)
     } else { 
+      document.querySelector(".serviceDisruptions").replaceChildren();
+      
       filteredArray.forEach((log)=> {
-    
         let t1 = 0;
         let t2 = 0;
   
