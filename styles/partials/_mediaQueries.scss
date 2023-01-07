@@ -1,13 +1,38 @@
 @use "./variables" as *;
 
-@media (max-width: 768px) {
-  
+
+@media (max-width: 1000px) {
+
+  h1 {
+    display: flex;
+    flex-wrap:wrap;
+    white-space:break-spaces;
+  }  
+
   .stationGridElevator, .stationGridEscalator {
     display: grid;
     grid-template-columns: 1fr;
+    border-top: 2px solid black;
+    padding: 5px;
+    font-size: clamp(1.6rem, 2vw, 2rem);
+     
+      div {
+        justify-content: center;
+        border: none;
+        text-align: center;
+      }
+
+      div:first-child {
+        font-family: $latoBold;
+      }
+      
   }
 
-  .elevatorOutagesHeader {
+  .stationGridElevator:last-child, .stationGridEscalator:last-child {
+    border-bottom: 2px solid black;
+  }
+
+  .elevatorOutagesHeader,.escalatorOutagesHeader {
     display: none;
   }
 }

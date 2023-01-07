@@ -222,11 +222,10 @@ const callAllPromises = () => {
       })
     
       const accordionItemHeader = document.querySelectorAll(".accordionItemHeader");
-      accordionItemHeader.forEach(header => {
+      accordionItemHeader.forEach((header) => {
      
         header.addEventListener("click", (event) => {
           header.classList.toggle("active");
-          // console.log("clicked")
         
           const accordionItemBody = header.nextElementSibling;
      

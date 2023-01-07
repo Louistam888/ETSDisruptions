@@ -7,6 +7,6 @@ footer {
   text-align: center;
   background-color: $edmontonBlue;
   color: $white;
-  font-size: 2rem;
+  font-size: clamp(1.8rem, 1.05vw, 2rem);
   padding: 15px 10px;
 }

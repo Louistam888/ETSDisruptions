@@ -270,10 +270,10 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.65) 30%, rgba(0, 0, 0, 0.75) 50%, rgba(0, 0, 0, 0.85) 100%), url(../../assets/valley_line_LRT_carousel.jpg);
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.65) 30%, rgba(0, 0, 0, 0.75) 50%, rgba(0, 0, 0, 0.85) 100%), url(../../assets/lrttv-1.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center 62%;
+  background-position: center 70%;
 }
 
 h1, h2, .headerDescription {
@@ -288,7 +288,7 @@ h1 {
   text-transform: uppercase;
   color: #005087;
   font-family: "Lato-Bold";
-  font-size: clamp(3rem, 6vw, 8rem);
+  font-size: clamp(3.5rem, 6vw, 8rem);
   text-shadow: -1.5px -1.5px 0 #DDE3E6, 1.5px -1.5px 0 #DDE3E6, -1.5px 1.5px 0 #DDE3E6, 1.5px 1.5px 0 #DDE3E6;
   white-space: pre;
   margin: 15px 0;
@@ -301,19 +301,19 @@ h1 {
 
 h2 {
   color: #DDE3E6;
-  font-size: 3rem;
+  font-size: clamp(2rem, 4.2vw, 3rem);
   text-shadow: -1.5px -1.5px 0 #0E2730, 1.5px -1.5px 0 #0E2730, -1.5px 1.5px 0 #0E2730, 1.5px 1.5px 0 #0E2730;
   white-space: pre;
   margin: 2.5px 0;
 }
 
 .headerDescription {
-  font-size: 2rem;
+  font-size: clamp(1.6rem, 1.1vw, 2rem);
   color: #DDE3E6;
 }
 
 h3 {
-  font-size: 3rem;
+  font-size: clamp(2.2rem, 1.8vw, 3rem);
   text-transform: uppercase;
   width: 100%;
   display: flex;
@@ -321,10 +321,12 @@ h3 {
   margin: 10px 0;
   color: #005087;
   font-family: "Lato-Bold";
+  padding: 0 5px;
+  text-align: center;
 }
 
 main {
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.65) 30%, rgba(0, 0, 0, 0.75) 50%, rgba(0, 0, 0, 0.85) 100%), url(../../assets/lrttv-1.jpg);
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%), url(../../assets/gh3-KATG-027.jpg);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center 90%;
@@ -342,14 +344,17 @@ main {
 }
 
 .accordionItemHeader {
-  font-size: 2rem;
+  font-size: clamp(1.2rem, 1.05vw, 2rem);
   cursor: pointer;
   position: relative;
   color: white;
   display: flex;
   align-items: center;
   background-color: #1F4480;
-  padding: 10px 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 23px;
   color: #DDE3E6;
 }
 
@@ -474,6 +479,7 @@ main {
 
 .stationGridElevator, .stationGridEscalator {
   background-color: #C7D0D4;
+  font-size: 2rem;
 }
 
 footer {
@@ -483,16 +489,35 @@ footer {
   text-align: center;
   background-color: #005087;
   color: #DDE3E6;
-  font-size: 2rem;
+  font-size: clamp(1.8rem, 1.05vw, 2rem);
   padding: 15px 10px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1000px) {
+  h1 {
+    display: flex;
+    flex-wrap: wrap;
+    white-space: break-spaces;
+  }
   .stationGridElevator, .stationGridEscalator {
     display: grid;
     grid-template-columns: 1fr;
+    border-top: 2px solid black;
+    padding: 5px;
+    font-size: clamp(1.6rem, 2vw, 2rem);
   }
-  .elevatorOutagesHeader {
+  .stationGridElevator div, .stationGridEscalator div {
+    justify-content: center;
+    border: none;
+    text-align: center;
+  }
+  .stationGridElevator div:first-child, .stationGridEscalator div:first-child {
+    font-family: "Lato-Bold";
+  }
+  .stationGridElevator:last-child, .stationGridEscalator:last-child {
+    border-bottom: 2px solid black;
+  }
+  .elevatorOutagesHeader, .escalatorOutagesHeader {
     display: none;
   }
 }
