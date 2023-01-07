@@ -120,11 +120,14 @@ const callAllPromises = () => {
       if (currentTimeUnix >= disruptionStart && currentTimeUnix <= disruptionEnd) {
         return entry;
       } 
-    }).sort(function (a,b) {
+    }).sort((a,b) => {
+      // console.log("this is", parseInt(a.shortDescription))
       if (a.route_id < b.route_id) return -1;
       if (a.route_id > b.route_id) return 1;
       return 0;
     })
+
+    console.log(filteredArray)
 
     if (filteredArray.length === 0 ) {
       const newLi = document.createElement("li");
