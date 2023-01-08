@@ -15,22 +15,6 @@ const convertTime = (timeObj) => {
 }
 
 
-//FUNCTION FOR RETRIEVING AND UPDATING CURRENT EDMONTON TIME 
-app.refreshTime = () => {
-
-  let t = 0;
-
-  const timeNow = (new Date).toLocaleString('en-CA', {timeZone: "America/Edmonton", year:"numeric", month:"short", weekday: "long", day:"numeric", hour12:true, hour: "numeric", minute:"2-digit", second: "2-digit"}).replace(/,/g, match => ++t === 3 ? ' |' : match)
-
-  const time = document.querySelector(".time")
-  time.innerHTML = `${timeNow}`
-}
-
-app.refreshTime()
-setInterval(app.refreshTime, 1000)
-
-
-
 //FUNCTION FOR FETCHING ALL DISRUPTIONS
 
 app.fetchDisruptions = async () => {
@@ -127,7 +111,7 @@ const callAllPromises = () => {
       return 0;
     })
 
-    console.log(filteredArray)
+    // console.log(filteredArray)
 
     if (filteredArray.length === 0 ) {
       const newLi = document.createElement("li");
@@ -138,6 +122,7 @@ const callAllPromises = () => {
       document.querySelector(".serviceDisruptions").replaceChildren();
       
       filteredArray.forEach((log)=> {
+
         let t1 = 0;
         let t2 = 0;
   
@@ -220,25 +205,11 @@ const callAllPromises = () => {
           
         document.querySelector(".serviceDisruptions").append(newLi)
       })
-    
-      const accordionItemHeader = document.querySelectorAll(".accordionItemHeader");
-      accordionItemHeader.forEach((header) => {
-     
-        header.addEventListener("click", (event) => {
-          header.classList.toggle("active");
-        
-          const accordionItemBody = header.nextElementSibling;
-     
-          if (header.classList.contains("active")) {    
-            accordionItemBody.style.maxHeight = accordionItemBody.scrollHeight + "px";  
-          } else {
-            accordionItemBody.style.maxHeight = 0;
-          }
-        });
-      });
+      disruptionAccordions();
     }
   })
 
+  
   app.fetchElevator().then((elevator)=> {
     document.querySelector(".elevatorOutages").replaceChildren();
     // const testArray = []
@@ -340,4 +311,4 @@ const callAllPromises = () => {
 }
 
 callAllPromises()
-setInterval(callAllPromises, 60000)
+setInterval(callAllPromises, 300000)

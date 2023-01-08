@@ -301,7 +301,7 @@ h1 {
 
 h2 {
   color: #DDE3E6;
-  font-size: clamp(2rem, 4.2vw, 3rem);
+  font-size: clamp(1.8rem, 4.2vw, 3rem);
   text-shadow: -1.5px -1.5px 0 #0E2730, 1.5px -1.5px 0 #0E2730, -1.5px 1.5px 0 #0E2730, 1.5px 1.5px 0 #0E2730;
   white-space: pre;
   margin: 2.5px 0;
