@@ -414,6 +414,7 @@ main {
   width: 100%;
   display: flex;
   font-size: clamp(1.6rem, 1.05vw, 2rem);
+  justify-content: center;
 }
 .doubleInfoContainer .doubleLeft, .doubleInfoContainer .doubleRight {
   width: 50%;
@@ -429,6 +430,9 @@ main {
 .doubleInfoContainer .doubleRight {
   justify-content: flex-start;
   padding-left: 2.5px;
+}
+.doubleInfoContainer .doubleRight:last-child {
+  flex-wrap: wrap;
 }
 
 .disruptions {
@@ -545,6 +549,9 @@ footer {
   }
   .elevatorOutagesHeader, .escalatorOutagesHeader {
     display: none;
+  }
+  .briefDescription {
+    font-family: "Lato-Regular";
   }
   .doubleInfoContainer {
     flex-direction: column;

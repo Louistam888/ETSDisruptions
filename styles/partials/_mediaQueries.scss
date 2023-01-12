@@ -49,6 +49,10 @@
     display: none;
   }
 
+  .briefDescription {
+    font-family: $lato;
+  }
+
   .doubleInfoContainer {
     flex-direction: column;
     justify-content: center;

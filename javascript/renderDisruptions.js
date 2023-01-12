@@ -8,7 +8,6 @@ const renderDisruptions = () => {
     const filteredArray = disruption.filter((entry)=> {
       const disruptionStart = Date.parse(entry.start_dttm);
       const disruptionEnd = Date.parse(entry.end_dttm) 
-      console.log(entry.route_id)
 
       if (currentTimeUnix >= disruptionStart && currentTimeUnix <= disruptionEnd) {
         return entry;
@@ -32,7 +31,7 @@ const renderDisruptions = () => {
 
         let t1 = 0;
         let t2 = 0;
-
+      
         const route = log.route_id;
         const routeName = log.route_long_name;
         const causeRaw = log.cause;
@@ -43,6 +42,9 @@ const renderDisruptions = () => {
         const start = convertTime(log.start_dttm).replace(/,/g, match => ++t1 === 3 ? ' @' : match);
         const end = convertTime(log.end_dttm).replace(/,/g, match => ++t2 === 3 ? ' @' : match);
         const stop = log.stop_id
+        // const stopCoord = log.stop_id_multipoint.coordinates
+
+        console.log(stopCoord)
         
         const newLi = document.createElement("li");
         newLi.classList.add("disruptionsHeader");
@@ -104,6 +106,16 @@ const renderDisruptions = () => {
                           ${end}
                         </div>`
                       : "No disruption end time specifed"}
+                  </div>
+                  <div class="doubleInfoContainer">
+                      ${stop
+                      ? `<div class="doubleLeft">
+                        STOP(S) AFFECTED
+                      </div>
+                      <div class="doubleRight">
+                        ${stop}
+                      </div>`
+                      : "No affected stops specified"}
                   </div>
                 </div><!--accordionContent div end -->
               </div> <!--accordionitembody div end-->

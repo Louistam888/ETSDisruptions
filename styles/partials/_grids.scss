@@ -106,6 +106,7 @@ main {
   width: 100%;
   display: flex;
   font-size: clamp(1.6rem, 1.05vw, 2rem);
+  justify-content: center;
 
   .doubleLeft, .doubleRight {
     width: 50%;
@@ -124,6 +125,10 @@ main {
   .doubleRight {
     justify-content: flex-start;
     padding-left: 2.5px;
+  }
+
+  .doubleRight:last-child {
+    flex-wrap:wrap;
   }
 }
 
