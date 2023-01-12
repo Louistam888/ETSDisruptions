@@ -25,10 +25,24 @@
       div:first-child {
         font-family: $latoBold;
       }
+
+      div:nth-child(4)::before {
+        content: "Since ";
+        white-space: pre;
+      }
+      
+      div:last-child {
+        display: none;
+      }
   }
 
   .stationGridElevator:last-child, .stationGridEscalator:last-child {
     border-bottom: 2px solid black;
+  }
+
+  .stationGridElevator div:first-child::after, .stationGridEscalator div:first-child::after {
+    content: " Station";
+    white-space: pre;
   }
 
   .elevatorOutagesHeader,.escalatorOutagesHeader {
@@ -39,11 +53,20 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
     .doubleLeft, .doubleRight {
       justify-content: center;
       padding: 0;
       width: 100%;
       text-align: center;
+    }
+
+    .doubleLeft {
+      font-family: $latoBlack
+    }
+
+    .doubleLeft::after {
+      content: ""
     }
   }
 

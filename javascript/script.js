@@ -6,7 +6,7 @@ const convertTime = (timeObj) => {
   return new Date(timeObj).toLocaleDateString("en-us", {
     year: "numeric",
     month: "short",
-    weekday: "long",
+    weekday: "short",
     day: "numeric",
     hour12: true,
     hour: "numeric",
@@ -20,7 +20,7 @@ app.callAllPromises = () => {
 
   renderDisruptions();
   renderEscalatorsElevators();
-  console.log("great success!")
+
 }
 
 app.callAllPromises()

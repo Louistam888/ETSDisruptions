@@ -358,6 +358,7 @@ main {
 }
 
 .accordionItemHeader::after, .accordionItemHeader.active::after {
+  content: "";
   position: absolute;
   right: 0;
   top: 0;
@@ -421,6 +422,9 @@ main {
 .doubleInfoContainer .doubleLeft {
   justify-content: flex-end;
   padding-right: 2.5px;
+}
+.doubleInfoContainer .doubleLeft::after {
+  content: ":";
 }
 .doubleInfoContainer .doubleRight {
   justify-content: flex-start;
@@ -525,8 +529,19 @@ footer {
   .stationGridElevator div:first-child, .stationGridEscalator div:first-child {
     font-family: "Lato-Bold";
   }
+  .stationGridElevator div:nth-child(4)::before, .stationGridEscalator div:nth-child(4)::before {
+    content: "Since ";
+    white-space: pre;
+  }
+  .stationGridElevator div:last-child, .stationGridEscalator div:last-child {
+    display: none;
+  }
   .stationGridElevator:last-child, .stationGridEscalator:last-child {
     border-bottom: 2px solid black;
+  }
+  .stationGridElevator div:first-child::after, .stationGridEscalator div:first-child::after {
+    content: " Station";
+    white-space: pre;
   }
   .elevatorOutagesHeader, .escalatorOutagesHeader {
     display: none;
@@ -541,5 +556,11 @@ footer {
     padding: 0;
     width: 100%;
     text-align: center;
+  }
+  .doubleInfoContainer .doubleLeft {
+    font-family: "Lato-Black";
+  }
+  .doubleInfoContainer .doubleLeft::after {
+    content: "";
   }
 }

@@ -48,6 +48,7 @@ main {
 }
 
 .accordionItemHeader::after, .accordionItemHeader.active::after {
+  content: "";
   position: absolute;
   right: 0;
   top: 0;
@@ -114,6 +115,10 @@ main {
   .doubleLeft {
     justify-content: flex-end;
     padding-right: 2.5px;
+  }
+
+  .doubleLeft::after {
+    content: ":"
   }
 
   .doubleRight {

@@ -1,5 +1,16 @@
 //FUNCTION FOR ACTIVATING ACCORIONS ON CLICK 
 
+
+// const testArray = [001, 005, 192, undefined, "192X"]
+
+// console.log(testArray.sort((a,b) => {
+      
+//   if (a < b) return -1;
+//   if (a > b) return 1;
+//   return 0;
+// })
+// )
+
 const disruptionAccordions = () => {
   
   const accordionItemHeader = document.querySelectorAll(".accordionItemHeader");

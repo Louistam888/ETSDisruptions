@@ -4,22 +4,21 @@ const renderDisruptions = () => {
 
     const currentTime = (new Date).toLocaleString('en-CA', {timeZone: "America/Edmonton", year:"numeric", month:"numeric", day:"numeric", hour12:false, hour: "numeric", minute:"2-digit", second: "2-digit"})
     const currentTimeUnix = Date.parse(currentTime.replace(",", ""))
-
+    
     const filteredArray = disruption.filter((entry)=> {
       const disruptionStart = Date.parse(entry.start_dttm);
       const disruptionEnd = Date.parse(entry.end_dttm) 
-          
+      console.log(entry.route_id)
+
       if (currentTimeUnix >= disruptionStart && currentTimeUnix <= disruptionEnd) {
         return entry;
       } 
     }).sort((a,b) => {
-      // console.log("this is", parseInt(a.shortDescription))
+      
       if (a.route_id < b.route_id) return -1;
       if (a.route_id > b.route_id) return 1;
       return 0;
     })
-
-  const filteredArray2 = [];
 
     if (filteredArray.length === 0 ) {
       const newLi = document.createElement("li");
@@ -78,7 +77,7 @@ const renderDisruptions = () => {
                   <div class="doubleInfoContainer">
                       ${cause
                       ? `<div class="doubleLeft">
-                          CAUSE:
+                          CAUSE
                         </div>
                         <div class="doubleRight">
                           ${cause}
@@ -89,7 +88,7 @@ const renderDisruptions = () => {
                   <div class="doubleInfoContainer">
                     ${start
                       ? `<div class="doubleLeft">
-                          DISRUPTION START:
+                          DISRUPTION START
                         </div>
                         <div class="doubleRight">
                           ${start}
@@ -99,7 +98,7 @@ const renderDisruptions = () => {
                   <div class="doubleInfoContainer">
                     ${end
                       ? `<div class="doubleLeft">
-                          DISRUPTION END:
+                          DISRUPTION END
                         </div>
                         <div class="doubleRight">
                           ${end}
