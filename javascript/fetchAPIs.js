@@ -1,8 +1,6 @@
-//FUNCTION FOR FETCHING ALL DISRUPTIONS
+// FUNCTION FOR FETCHING DISRUPTIONS 
 
-const fetchAPIs = {}
-
-fetch.fetchDisruptions = async () => {
+const fetchDisruptions = async () => {
   try {
     const url = "https://data.edmonton.ca/resource/5yvt-mcye.json"
     url.search = new URLSearchParams ({
@@ -25,7 +23,7 @@ fetch.fetchDisruptions = async () => {
 
 //FUNCTION FOR FETCHING ELEVATOR OUTAGES 
 
-fetch.fetchElevator = async () => {
+const fetchElevator = async () => {
   try {
     const url = "https://data.edmonton.ca/resource/snws-u3zx.json?device_type=Elevator"
     url.search = new URLSearchParams ({
@@ -50,7 +48,7 @@ fetch.fetchElevator = async () => {
   
 //FUNCTION FOR FETCHING ESCALATOR OUTAGES 
 
-fetch.fetchEscalator = async () => {
+const fetchEscalator = async () => {
   try {
     const url = "https://data.edmonton.ca/resource/snws-u3zx.json?device_type=Escalator"
     url.search = new URLSearchParams ({

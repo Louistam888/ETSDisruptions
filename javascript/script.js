@@ -2,7 +2,7 @@ const app = {};
 
 app.token = "J33yX1FYA0vwnOA36tGBFLd6l"
 
-app.convertTime = (timeObj) => { 
+const convertTime = (timeObj) => { 
   return new Date(timeObj).toLocaleDateString("en-us", {
     year: "numeric",
     month: "short",
@@ -14,10 +14,12 @@ app.convertTime = (timeObj) => {
   })
 }
 
+//FUNCTION FOR FETCHING ALL DISRUPTIONS
+
 app.callAllPromises = () => {
 
   renderDisruptions();
-  renderElevatorsEscalators();  
+  renderEscalatorsElevators();
 }
 
 app.callAllPromises()

@@ -185,3 +185,14 @@ main {
 }
 
 
+//MISC MESSAGES
+
+.apiError {
+  display: flex;
+  justify-content: center;
+  font-size: clamp(1.5rem, 1.05vw, 2rem);
+  margin-bottom: 20px;
+  margin-left: 5px;
+  margin-right: 5px;
+  text-align: center;
+}

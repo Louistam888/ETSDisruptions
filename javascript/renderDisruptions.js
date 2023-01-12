@@ -1,11 +1,9 @@
 const renderDisruptions = () => {
 
-  fetch.fetchDisruptions().then((disruption) => {
+  fetchDisruptions().then((disruption) => {
 
     const currentTime = (new Date).toLocaleString('en-CA', {timeZone: "America/Edmonton", year:"numeric", month:"numeric", day:"numeric", hour12:false, hour: "numeric", minute:"2-digit", second: "2-digit"})
     const currentTimeUnix = Date.parse(currentTime.replace(",", ""))
-
-    // const filteredArray = [];
 
     const filteredArray = disruption.filter((entry)=> {
       const disruptionStart = Date.parse(entry.start_dttm);
@@ -21,7 +19,7 @@ const renderDisruptions = () => {
       return 0;
     })
 
-    // console.log(filteredArray)
+  const filteredArray2 = [];
 
     if (filteredArray.length === 0 ) {
       const newLi = document.createElement("li");
@@ -43,8 +41,8 @@ const renderDisruptions = () => {
         const effect = log.effect.replace("_", " ");
         const description = log.description_text; 
         const shortDescription = log.header_text;
-        const start = app.convertTime(log.start_dttm).replace(/,/g, match => ++t1 === 3 ? ' @' : match);
-        const end = app.convertTime(log.end_dttm).replace(/,/g, match => ++t2 === 3 ? ' @' : match);
+        const start = convertTime(log.start_dttm).replace(/,/g, match => ++t1 === 3 ? ' @' : match);
+        const end = convertTime(log.end_dttm).replace(/,/g, match => ++t2 === 3 ? ' @' : match);
         const stop = log.stop_id
         
         const newLi = document.createElement("li");
@@ -114,11 +112,11 @@ const renderDisruptions = () => {
           </div><!--accordion div end-->`
         document.querySelector(".serviceDisruptions").append(newLi)
       })
-      accordions.sameHeights(false);
+      sameHeights(false);
       window.onresize = () => {
-        accordions.sameHeights(true)
+        sameHeights(true)
       }
-      accordions.disruptionAccordions();
+      disruptionAccordions();
     }
   })
 }
