@@ -25,7 +25,6 @@
       div:first-child {
         font-family: $latoBold;
       }
-      
   }
 
   .stationGridElevator:last-child, .stationGridEscalator:last-child {
@@ -35,4 +34,17 @@
   .elevatorOutagesHeader,.escalatorOutagesHeader {
     display: none;
   }
+
+  .doubleInfoContainer {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    .doubleLeft, .doubleRight {
+      justify-content: center;
+      padding: 0;
+      width: 100%;
+      text-align: center;
+    }
+  }
+
 }

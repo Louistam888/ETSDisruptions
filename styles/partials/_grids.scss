@@ -45,7 +45,6 @@ main {
   padding-bottom: 10px;
   padding-left: 10px;
   padding-right: 23px;
-  color: $white;
 }
 
 .accordionItemHeader::after, .accordionItemHeader.active::after {
@@ -99,11 +98,13 @@ main {
   text-align: center;
   font-family: $latoBlack;
   padding-bottom: 10px;
+  font-size: clamp(1.5rem, 1.05vw, 2rem);
 }
 
 .doubleInfoContainer {
   width: 100%;
   display: flex;
+  font-size: clamp(1.6rem, 1.05vw, 2rem);
 
   .doubleLeft, .doubleRight {
     width: 50%;

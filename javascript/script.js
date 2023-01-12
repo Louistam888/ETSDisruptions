@@ -197,14 +197,17 @@ const callAllPromises = () => {
                           ${end}
                         </div>`
                       : "No disruption end time specifed"}
-                </div>
+                  </div>
                 </div><!--accordionContent div end -->
               </div> <!--accordionitembody div end-->
             </div><!--accordionItem div end-->
           </div><!--accordion div end-->`
-          
         document.querySelector(".serviceDisruptions").append(newLi)
       })
+      sameHeights(false);
+      window.onresize = () => {
+        sameHeights(true)
+      }
       disruptionAccordions();
     }
   })

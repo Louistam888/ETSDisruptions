@@ -355,7 +355,6 @@ main {
   padding-bottom: 10px;
   padding-left: 10px;
   padding-right: 23px;
-  color: #DDE3E6;
 }
 
 .accordionItemHeader::after, .accordionItemHeader.active::after {
@@ -407,11 +406,13 @@ main {
   text-align: center;
   font-family: "Lato-Black";
   padding-bottom: 10px;
+  font-size: clamp(1.5rem, 1.05vw, 2rem);
 }
 
 .doubleInfoContainer {
   width: 100%;
   display: flex;
+  font-size: clamp(1.6rem, 1.05vw, 2rem);
 }
 .doubleInfoContainer .doubleLeft, .doubleInfoContainer .doubleRight {
   width: 50%;
@@ -519,5 +520,16 @@ footer {
   }
   .elevatorOutagesHeader, .escalatorOutagesHeader {
     display: none;
+  }
+  .doubleInfoContainer {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .doubleInfoContainer .doubleLeft, .doubleInfoContainer .doubleRight {
+    justify-content: center;
+    padding: 0;
+    width: 100%;
+    text-align: center;
   }
 }
