@@ -36,11 +36,11 @@ const fetchElevator = async () => {
 
   } catch (error) {
 
-    document.querySelector(".elevatorOutages").replaceChildren();
+    document.querySelector(".elevatorOutagesHeader").replaceChildren();
     const newLi = document.createElement("li");
     newLi.classList.add("apiError");
     newLi.innerHTML = `Sorry, information on elevator outages is not available at the moment. Please try again later`
-    document.querySelector(".elevatorOutages").append(newLi)
+    document.querySelector(".elevatorOutagesHeader").append(newLi)
 
   return error
   }

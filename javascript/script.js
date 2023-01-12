@@ -20,6 +20,7 @@ app.callAllPromises = () => {
 
   renderDisruptions();
   renderEscalatorsElevators();
+  console.log("great success!")
 }
 
 app.callAllPromises()
