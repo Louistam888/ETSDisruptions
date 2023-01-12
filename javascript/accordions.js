@@ -1,6 +1,8 @@
+const accordions = {}
+
 //FUNCTION FOR ACTIVATING ACCORIONS ON CLICK 
 
-const disruptionAccordions = () => {
+accordions.disruptionAccordions = () => {
   
   const accordionItemHeader = document.querySelectorAll(".accordionItemHeader");
   accordionItemHeader.forEach((header) => {
@@ -19,9 +21,9 @@ const disruptionAccordions = () => {
   });
 }
 
-//FUNCTION TO GET ALL ACCORDION HEADERS TO RENDER AT THE SAME HEIGHT 
+//FUNCTION TO GET ALL ACCORDION HEADERS TO RENDER AT THE SAME HEIGHT WHEN SCREEN SIZE CHANGES
 
-const sameHeights = (resize) => {
+accordions.sameHeights = (resize) => {
   const accordionHeights = document.getElementsByClassName("accordionItemHeader")
   let allHeights = []
 
