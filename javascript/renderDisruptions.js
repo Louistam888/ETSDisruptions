@@ -44,7 +44,7 @@ const renderDisruptions = () => {
         const stop = log.stop_id
         // const stopCoord = log.stop_id_multipoint.coordinates
 
-        console.log(stopCoord)
+        // console.log(stopCoord)
         
         const newLi = document.createElement("li");
         newLi.classList.add("disruptionsHeader");
