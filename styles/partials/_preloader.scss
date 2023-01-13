@@ -17,8 +17,6 @@
   flex-direction: column;
 }
 
-
-
 .loader--hidden {
   opacity: 0;
   visibility: hidden; 
@@ -34,6 +32,9 @@
   justify-content: center;
   text-align: center;
   white-space: pre;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 

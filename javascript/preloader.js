@@ -10,3 +10,4 @@ window.addEventListener("load", () => {
   setTimeout(delay, 2800);
 })
  document.body.style.overflow = "auto";
+

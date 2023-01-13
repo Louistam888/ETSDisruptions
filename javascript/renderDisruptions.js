@@ -14,10 +14,12 @@ const renderDisruptions = () => {
       } 
     }).sort((a,b) => {
       
-      if (a.route_id < b.route_id) return -1;
-      if (a.route_id > b.route_id) return 1;
+      if ((a.route_id ?? Number.MAX_VALUE) < (b.route_id ?? Number.MAX_VALUE)) return -1;
+      if ((a.route_id ?? Number.MAX_VALUE) > (b.route_id ?? Number.MAX_VALUE)) return 1;
       return 0;
     })
+
+    
 
     if (filteredArray.length === 0 ) {
       const newLi = document.createElement("li");
@@ -43,7 +45,7 @@ const renderDisruptions = () => {
         const end = convertTime(log.end_dttm).replace(/,/g, match => ++t2 === 3 ? ' @' : match);
         const stop = log.stop_id
         // const stopCoord = log.stop_id_multipoint.coordinates
-
+     
         // console.log(stopCoord)
         
         const newLi = document.createElement("li");

@@ -30,6 +30,9 @@
   justify-content: center;
   text-align: center;
   white-space: pre;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .rails {
