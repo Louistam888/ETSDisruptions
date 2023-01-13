@@ -1,0 +1,166 @@
+@use "./variables" as *;
+
+
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw; 
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  background-color: $edmontonBlue;
+  z-index: 1000;
+  transition: opacity 0.9s, visibility 0.9s; 
+  display: flex;
+  flex-direction: column;
+}
+
+
+.loader--hidden {
+  opacity: 0;
+  visibility: hidden; 
+}
+
+.loaderText {
+  color: $white;
+  font-family: $latoBold;
+  text-transform: uppercase;
+  font-size: clamp(2.9rem, 3vw, 5rem);
+  margin: 30px 10px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+
+//subway animation based on design by cody Ogden https://codepen.io/codyogden/pen/OpyPoN
+
+.rails {
+	position: relative;
+	text-align: center;
+	width: 100px;
+	&:before,
+	&:after {
+		background-color: $trainColor;
+		border-radius: 4px;
+		content: '';
+		display: block;
+		float: left;
+		height: 40px;
+		transform-origin: bottom;
+		transform: skewX(-27deg);
+		width: 3px;
+	}
+	&:after {
+		float: right;
+		transform: skewX(27deg);
+	}
+}
+
+.ties {
+	animation: track 1s infinite linear;
+	background-color: $trainColor;
+	border-radius: 4px;
+	display: inline-block;
+	height: 3px;
+	opacity: 0;
+	position: absolute;
+	top: 89%;
+	transform:  translateX(-52%);
+}
+
+.ties:nth-child(2) {
+	animation-delay: -0.333s;
+}
+
+.ties:nth-child(3) {
+	animation-delay: -0.666s;
+}
+
+.train {
+	animation: train 1.5s infinite ease-in-out;
+	background-color: $trainColor;
+	border-radius: 10px;
+	height: 100px;
+	position: relative;
+	top: 1px;
+	width: 100px;
+}
+
+.windows {
+	background-color: $lightGreen;
+	border-radius: 4px;
+	height: 53px;
+	margin: 1px auto 0 auto;
+	position: relative;
+	top: 12px;
+	width: 80%;
+	&:before {
+		background-color: invert($trainColor);
+		border-radius: 3px;
+		content: '';
+		display: block;
+		height: 5px;
+		left: calc(50% - 7.5px);
+		position: absolute;
+		top: -8px;
+		width: 15px;
+	}
+}
+
+.lights:before,
+.lights:after {
+	background-color: $lightGreen;
+	border-radius: 50%;
+	content: '';
+	display: block;
+	height: 12px;
+	left: 16%;
+	position: absolute;
+	top: 75%;
+	width: 12px;
+}
+
+.lights:after {
+	left: 71%;
+}
+
+@keyframes train {
+	0% {
+		transform: rotate(0deg);
+	}
+	25% {
+		transform: rotate(0.5deg);
+	}
+	50% {
+		transform: rotate(-0.5deg);
+	}
+	75% {
+		transform: rotate(0.5deg);
+	}
+	100% {
+		transform: rotate(0deg);
+	}
+}
+
+@keyframes track {
+	0% {
+		opacity: 0;
+		top: 88%;
+		width: 90%;
+	}
+	10% {
+		opacity: 1;
+	}
+	90% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+		top: 0;
+		width: 38px;
+	}
+}
+
