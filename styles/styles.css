@@ -29,6 +29,7 @@
   display: flex;
   justify-content: center;
   text-align: center;
+  white-space: pre;
 }
 
 .rails {
@@ -426,10 +427,7 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.65) 0%, rgba(0, 0, 0, 0.65) 30%, rgba(0, 0, 0, 0.75) 50%, rgba(0, 0, 0, 0.85) 100%), url(../../assets/lrttv-1.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center 70%;
+  background-color: #005087;
 }
 
 h1, h2, .headerDescription {
@@ -442,25 +440,23 @@ h1, h2, .headerDescription {
 
 h1 {
   text-transform: uppercase;
-  color: #005087;
+  color: #DDE3E6;
   font-family: "Lato-Bold";
   font-size: clamp(3.5rem, 6vw, 8rem);
-  text-shadow: -1.5px -1.5px 0 #DDE3E6, 1.5px -1.5px 0 #DDE3E6, -1.5px 1.5px 0 #DDE3E6, 1.5px 1.5px 0 #DDE3E6;
   white-space: pre;
   margin: 15px 0;
   letter-spacing: 0.35rem;
 }
 
-.h1span {
+.orangeSpan {
   color: #ED2D2C;
 }
 
 .time {
   color: #DDE3E6;
   font-size: clamp(1.7rem, 4.2vw, 3rem);
-  text-shadow: -1.5px -1.5px 0 #0E2730, 1.5px -1.5px 0 #0E2730, -1.5px 1.5px 0 #0E2730, 1.5px 1.5px 0 #0E2730;
   white-space: pre;
-  margin: 2.5px 0;
+  margin: 10px 0;
 }
 
 .headerDescription {
