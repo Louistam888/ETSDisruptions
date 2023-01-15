@@ -13,14 +13,20 @@ const convertTime = (timeObj) => {
     minute: "2-digit"
   }).split(",")
 
+
+
   const weekday = dateString[0];
   const monthDay = dateString[1];
   const year = dateString[2];
   const time = dateString[3];
+  console.log(time)
   const timeString = `${weekday}. ${monthDay}, ${year} @ ${time}`  
   
   return timeString
 }
+
+
+
 
 //FUNCTION FOR FETCHING ALL DISRUPTIONS
 

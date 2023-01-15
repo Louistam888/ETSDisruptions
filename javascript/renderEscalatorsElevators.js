@@ -21,8 +21,8 @@ const renderEscalatorsElevators = () => {
         const stationName = elevatorObj.lrt_station_name;
         const deviceLocation = elevatorObj.lrt_device_location 
         const device_op_status = elevatorObj.device_op_status;
-        const offlineStartDate = convertTime(elevatorObj.since_time_stamp).replace(/,/g, match => ++t1 === 3 ? ' @' : match).replace(",", ".");
-        const lastUpdated = convertTime(elevatorObj.polled_time_stamp).replace(/,/g, match => ++t2 === 3 ? ' @' : match).replace(",", ".");
+        const offlineStartDate = convertTime(elevatorObj.since_time_stamp)
+        const lastUpdated = convertTime(elevatorObj.polled_time_stamp)
         const newLi = document.createElement("li");
         newLi.classList.add("stationGridElevator");
         newLi.innerHTML = 
@@ -71,8 +71,8 @@ const renderEscalatorsElevators = () => {
         const stationName = escalatorObj.lrt_station_name;
         const deviceLocation = escalatorObj.lrt_device_location 
         const device_op_status = escalatorObj.device_op_status;
-        const offlineStartDate = convertTime(escalatorObj.since_time_stamp).replace(/,/g, match => ++t1 === 3 ? ' @' : match).replace(",", ".");
-        const lastUpdated = convertTime(escalatorObj.polled_time_stamp).replace(/,/g, match => ++t2 === 3 ? ' @' : match).replace(",", ".");
+        const offlineStartDate = convertTime(escalatorObj.since_time_stamp)
+        const lastUpdated = convertTime(escalatorObj.polled_time_stamp)
     
         const newLi = document.createElement("li");
         newLi.classList.add("stationGridEscalator");
