@@ -41,10 +41,9 @@ const renderDisruptions = () => {
         const effect = log.effect.replace("_", " ");
         const description = log.description_text; 
         const shortDescription = log.header_text;
-        const start = convertTime(log.start_dttm)
-        const end = convertTime(log.end_dttm)
+        const start = convertTime(log.start_dttm).replace(/,/g, match => ++t1 === 3 ? ' @' : match);
+        const end = convertTime(log.end_dttm).replace(/,/g, match => ++t2 === 3 ? ' @' : match);
         const stop = log.stop_id
-
         // const stopCoord = log.stop_id_multipoint.coordinates
      
         // console.log(stopCoord)
