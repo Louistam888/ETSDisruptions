@@ -11,7 +11,7 @@ const refreshTime = () => {
     const year = dateString[2];
     const time = dateString[3];
     console.log(typeof time)
-    const timeString = `${weekday}. ${monthDay}, ${year} | ${time}`  
+    const timeString = `${weekday}. ${monthDay}, current year${year} | ${time}`  
 
    return timeString
   
