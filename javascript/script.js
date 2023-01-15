@@ -19,7 +19,7 @@ const convertTime = (timeObj) => {
   const monthDay = dateString[1];
   const year = dateString[2];
   const time = dateString[3];
-  console.log(time)
+
   const timeString = `${weekday}. ${monthDay}, ${year} @ ${time}`  
   
   return timeString

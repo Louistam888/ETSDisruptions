@@ -10,8 +10,9 @@ const refreshTime = () => {
     const monthDay = dateString[1];
     const year = dateString[2];
     const time = dateString[3];
+    console.log(typeof time)
     const timeString = `${weekday}. ${monthDay}, ${year} | ${time}`  
-   
+
    return timeString
   
   }
