@@ -44,6 +44,7 @@ const renderDisruptions = () => {
         const start = convertTime(log.start_dttm).replace(/,/g, match => ++t1 === 3 ? ' @' : match);
         const end = convertTime(log.end_dttm).replace(/,/g, match => ++t2 === 3 ? ' @' : match);
         const stop = log.stop_id
+
         // const stopCoord = log.stop_id_multipoint.coordinates
      
         // console.log(stopCoord)
