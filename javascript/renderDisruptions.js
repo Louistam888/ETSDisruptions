@@ -13,7 +13,7 @@ const renderDisruptions = () => {
         return entry;
       } 
     }).sort((a,b) => {
-      
+            
       if ((a.route_id ?? Number.MAX_VALUE) < (b.route_id ?? Number.MAX_VALUE)) return -1;
       if ((a.route_id ?? Number.MAX_VALUE) > (b.route_id ?? Number.MAX_VALUE)) return 1;
       return 0;
