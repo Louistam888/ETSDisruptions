@@ -1,25 +1,40 @@
 const renderDisruptions = () => {
 
   fetchDisruptions().then((disruption) => {
-
+    // console.table(disruption)
     const currentTime = (new Date).toLocaleString('en-CA', {timeZone: "America/Edmonton", year:"numeric", month:"numeric", day:"numeric", hour12:false, hour: "numeric", minute:"2-digit", second: "2-digit"})
     const currentTimeUnix = Date.parse(currentTime.replace(",", ""))
     
-    const filteredArray = disruption.filter((entry)=> {
+    const filteredArrayRaw = disruption.filter((entry)=> {
       const disruptionStart = Date.parse(entry.start_dttm);
       const disruptionEnd = Date.parse(entry.end_dttm) 
 
       if (currentTimeUnix >= disruptionStart && currentTimeUnix <= disruptionEnd) {
         return entry;
       } 
-    }).sort((a,b) => {
-            
+    })
+      
+    const filteredArray = filteredArrayRaw.sort((a,b) => {
+      
+      if ((a.start_dttm ?? Number.MAX_VALUE) > (b.start_dttm ?? Number.MAX_VALUE)) return -1;
+      if ((a.start_dttm ?? Number.MAX_VALUE) < (b.start_dttm ?? Number.MAX_VALUE)) return 1;
+      return 0;
+    }).reduce((accumulator, current) => {
+
+      if (!accumulator.find((item) => (item.description_text === current.description_text && item.stop_id === current.stop_id && item.route_id === current.route_id))) {
+
+        accumulator.push(current);
+
+      } 
+
+      return accumulator;
+    }, []).sort((a,b) => {
+      
       if ((a.route_id ?? Number.MAX_VALUE) < (b.route_id ?? Number.MAX_VALUE)) return -1;
       if ((a.route_id ?? Number.MAX_VALUE) > (b.route_id ?? Number.MAX_VALUE)) return 1;
       return 0;
     })
 
-    
 
     if (filteredArray.length === 0 ) {
       const newLi = document.createElement("li");
@@ -34,16 +49,21 @@ const renderDisruptions = () => {
         let t1 = 0;
         let t2 = 0;
       
+        // .replace(/Please use:$/, "")
+
         const route = log.route_id;
         const routeName = log.route_long_name;
         const causeRaw = log.cause;
         const cause = causeRaw.charAt(0).toUpperCase()+causeRaw.slice(1).toLowerCase().replace("_", " ");
         const effect = log.effect.replace("_", " ");
-        const description = log.description_text; 
         const shortDescription = log.header_text;
         const start = convertTime(log.start_dttm).replace(/,/g, match => ++t1 === 3 ? ' @' : match);
         const end = convertTime(log.end_dttm).replace(/,/g, match => ++t2 === 3 ? ' @' : match);
-        const stop = log.stop_id
+        const stop = log.stop_id;
+        const description = log.description_text.replace(/Please use:$/, ""); 
+
+        // console.log(description.match(/Please use:$/)
+
         // const stopCoord = log.stop_id_multipoint.coordinates
      
         // console.log(stopCoord)
