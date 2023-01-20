@@ -8,8 +8,9 @@ const renderDisruptions = () => {
     const filteredArrayRaw = disruption.filter((entry)=> {
       const disruptionStart = Date.parse(entry.start_dttm);
       const disruptionEnd = Date.parse(entry.end_dttm) 
+      const route = entry.route_id
 
-      if (currentTimeUnix >= disruptionStart && currentTimeUnix <= disruptionEnd) {
+      if (currentTimeUnix >= disruptionStart && currentTimeUnix <= disruptionEnd && route !== undefined) {
         return entry;
       } 
     })
