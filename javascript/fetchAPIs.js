@@ -17,6 +17,12 @@ const fetchDisruptions = async () => {
     newLi.innerHTML = `Sorry information on service outages is not available at this time, please try again later.`
     document.querySelector(".serviceDisruptions").append(newLi)
 
+    document.querySelector(".upcomingServiceDisruptions").replaceChildren();
+    const newLi2 = document.createElement("li");
+    newLi.classList.add("apiError");
+    newLi.innerHTML = `Sorry information on service outages is not available at this time, please try again later.`
+    document.querySelector(".upcomingServiceDisruptions").append(newLi2)
+
   return error
   }
 }

@@ -471,6 +471,7 @@ h3 {
   font-size: clamp(2.2rem, 1.8vw, 3rem);
   text-transform: uppercase;
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   margin: 10px 0;
@@ -499,13 +500,16 @@ main {
 }
 
 .accordionItemHeader {
+  background-color: #1F4480;
+  color: white;
   font-size: clamp(1.2rem, 1.05vw, 2rem);
+}
+
+.accordionItemHeader {
   cursor: pointer;
   position: relative;
-  color: white;
   display: flex;
   align-items: center;
-  background-color: #1F4480;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 10px;
@@ -590,10 +594,10 @@ main {
   flex-wrap: wrap;
 }
 
-.disruptions {
-  border-top: 3px solid black;
+.h3Header {
   border-left: 1px solid black;
   border-right: 1px solid black;
+  border-top: 1px solid black;
   background-color: #F9D41B;
 }
 

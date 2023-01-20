@@ -18,10 +18,12 @@ const convertTime = (timeObj) => {
 
 app.callAllPromises = () => {
 
-  renderDisruptions();
+  renderCurrentDisruptions();
   renderEscalatorsElevators();
 
 }
+
+
 
 app.callAllPromises()
 setInterval(app.callAllPromises, 300000)

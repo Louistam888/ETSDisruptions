@@ -4,6 +4,7 @@ h3 {
   font-size: clamp(2.2rem, 1.8vw, 3rem);
   text-transform: uppercase;
   width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   margin: 10px 0;
@@ -34,13 +35,16 @@ main {
 }
 
 .accordionItemHeader {
+  background-color: $blue;
+  color: white;
   font-size: clamp(1.2rem, 1.05vw, 2rem);
+}
+
+.accordionItemHeader {
   cursor: pointer;
   position: relative;
-  color: white;
   display: flex;
   align-items: center;
-  background-color: $blue;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 10px;
@@ -61,7 +65,6 @@ main {
 
 .accordionItemHeader::after {
   content: "\271A";
-  
 }
 
 .accordionItemHeader.active::after {
@@ -85,6 +88,7 @@ main {
   padding: 0;
   transition: max-height 0.5s ease-out;
 }
+
 
 .resultsElevatorContainer, .resultsEscalatorContainer {
   display: flex; 
@@ -135,10 +139,10 @@ main {
 
 //ELEVATORS AND ESCALATORS
 
-.disruptions {
-  border-top: 3px solid black;
+.h3Header {
   border-left: 1px solid black;
   border-right: 1px solid black;
+  border-top: 1px solid black;
   background-color: $yellow;
 }
 

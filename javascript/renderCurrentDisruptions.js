@@ -1,21 +1,21 @@
-const renderDisruptions = () => {
+const renderCurrentDisruptions = () => {
+
+  const currentTime = (new Date).toLocaleString('en-CA', {timeZone: "America/Edmonton", year:"numeric", month:"numeric", day:"numeric", hour12:false, hour: "numeric", minute:"2-digit", second: "2-digit"})
+  const currentTimeUnix = Date.parse(currentTime.replace(",", ""))
 
   fetchDisruptions().then((disruption) => {
 
-    const currentTime = (new Date).toLocaleString('en-CA', {timeZone: "America/Edmonton", year:"numeric", month:"numeric", day:"numeric", hour12:false, hour: "numeric", minute:"2-digit", second: "2-digit"})
-    const currentTimeUnix = Date.parse(currentTime.replace(",", ""))
-    
-    const filteredArrayRaw = disruption.filter((entry)=> {
+    const filteredArrayCurrentRaw = disruption.filter((entry)=> {
       const disruptionStart = Date.parse(entry.start_dttm);
       const disruptionEnd = Date.parse(entry.end_dttm) 
       const route = entry.route_id
-
+      
       if (currentTimeUnix >= disruptionStart && currentTimeUnix <= disruptionEnd && route !== undefined) {
         return entry;
       } 
     })
       
-    const filteredArray = filteredArrayRaw.sort((a,b) => {
+    const filteredArrayCurrent = filteredArrayCurrentRaw.sort((a,b) => {
       
       if ((a.start_dttm ?? Number.MAX_VALUE) > (b.start_dttm ?? Number.MAX_VALUE)) return -1;
       if ((a.start_dttm ?? Number.MAX_VALUE) < (b.start_dttm ?? Number.MAX_VALUE)) return 1;
@@ -37,7 +37,8 @@ const renderDisruptions = () => {
     })
 
 
-    if (filteredArray.length === 0 ) {
+    if (filteredArrayCurrent.length === 0 ) {
+      document.querySelector(".serviceDisruptions").replaceChildren();
       const newLi = document.createElement("li");
       newLi.classList.add("apiError");
       newLi.innerHTML = `There are no current service disruptions`
@@ -45,7 +46,7 @@ const renderDisruptions = () => {
     } else { 
       document.querySelector(".serviceDisruptions").replaceChildren();
       
-      filteredArray.forEach((log)=> {
+      filteredArrayCurrent.forEach((log)=> {
         // console.log(log.stop_id_multipoint.coordinates[0][1])
         //  console.log(log.stop_id_multipoint)
       
@@ -65,10 +66,9 @@ const renderDisruptions = () => {
         const description = log.description_text.replace(/(\r\n|\n|\r)/gm, "").replace("---", "unspecified reasons").replace(/Affected Stops: Please use:$/, "").replace(/Please use:$/, "").replace(/Affected Stops:$/, "")
 
     
-        const coordObj = log.stop_id_multipoint;
+        // const coordObj = log.stop_id_multipoint;
 
-        
-      
+    
 
         const newLi = document.createElement("li");
         newLi.classList.add("disruptionsHeader");
