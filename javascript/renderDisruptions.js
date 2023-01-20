@@ -1,7 +1,7 @@
 const renderDisruptions = () => {
 
   fetchDisruptions().then((disruption) => {
-    // console.table(disruption)
+
     const currentTime = (new Date).toLocaleString('en-CA', {timeZone: "America/Edmonton", year:"numeric", month:"numeric", day:"numeric", hour12:false, hour: "numeric", minute:"2-digit", second: "2-digit"})
     const currentTimeUnix = Date.parse(currentTime.replace(",", ""))
     
@@ -46,12 +46,13 @@ const renderDisruptions = () => {
       document.querySelector(".serviceDisruptions").replaceChildren();
       
       filteredArray.forEach((log)=> {
+        // console.log(log.stop_id_multipoint.coordinates[0][1])
+        //  console.log(log.stop_id_multipoint)
+      
 
         let t1 = 0;
         let t2 = 0;
-      
-        // .replace(/Please use:$/, "")
-
+    
         const route = log.route_id;
         const routeName = log.route_long_name;
         const causeRaw = log.cause;
@@ -61,14 +62,14 @@ const renderDisruptions = () => {
         const start = convertTime(log.start_dttm).replace(/,/g, match => ++t1 === 3 ? ' @' : match);
         const end = convertTime(log.end_dttm).replace(/,/g, match => ++t2 === 3 ? ' @' : match);
         const stop = log.stop_id;
-        const description = log.description_text.replace(/Please use:$/, ""); 
+        const description = log.description_text.replace(/(\r\n|\n|\r)/gm, "").replace("---", "unspecified reasons").replace(/Affected Stops: Please use:$/, "").replace(/Please use:$/, "").replace(/Affected Stops:$/, "")
 
-        // console.log(description.match(/Please use:$/)
+    
+        const coordObj = log.stop_id_multipoint;
 
-        // const stopCoord = log.stop_id_multipoint.coordinates
-     
-        // console.log(stopCoord)
         
+      
+
         const newLi = document.createElement("li");
         newLi.classList.add("disruptionsHeader");
         newLi.innerHTML = 
