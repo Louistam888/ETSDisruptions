@@ -1,3 +1,5 @@
+// FUNCTION TO RENDER CURRENT DISRUPTIONS 
+
 const renderCurrentDisruptions = () => {
 
   const currentTime = (new Date).toLocaleString('en-CA', {timeZone: "America/Edmonton", year:"numeric", month:"numeric", day:"numeric", hour12:false, hour: "numeric", minute:"2-digit", second: "2-digit"})
@@ -23,9 +25,7 @@ const renderCurrentDisruptions = () => {
     }).reduce((accumulator, current) => {
 
       if (!accumulator.find((item) => (item.description_text === current.description_text && item.stop_id === current.stop_id && item.route_id === current.route_id))) {
-
         accumulator.push(current);
-
       } 
 
       return accumulator;
@@ -35,7 +35,6 @@ const renderCurrentDisruptions = () => {
       if ((a.route_id ?? Number.MAX_VALUE) > (b.route_id ?? Number.MAX_VALUE)) return 1;
       return 0;
     })
-
 
     if (filteredArrayCurrent.length === 0 ) {
       document.querySelector(".serviceDisruptions").replaceChildren();
@@ -91,7 +90,6 @@ const renderCurrentDisruptions = () => {
                     : effect 
                   : ""
                 }
-            
               </div>
               <div class="accordionItemBody">
                 <div class="accordionContent">

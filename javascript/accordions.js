@@ -1,4 +1,3 @@
-
 //FUNCTION FOR ACTIVATING ACCORIONS ON CLICK 
 
 const disruptionAccordions = () => {

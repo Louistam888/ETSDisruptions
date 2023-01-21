@@ -21,12 +21,12 @@
       <div class="ties"></div>
       <div class="ties"></div>
       <div class="ties"></div>
-    </div><!-- rails div end -->
+    </div><!-- rail div end -->
     <p class="loaderText">Edmonton transit <span class="orangeSpan">alerts</span></p>
-  </div><!-- loader div end -->
+  </div>
 
-<!-- HEADER -->
-  <header class="mainHeader">
+  <!-- HEADER -->
+  <header>
     <div class="wrapper">
       <h1>Edmonton transit <span class="orangeSpan">alerts</span></h1>
       <h2 class="time">""</h2>
@@ -34,26 +34,30 @@
     </div>
   </header>
 
+<!-- NAV -->
+  <nav>
+    <ul>
+      <li class="navButton">
+        <a href="./index.html" class="navLink">Home</a>
+      </li>
+    </ul>
+  </nav>
+
 <!-- MAIN -->
-  <main class="frontPage">
-    <div class="videoContainer">
-      <video class="mainVideo" loop playsInline autoPlay muted>
-        <source src="./assets/mainvideo.mov" type="video/mp4" alt="#" />
-      </video>
+  <main class="aboutPage">
+    <div class="bannerImage">
+      <h2 class="about">
+        about this app
+      </h2>
     </div>
-
-    <!-- background video -->
-    <div class="videoCredit">
-      <p class="byline">Video: Luke Starkenburg</p>
-    </div>
-
-    <!-- main menu buttons -->
-    <div class="menu">
-        <a href="./currentDisruptions.html" class="mainButton">Current service disruptions</a>
-        <a href="./upcomingDisruptions.html" class="mainButton">Upcoming service disruptions</a>
-        <a href="./escalatorsElevators.html" class="mainButton">Escalator & escalator outages</a>
-        <a href="./about.html" class="mainButton">About</a>
-    </div>
+      <div class="wrapper">
+        <p class="description">
+          This app lists the most up-to-date information on transit service disruptions for the City of Edmonton. The data is fetched from three RESTful APIs published by the City of Edmonton's Open Data portal, and is refreshed every five minutes.
+  
+          Information presented here is presented in an "as is" format directly from the city, and as such some entries may be missing and incomplete.  
+  
+        </p>
+      </div> <!-- wrapper div end -->
   </main>
 
 <!-- JAVASCRIPT -->

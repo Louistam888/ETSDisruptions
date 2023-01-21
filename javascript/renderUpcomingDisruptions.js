@@ -1,3 +1,5 @@
+// FUNCTION TO RENDER UPCOMING DISRUPTIONS
+
 const renderUpcomingDisruptions = () => {
 
   const currentTime = (new Date).toLocaleString('en-CA', {timeZone: "America/Edmonton", year:"numeric", month:"numeric", day:"numeric", hour12:false, hour: "numeric", minute:"2-digit", second: "2-digit"})

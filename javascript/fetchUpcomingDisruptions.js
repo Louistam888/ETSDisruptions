@@ -1,3 +1,5 @@
+// FUNCTION FOR FETCHING UPCOMING DISRUPTIONS
+
 const fetchUpcomingDisruptions = async () => {
   try {
     const url = "https://data.edmonton.ca/resource/5yvt-mcye.json"

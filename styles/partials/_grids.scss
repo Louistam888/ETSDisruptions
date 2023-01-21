@@ -43,12 +43,29 @@ main {
   filter: brightness(50%);
 }
 
+.videoCredit {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.byline {
+  font-family: $lato;
+  color: $white;
+  font-size: 2rem;
+  padding: 10px;
+}
+
 .frontPage {
   min-height: calc(100vh - 305px);
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
+}
+
+.aboutPage {
+  background-color: $lightGreen;
 }
 
 .mainCurrentDisruptions {
@@ -116,9 +133,6 @@ main {
   50% {transform: scale(0.9);}
   100% {transform: scale(1);}
 }
-
-
-
 
 .navLink:visited {
 color: $edmontonBlue;

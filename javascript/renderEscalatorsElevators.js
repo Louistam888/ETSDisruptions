@@ -1,3 +1,5 @@
+// FUNCTION TO RENDER ESCALTOR AND ELEVATOR OUTAGES
+
 const renderEscalatorsElevators = () => {
   
   fetchElevator().then((elevator)=> {
@@ -49,10 +51,8 @@ const renderEscalatorsElevators = () => {
   })
   
   fetchEscalator().then((escalator)=> {
-  
+
     document.querySelector(".escalatorOutages").replaceChildren();  
-  
-    let escalator2 = []
   
     if (escalator.length === 0) {
       document.querySelector(".escalatorOutagesHeader").style.display = "none"
@@ -77,7 +77,6 @@ const renderEscalatorsElevators = () => {
         const newLi = document.createElement("li");
         newLi.classList.add("stationGridEscalator");
         newLi.innerHTML = 
-    
             `<div> 
               ${stationName}
             </div>
@@ -93,7 +92,6 @@ const renderEscalatorsElevators = () => {
             <div> 
               ${lastUpdated}
             </div>`
-  
         document.querySelector(".escalatorOutages").append(newLi)
       })
     }
