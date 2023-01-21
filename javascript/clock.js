@@ -1,3 +1,5 @@
+//FUNCTION FOR CLOCK IN HEADER 
+
 const refreshTime = () => {
 
   let t = 0;
@@ -11,3 +13,17 @@ const refreshTime = () => {
 refreshTime()
 setInterval(refreshTime, 1000)
 
+
+//FUNCTION FOR CONVERTING TIME OBJECTS
+
+const convertTime = (timeObj) => { 
+  return new Date(timeObj).toLocaleDateString("en-us", {
+    year: "numeric",
+    month: "short",
+    weekday: "short",
+    day: "numeric",
+    hour12: true,
+    hour: "numeric",
+    minute: "2-digit"
+  })
+}

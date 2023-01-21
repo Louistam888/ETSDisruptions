@@ -159,6 +159,66 @@
     width: 38px;
   }
 }
+nav {
+  background-color: #005087;
+  height: 70px;
+}
+nav ul {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  list-style-type: none;
+}
+
+.navButton {
+  transition: transform 0.5s ease-in-out;
+}
+
+.navButton:active {
+  animation: push 0.5s ease-in-out;
+}
+
+.navLink {
+  width: 200px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 35px;
+  background-color: #DDE3E6;
+  font-family: "Lato-Bold";
+  text-transform: uppercase;
+  font-size: clamp(1.45rem, 1.05vw, 2rem);
+  padding: 10px 20px;
+  text-decoration: none;
+  color: #005087;
+  border-radius: 3px;
+}
+.navLink:hover {
+  background-color: #ED2D2C;
+  color: #DDE3E6;
+}
+.navLink:hover {
+  background-color: #ED2D2C;
+  color: #DDE3E6;
+}
+
+.navLink:visited {
+  color: #005087;
+}
+
+@keyframes push {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.75);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 @font-face {
   font-family: "Lato-Regular";
   src: url("/fonts/Lato/Lato-Regular.ttf");
@@ -425,12 +485,16 @@ ul {
 }
 
 header {
-  height: 265px;
+  height: 250px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   background-color: #005087;
+}
+
+.mainHeader {
+  padding-bottom: 20px;
 }
 
 h1, h2, .headerDescription {
@@ -459,7 +523,8 @@ h1 {
   color: #DDE3E6;
   font-size: clamp(1.7rem, 4.2vw, 3rem);
   white-space: pre;
-  margin: 10px 0;
+  margin-top: 30px;
+  margin-bottom: 10px;
 }
 
 .headerDescription {
@@ -482,12 +547,78 @@ h3 {
 }
 
 main {
-  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%), url(../../assets/gh3-KATG-027.jpg);
-  background-repeat: no-repeat;
   background-size: cover;
-  background-position: center 90%;
   border-top: 2px solid #DDE3E6;
   border-bottom: 2px solid #DDE3E6;
+  min-height: calc(100vh - 355px);
+  background-repeat: no-repeat;
+  border-top: 2px solid #DDE3E6;
+  border-bottom: 2px solid #DDE3E6;
+}
+
+.frontPage {
+  min-height: calc(100vh - 305px);
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%), url(../../assets/Belvedere_LRT_Station_6-22am.jpg);
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mainCurrentDisruptions {
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%), url(../../assets/gh3-KATG-027.jpg);
+  background-position: center 90%;
+}
+
+.mainUpcomingDisruptions {
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%), url(../../assets/bayenterprise.jpg);
+  background-position: center 60%;
+}
+
+.mainEscalatorsElevators {
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.6) 100%), url(../../assets/Getaway-News-Alex-Cook-Not-Enough-Broken-Escalators.jpg);
+  background-position: 40% 60%;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  text-transform: uppercase;
+}
+
+.mainButton {
+  background-color: #DDE3E6;
+  font-size: clamp(1.5rem, 3vw, 5rem);
+  text-decoration: none;
+  width: 60%;
+  text-align: center;
+  margin: 10px 0;
+  padding: 10px;
+  font-family: "Lato-Regular";
+  color: #005087;
+  border: 5px solid #005087;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.mainButton:hover {
+  background-color: #ED2D2C;
+  color: #DDE3E6;
+  border: 5px solid #ED2D2C;
+}
+.mainButton:hover {
+  background-color: #ED2D2C;
+  color: #DDE3E6;
+  border: 5px solid #ED2D2C;
+}
+
+.navLink:visited {
+  color: #005087;
 }
 
 .route {
@@ -658,6 +789,7 @@ main {
   margin-left: 5px;
   margin-right: 5px;
   text-align: center;
+  padding-bottom: 20px;
 }
 
 footer {
@@ -669,6 +801,7 @@ footer {
   color: #DDE3E6;
   font-size: clamp(1.8rem, 1.05vw, 2rem);
   padding: 15px 10px;
+  height: 55px;
 }
 
 @media (max-width: 1000px) {
@@ -728,5 +861,10 @@ footer {
   }
   .doubleInfoContainer .doubleLeft::after {
     content: "";
+  }
+}
+@media (max-width: 481px) {
+  .mainButton {
+    height: 60px;
   }
 }

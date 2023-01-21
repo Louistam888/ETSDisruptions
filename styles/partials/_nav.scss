@@ -1,0 +1,62 @@
+@use "./variables" as *;
+
+nav {
+  background-color: $edmontonBlue;
+  height: 70px;
+
+  ul {
+    width: 100%; 
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    list-style-type: none;
+  }
+}
+
+.navButton {
+  transition: transform 0.5s ease-in-out;
+}
+
+.navButton:active {
+  animation: push 0.5s ease-in-out;
+}
+
+.navLink {
+  width: 200px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 35px;
+  background-color: $white;
+  font-family: $latoBold;
+  text-transform: uppercase;
+  font-size: clamp(1.45rem, 1.05vw, 2rem);
+  padding: 10px 20px;
+  text-decoration: none;
+  color: $edmontonBlue;
+  border-radius: 3px;
+
+  &:hover {
+    background-color: $orange;
+    color: $white;
+  }
+
+  &:hover {
+    background-color: $orange;
+    color: $white;
+  }
+}
+
+.navLink:visited {
+  color: $edmontonBlue;
+}
+
+
+@keyframes push {
+  0% {transform: scale(1);}
+  50% {transform: scale(0.75);}
+  100% {transform: scale(1);}
+}
+
+

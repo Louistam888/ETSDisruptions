@@ -7,7 +7,7 @@ window.addEventListener("load", () => {
     document.body.style.overflow = "visible";
     
     }
-  setTimeout(delay, 2800);
+  setTimeout(delay, 2500);
 })
  document.body.style.overflow = "auto";
 

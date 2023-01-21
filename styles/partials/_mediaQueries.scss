@@ -73,5 +73,10 @@
       content: ""
     }
   }
+}
 
+@media (max-width: 481px) {
+  .mainButton {
+    height: 60px;
+  }
 }

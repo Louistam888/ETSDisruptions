@@ -1,21 +1,25 @@
-const renderCurrentDisruptions = () => {
+const renderUpcomingDisruptions = () => {
 
   const currentTime = (new Date).toLocaleString('en-CA', {timeZone: "America/Edmonton", year:"numeric", month:"numeric", day:"numeric", hour12:false, hour: "numeric", minute:"2-digit", second: "2-digit"})
   const currentTimeUnix = Date.parse(currentTime.replace(",", ""))
 
-  fetchCurrentDisruptions().then((disruption) => {
+  fetchUpcomingDisruptions().then((disruption) => {
+  console.log(disruption)
 
-    const filteredArrayCurrentRaw = disruption.filter((entry)=> {
+    const filteredArrayUpcomingRaw = disruption.filter((entry)=> {
       const disruptionStart = Date.parse(entry.start_dttm);
-      const disruptionEnd = Date.parse(entry.end_dttm) 
+      const startCounting = currentTimeUnix + 300 
       const route = entry.route_id
-      
-      if (currentTimeUnix >= disruptionStart && currentTimeUnix <= disruptionEnd && route !== undefined) {
+  
+      console.log(currentTimeUnix)
+
+      if (disruptionStart >= startCounting && route !== undefined) {
         return entry;
       } 
     })
+    console.log(filteredArrayUpcomingRaw)
       
-    const filteredArrayCurrent = filteredArrayCurrentRaw.sort((a,b) => {
+    const filteredArrayUpcoming = filteredArrayUpcomingRaw.sort((a,b) => {
       
       if ((a.start_dttm ?? Number.MAX_VALUE) > (b.start_dttm ?? Number.MAX_VALUE)) return -1;
       if ((a.start_dttm ?? Number.MAX_VALUE) < (b.start_dttm ?? Number.MAX_VALUE)) return 1;
@@ -37,20 +41,19 @@ const renderCurrentDisruptions = () => {
     })
 
 
-    if (filteredArrayCurrent.length === 0 ) {
-      document.querySelector(".serviceDisruptions").replaceChildren();
+    if (filteredArrayUpcoming.length === 0 ) {
+      document.querySelector(".upcomingServiceDisruptions").replaceChildren();
       const newLi = document.createElement("li");
       newLi.classList.add("apiError");
-      newLi.innerHTML = `There are no current service disruptions`
-      document.querySelector(".serviceDisruptions").append(newLi)
+      newLi.innerHTML = `There are no planned service disruptions in the near future`
+      document.querySelector(".upcomingServiceDisruptions").append(newLi)
     } else { 
-      document.querySelector(".serviceDisruptions").replaceChildren();
+      document.querySelector(".upcomingServiceDisruptions").replaceChildren();
       
-      filteredArrayCurrent.forEach((log)=> {
+      filteredArrayUpcoming.forEach((log)=> {
         // console.log(log.stop_id_multipoint.coordinates[0][1])
         //  console.log(log.stop_id_multipoint)
       
-
         let t1 = 0;
         let t2 = 0;
     
@@ -68,10 +71,9 @@ const renderCurrentDisruptions = () => {
     
         // const coordObj = log.stop_id_multipoint;
 
-    
 
         const newLi = document.createElement("li");
-        newLi.classList.add("disruptionsHeader");
+        newLi.classList.add("upcomingDisruptionsHeader");
         newLi.innerHTML = 
           
           `<div class="accordion">
@@ -84,12 +86,9 @@ const renderCurrentDisruptions = () => {
                 ${routeName
                   ? routeName
                   : ""
-                }
-                ${effect
-                  ? effect === "UNKNOWN EFFECT"
-                    ? ""
-                    : effect 
-                  : ""
+                } --- Starting
+                ${
+                  start
                 }
             
               </div>
@@ -145,7 +144,7 @@ const renderCurrentDisruptions = () => {
               </div> <!--accordionitembody div end-->
             </div><!--accordionItem div end-->
           </div><!--accordion div end-->`
-        document.querySelector(".serviceDisruptions").append(newLi)
+        document.querySelector(".upcomingServiceDisruptions").append(newLi)
       })
       sameHeights(false);
       window.onresize = () => {
@@ -156,5 +155,5 @@ const renderCurrentDisruptions = () => {
   })
 }
 
-renderCurrentDisruptions();
-setInterval(renderCurrentDisruptions, 300000)
+renderUpcomingDisruptions();
+setInterval(renderUpcomingDisruptions, 300000)

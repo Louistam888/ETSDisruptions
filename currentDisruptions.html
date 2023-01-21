@@ -23,31 +23,47 @@
       <div class="ties"></div>
     </div>
     <p class="loaderText">Edmonton transit <span class="orangeSpan">alerts</span></p>
+    
   </div>
 
-  <header class="mainHeader">
+  <header>
     <div class="wrapper">
       <h1>Edmonton transit <span class="orangeSpan">alerts</span></h1>
       <h2 class="time">""</h2>
       <p class="headerDescription">The latest transit service notices, updated every five minutes</p>
     </div>
   </header>
-  
-  <main class="frontPage">
-    <div class="menu">
-      
-        <a href="./currentDisruptions.html" class="mainButton">Current service disruptions</a>
-    
-        <a href="./upcomingDisruptions.html" class="mainButton">Upcoming service disruptions</a>
-     
-        <a href="./escalatorsElevators.html" class="mainButton">Escalator & escalator outages</a>
 
-        <a href="" class="mainButton">About</a>
-    
+  <nav>
+    <ul>
+      <li class="navButton">
+        <a href="#" class="navLink">About</a>        
+      </li>
+      <li class="navButton">
+        <a href="./index.html" class="navLink">Home</a>
+      </li>
+    </ul>
+  </nav>
+  
+  <main class="mainCurrentDisruptions">
+    <div class="wrapper">
+      <section class="h3Header">
+        <div class="disruptionsContainer">
+          <h3>Current service disruptions</h3>
+          <ul class="serviceDisruptions">
+            <!--Dynamic content here-->
+          </ul>
+        </div>
+      </section>
     </div>
   </main>
+  <script src="./javascript/script.js"></script>
   <script src="./javascript/preloader.js"></script>
   <script src="./javascript/clock.js"></script>
+  <script src="./javascript/accordions.js"></script>
+  <script src="./javascript/fetchCurrentDisruptions.js"></script>
+  <script src="./javascript/renderCurrentDisruptions.js"></script>
+
 </body>
 <footer>
   Powered by the City of Edmonton Open Data Portal 

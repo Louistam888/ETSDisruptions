@@ -99,3 +99,6 @@ const renderEscalatorsElevators = () => {
     }
   })
 } 
+
+renderEscalatorsElevators();
+setInterval(renderEscalatorsElevators, 300000)
