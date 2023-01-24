@@ -46,9 +46,7 @@ const renderCurrentDisruptions = () => {
       document.querySelector(".serviceDisruptions").replaceChildren();
       
       filteredArrayCurrent.forEach((log)=> {
-        // console.log(log.stop_id_multipoint.coordinates[0][1])
-        //  console.log(log.stop_id_multipoint)
-      
+  
 
         let t1 = 0;
         let t2 = 0;
@@ -63,11 +61,6 @@ const renderCurrentDisruptions = () => {
         const end = convertTime(log.end_dttm).replace(/,/g, match => ++t2 === 3 ? ' @' : match);
         const stop = log.stop_id;
         const description = log.description_text.replace(/(\r\n|\n|\r)/gm, "").replace("---", "unspecified reasons").replace(/Affected Stops: Please use:$/, "").replace(/Please use:$/, "").replace(/Affected Stops:$/, "")
-
-    
-        // const coordObj = log.stop_id_multipoint;
-
-    
 
         const newLi = document.createElement("li");
         newLi.classList.add("disruptionsHeader");
