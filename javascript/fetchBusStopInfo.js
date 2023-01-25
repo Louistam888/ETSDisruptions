@@ -16,21 +16,28 @@ const fetchBusStopInfo = async () => {
   }
 }
 
-const getValue = (array) => {
- const value = structuredClone(array)
- return value
-}
+// const getValue = (array) => {
+//  const value = structuredClone(array)
+//  return value
+// }
+// getValue()
+// console.log(getValue)
 
+const copy = (array) => {
+  newArray = structuredClone(array)
+  console.log(newArray)
+  return newArray
+}  
 
 fetchBusStopInfo().then((stopsArray)=> {
-  const stops = stopsArray
-
+  const stops = structuredClone(stopsArray)
+  copy(stops)
 })
 
+console.log(copy)
+  // console.log(copy)
 
-
-
-  // allStops.forEach((stop) => {
+// allStops.forEach((stop) => {
   //   masterStopList.push(stop)
   // })
     

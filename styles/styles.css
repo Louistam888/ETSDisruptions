@@ -175,6 +175,15 @@ nav ul {
 
 .navButton {
   transition: transform 0.5s ease-in-out;
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 35px;
+  margin-top: 5px;
 }
 
 .navButton:active {
@@ -182,10 +191,7 @@ nav ul {
 }
 
 .navLink {
-  width: 200px;
-  margin-left: 10px;
-  margin-right: 10px;
-  margin-bottom: 35px;
+  width: 100%;
   background-color: #DDE3E6;
   font-family: "Lato-Bold";
   text-transform: uppercase;
