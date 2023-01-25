@@ -200,6 +200,10 @@ nav ul {
   text-decoration: none;
   color: #005087;
   border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 .navLink:hover {
   background-color: #ED2D2C;

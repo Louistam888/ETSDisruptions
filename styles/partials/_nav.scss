@@ -42,6 +42,10 @@ nav {
   text-decoration: none;
   color: $edmontonBlue;
   border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 
   &:hover {
     background-color: $orange;
