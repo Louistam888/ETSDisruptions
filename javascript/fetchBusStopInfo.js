@@ -1,6 +1,3 @@
-
-let allStops = []
-
 const fetchBusStopInfo = async () => {
 
   try {
@@ -19,9 +16,19 @@ const fetchBusStopInfo = async () => {
   }
 }
 
-fetchBusStopInfo().then((stopsArray)=>{
-  const stopsList = stopsArray
+const getValue = (array) => {
+ const value = structuredClone(array)
+ return value
+}
+
+
+fetchBusStopInfo().then((stopsArray)=> {
+  const stops = stopsArray
+
 })
+
+
+
 
   // allStops.forEach((stop) => {
   //   masterStopList.push(stop)

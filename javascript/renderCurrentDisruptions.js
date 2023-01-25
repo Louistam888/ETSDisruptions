@@ -8,10 +8,10 @@ const renderCurrentDisruptions = () => {
   fetchCurrentDisruptions().then((disruption) => {
 
       const filteredArrayCurrentRaw = disruption.filter((entry)=> {
-      const disruptionStart = Date.parse(entry.start_dttm);
-      const disruptionEnd = Date.parse(entry.end_dttm) 
-      const route = entry.route_id
-      
+        const disruptionStart = Date.parse(entry.start_dttm);
+        const disruptionEnd = Date.parse(entry.end_dttm) 
+        const route = entry.route_id
+        
       if (currentTimeUnix >= disruptionStart && currentTimeUnix <= disruptionEnd && route !== undefined) {
         return entry;
       } 
