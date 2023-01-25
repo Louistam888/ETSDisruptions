@@ -2,9 +2,10 @@
 
 const fetchElevator = async () => {
   try {
-    const url = "https://data.edmonton.ca/resource/snws-u3zx.json?device_type=Elevator"
+    const url = new URL("https://data.edmonton.ca/resource/snws-u3zx.json?device_type=Elevator")
     url.search = new URLSearchParams ({
-      "$$app_token": app.token
+      "$$app_token": app.token,
+      "$limit": 100000
     });
     
     const response = await fetch(url);

@@ -2,9 +2,10 @@
 
 const fetchCurrentDisruptions = async () => {
   try {
-    const url = "https://data.edmonton.ca/resource/5yvt-mcye.json"
+    const url = new URL("https://data.edmonton.ca/resource/5yvt-mcye.json")
     url.search = new URLSearchParams ({
-      "$$app_token": app.token
+      "$$app_token": app.token,
+      "$limit": 100000
     });
     const response = await fetch(url);
     const data = await response.json();

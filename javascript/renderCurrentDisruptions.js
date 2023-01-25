@@ -7,7 +7,7 @@ const renderCurrentDisruptions = () => {
 
   fetchCurrentDisruptions().then((disruption) => {
 
-    const filteredArrayCurrentRaw = disruption.filter((entry)=> {
+      const filteredArrayCurrentRaw = disruption.filter((entry)=> {
       const disruptionStart = Date.parse(entry.start_dttm);
       const disruptionEnd = Date.parse(entry.end_dttm) 
       const route = entry.route_id
@@ -47,7 +47,6 @@ const renderCurrentDisruptions = () => {
       
       filteredArrayCurrent.forEach((log)=> {
   
-
         let t1 = 0;
         let t2 = 0;
     
@@ -60,6 +59,7 @@ const renderCurrentDisruptions = () => {
         const start = convertTime(log.start_dttm).replace(/,/g, match => ++t1 === 3 ? ' @' : match);
         const end = convertTime(log.end_dttm).replace(/,/g, match => ++t2 === 3 ? ' @' : match);
         const stop = log.stop_id;
+  
         const description = log.description_text.replace(/(\r\n|\n|\r)/gm, "").replace("---", "unspecified reasons").replace(/Affected Stops: Please use:$/, "").replace(/Please use:$/, "").replace(/Affected Stops:$/, "")
 
         const newLi = document.createElement("li");
