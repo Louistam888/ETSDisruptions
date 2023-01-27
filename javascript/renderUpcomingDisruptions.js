@@ -1,21 +1,38 @@
+//FUNCTION FOR SORTING UPCOMING DISRUPTIONS 
+
+const getUpcomingEntry = (disruption, currentTimeUnix) => 
+  disruption.filter(entry=> {
+    const disruptionStart = Date.parse(entry.start_dttm);
+    const startCounting = currentTimeUnix + 300;
+    const route = entry.route_id;
+
+    if (disruptionStart >= startCounting && route !== undefined) {
+      return entry;
+    }
+  })
+
+
 // FUNCTION TO RENDER UPCOMING DISRUPTIONS
 
-const renderUpcomingDisruptions = () => {
+const renderUpcomingDisruptions = async () => {
+  
+  const currentTime = (new Date).toLocaleString('en-CA', {
+    timeZone: "America/Edmonton", 
+    year:"numeric", month:"numeric", 
+    day:"numeric", 
+    hour12:false, 
+    hour: "numeric", 
+    minute:"2-digit", 
+    second: "2-digit"
+  });
 
-  const currentTime = (new Date).toLocaleString('en-CA', {timeZone: "America/Edmonton", year:"numeric", month:"numeric", day:"numeric", hour12:false, hour: "numeric", minute:"2-digit", second: "2-digit"})
   const currentTimeUnix = Date.parse(currentTime.replace(",", ""))
+  const bustStopsInfo = await fetchBusStopInfo();
+
 
   fetchUpcomingDisruptions().then((disruption) => {
-
-    const filteredArrayUpcomingRaw = disruption.filter((entry)=> {
-      const disruptionStart = Date.parse(entry.start_dttm);
-      const startCounting = currentTimeUnix + 300 
-      const route = entry.route_id
-  
-      if (disruptionStart >= startCounting && route !== undefined) {
-        return entry;
-      } 
-    })
+    
+    const filteredArrayUpcomingRaw = getUpcomingEntry(disruption, currentTimeUnix);
           
     const filteredArrayUpcoming = filteredArrayUpcomingRaw.sort((a,b) => {
       
@@ -36,37 +53,35 @@ const renderUpcomingDisruptions = () => {
       if ((a.route_id ?? Number.MAX_VALUE) < (b.route_id ?? Number.MAX_VALUE)) return -1;
       if ((a.route_id ?? Number.MAX_VALUE) > (b.route_id ?? Number.MAX_VALUE)) return 1;
       return 0;
-    })
+    });
 
 
     if (filteredArrayUpcoming.length === 0 ) {
       document.querySelector(".upcomingServiceDisruptions").replaceChildren();
       const newLi = document.createElement("li");
       newLi.classList.add("apiError");
-      newLi.innerHTML = `There are no planned service disruptions in the near future`
-      document.querySelector(".upcomingServiceDisruptions").append(newLi)
+      newLi.innerHTML = `There are no planned service disruptions in the near future`;
+      document.querySelector(".upcomingServiceDisruptions").append(newLi);
     } else { 
       document.querySelector(".upcomingServiceDisruptions").replaceChildren();
       
       filteredArrayUpcoming.forEach((log)=> {
-      
-        let t1 = 0;
-        let t2 = 0;
-    
+          
         const route = log.route_id;
         const routeName = log.route_long_name;
         const causeRaw = log.cause;
         const cause = causeRaw.charAt(0).toUpperCase()+causeRaw.slice(1).toLowerCase().replace("_", " ");
         const effect = log.effect.replace("_", " ");
         const shortDescription = log.header_text;
-        const start = convertTime(log.start_dttm)
-        const end = convertTime(log.end_dttm)
+        const start = convertTime(log.start_dttm);
+        const end = convertTime(log.end_dttm);
         const stop = log.stop_id;
-        const description = log.description_text.replace(/(\r\n|\n|\r)/gm, "").replace("---", "unspecified reasons").replace(/Affected Stops: Please use:$/, "").replace(/Please use:$/, "").replace(/Affected Stops:$/, "")
 
-    
-        // const coordObj = log.stop_id_multipoint;
-
+        const description = log.description_text
+          .replace(/(\r\n|\n|\r)/gm, "")
+          .replace("---", "unspecified reasons")
+          .replace(/Affected Stops: Please use:$/, "")
+          .replace(/Please use:$/, "").replace(/Affected Stops:$/, "");
 
         const newLi = document.createElement("li");
         newLi.classList.add("upcomingDisruptionsHeader");
@@ -144,12 +159,12 @@ const renderUpcomingDisruptions = () => {
       })
       sameHeights(false);
       window.onresize = () => {
-        sameHeights(true)
-      }
+        sameHeights(true);
+      };
       disruptionAccordions();
     }
   })
 }
 
 renderUpcomingDisruptions();
-setInterval(renderUpcomingDisruptions, 300000)
+setInterval(renderUpcomingDisruptions, 300000);

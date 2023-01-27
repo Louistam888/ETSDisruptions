@@ -1,23 +1,39 @@
-// FUNCTION TO RENDER CURRENT DISRUPTIONS 
+//FUNCTION FOR SORTING CURRENT DISRUPTIONS 
 
-const renderCurrentDisruptions = () => {
+const getCurrentEntry = (disruption, currentTimeUnix) => 
+	disruption.filter(entry => {
+		const disruptionStart = Date.parse(entry.start_dttm);
+		const disruptionEnd = Date.parse(entry.end_dttm);
+		const route = entry.route_id;
 
-  const currentTime = (new Date).toLocaleString('en-CA', {timeZone: "America/Edmonton", year:"numeric", month:"numeric", day:"numeric", hour12:false, hour: "numeric", minute:"2-digit", second: "2-digit"})
-  const currentTimeUnix = Date.parse(currentTime.replace(",", ""))
+		if (currentTimeUnix >= disruptionStart && currentTimeUnix <= disruptionEnd && route !== undefined) {
+			return entry;
+		};
+	});
+
+
+//FUNCTION TO RENDER UPCOMING DISRUPTIONS 
+
+const renderCurrentDisruptions = async () => {
+  
+  const currentTime = (new Date).toLocaleString('en-CA', {
+    timeZone: "America/Edmonton", 
+    year:"numeric", month:"numeric", 
+    day:"numeric", hour12:false, 
+    hour: "numeric", 
+    minute:"2-digit", 
+    second: "2-digit"
+  });
+
+  const currentTimeUnix = Date.parse(currentTime.replace(",", ""));
+  const busStopsInfo = await fetchBusStopInfo();
+  // console.log(busStopsInfo)
+
 
   fetchCurrentDisruptions().then((disruption) => {
 
-      const filteredArrayCurrentRaw = disruption.filter((entry)=> {
-        const disruptionStart = Date.parse(entry.start_dttm);
-        const disruptionEnd = Date.parse(entry.end_dttm) 
-        const route = entry.route_id
-        
-      if (currentTimeUnix >= disruptionStart && currentTimeUnix <= disruptionEnd && route !== undefined) {
-        return entry;
-      } 
-    })
-      
-    const filteredArrayCurrent = filteredArrayCurrentRaw.sort((a,b) => {
+      const filteredArrayCurrentRaw = getCurrentEntry(disruption, currentTimeUnix);
+      const filteredArrayCurrent = filteredArrayCurrentRaw.sort((a,b) => {
       
       if ((a.start_dttm ?? Number.MAX_VALUE) > (b.start_dttm ?? Number.MAX_VALUE)) return -1;
       if ((a.start_dttm ?? Number.MAX_VALUE) < (b.start_dttm ?? Number.MAX_VALUE)) return 1;
@@ -34,14 +50,14 @@ const renderCurrentDisruptions = () => {
       if ((a.route_id ?? Number.MAX_VALUE) < (b.route_id ?? Number.MAX_VALUE)) return -1;
       if ((a.route_id ?? Number.MAX_VALUE) > (b.route_id ?? Number.MAX_VALUE)) return 1;
       return 0;
-    })
+    });
 
     if (filteredArrayCurrent.length === 0 ) {
       document.querySelector(".serviceDisruptions").replaceChildren();
       const newLi = document.createElement("li");
       newLi.classList.add("apiError");
       newLi.innerHTML = `There are no current service disruptions`
-      document.querySelector(".serviceDisruptions").append(newLi)
+      document.querySelector(".serviceDisruptions").append(newLi);
     } else { 
       document.querySelector(".serviceDisruptions").replaceChildren();
       
@@ -53,11 +69,16 @@ const renderCurrentDisruptions = () => {
         const cause = causeRaw.charAt(0).toUpperCase()+causeRaw.slice(1).toLowerCase().replace("_", " ");
         const effect = log.effect.replace("_", " ");
         const shortDescription = log.header_text;
-        const start = convertTime(log.start_dttm)
-        const end = convertTime(log.end_dttm)
+        const start = convertTime(log.start_dttm);
+        const end = convertTime(log.end_dttm);
         const stop = log.stop_id;
   
-        const description = log.description_text.replace(/(\r\n|\n|\r)/gm, "").replace("---", "unspecified reasons").replace(/Affected Stops: Please use:$/, "").replace(/Please use:$/, "").replace(/Affected Stops:$/, "")
+        const description = log.description_text
+          .replace(/(\r\n|\n|\r)/gm, "")
+          .replace("---", "unspecified reasons")
+          .replace(/Affected Stops: Please use:$/, "")
+          .replace(/Please use:$/, "")
+          .replace(/Affected Stops:$/, "");
 
         const newLi = document.createElement("li");
         newLi.classList.add("disruptionsHeader");
@@ -137,12 +158,12 @@ const renderCurrentDisruptions = () => {
       })
       sameHeights(false);
       window.onresize = () => {
-        sameHeights(true)
-      }
+        sameHeights(true);
+      };
       disruptionAccordions();
-    }
-  })
-}
+    };
+  });
+};
 
 renderCurrentDisruptions();
-setInterval(renderCurrentDisruptions, 300000)
+setInterval(renderCurrentDisruptions, 300000);

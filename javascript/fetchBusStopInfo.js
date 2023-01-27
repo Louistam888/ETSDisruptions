@@ -9,47 +9,15 @@ const fetchBusStopInfo = async () => {
 
     const response = await fetch(url);
     const data = await response.json();
-    return data;
+
+    return data.map(({ stop_id, stop_name }) => ({
+    id: stop_id,
+    name: stop_name
+    }));
   } catch (error) {
     console.log(error)
-    return error;
+    return error
   }
-}
+};
 
-const finalList = (array) => {
-  newArray = structuredClone(array)
-  return newArray
-}
-
-let master = [] 
-fetchBusStopInfo().then((stopsArray)=> {
-  let masterStopList = [];
-  for (let i=0; i<stopsArray.length; i++) {
-    const entry = {
-      stop: stopsArray[i].stop_id,
-      stopName: stopsArray[i].stop_name,
-    }
-    masterStopList.push(entry)
-  }
-
-})
-
-
-
-// allStops.forEach((stop) => {
-  //   masterStopList.push(stop)
-  // })
-    
-  // .filter((item) => {
-  //   const stopID = item.stop_id;
-    
-  //   if (stopID === "undefined") {
-  //     return "No affected stops specified"
-  //   } else if (stopID == 2793) {
-  //     return item
-  //   }
-  // })
-  // console.log(specificStop[0].stop_id)
-
-// console.log(masterStopList)
-
+  
