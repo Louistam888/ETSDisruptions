@@ -47,17 +47,14 @@ const renderCurrentDisruptions = () => {
       
       filteredArrayCurrent.forEach((log)=> {
   
-        let t1 = 0;
-        let t2 = 0;
-    
         const route = log.route_id;
         const routeName = log.route_long_name;
         const causeRaw = log.cause;
         const cause = causeRaw.charAt(0).toUpperCase()+causeRaw.slice(1).toLowerCase().replace("_", " ");
         const effect = log.effect.replace("_", " ");
         const shortDescription = log.header_text;
-        const start = convertTime(log.start_dttm).replace(/,/g, match => ++t1 === 3 ? ' @' : match);
-        const end = convertTime(log.end_dttm).replace(/,/g, match => ++t2 === 3 ? ' @' : match);
+        const start = convertTime(log.start_dttm)
+        const end = convertTime(log.end_dttm)
         const stop = log.stop_id;
   
         const description = log.description_text.replace(/(\r\n|\n|\r)/gm, "").replace("---", "unspecified reasons").replace(/Affected Stops: Please use:$/, "").replace(/Please use:$/, "").replace(/Affected Stops:$/, "")

@@ -16,26 +16,25 @@ const fetchBusStopInfo = async () => {
   }
 }
 
-// const getValue = (array) => {
-//  const value = structuredClone(array)
-//  return value
-// }
-// getValue()
-// console.log(getValue)
-
-const copy = (array) => {
+const finalList = (array) => {
   newArray = structuredClone(array)
-  console.log(newArray)
   return newArray
-}  
+}
 
+let master = [] 
 fetchBusStopInfo().then((stopsArray)=> {
-  const stops = structuredClone(stopsArray)
-  copy(stops)
+  let masterStopList = [];
+  for (let i=0; i<stopsArray.length; i++) {
+    const entry = {
+      stop: stopsArray[i].stop_id,
+      stopName: stopsArray[i].stop_name,
+    }
+    masterStopList.push(entry)
+  }
+
 })
 
-console.log(copy)
-  // console.log(copy)
+
 
 // allStops.forEach((stop) => {
   //   masterStopList.push(stop)

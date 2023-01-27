@@ -16,15 +16,12 @@ const renderEscalatorsElevators = () => {
     } else {
   
       elevator.forEach((elevatorObj)=>{
-  
-        let t1 = 0;
-        let t2 = 0;
-              
+
         const stationName = elevatorObj.lrt_station_name;
         const deviceLocation = elevatorObj.lrt_device_location 
         const device_op_status = elevatorObj.device_op_status;
-        const offlineStartDate = convertTime(elevatorObj.since_time_stamp).replace(/,/g, match => ++t1 === 3 ? ' @' : match).replace(",", ".");
-        const lastUpdated = convertTime(elevatorObj.polled_time_stamp).replace(/,/g, match => ++t2 === 3 ? ' @' : match).replace(",", ".");
+        const offlineStartDate = convertTime(elevatorObj.since_time_stamp)
+        const lastUpdated = convertTime(elevatorObj.polled_time_stamp)
         const newLi = document.createElement("li");
         newLi.classList.add("stationGridElevator");
         newLi.innerHTML = 
