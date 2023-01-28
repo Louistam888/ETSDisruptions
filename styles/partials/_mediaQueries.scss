@@ -19,6 +19,11 @@
     height: 200px;
   }
 
+  .descriptionContainer {
+    min-height: calc(100vh - 600px);
+    text-align: center;
+  }
+
   h1 {
     display: flex;
     flex-wrap:wrap;
@@ -98,5 +103,10 @@
 
   .bannerImage {
     height: 150px;
+  }
+
+  .descriptionContainer {
+    min-height: calc(100vh - 505px);
+    text-align: center;
   }
 }

@@ -86,6 +86,18 @@
   width: 100px;
 }
 
+.logoTrain {
+  position: absolute;
+  font-size: 1.8rem;
+  color: #C7D0D4;
+  font-family: "Lato-Bold";
+  z-index: 20;
+  bottom: 0;
+  right: 50%;
+  transform: translateX(50%);
+  margin-bottom: 8px;
+}
+
 .windows {
   background-color: #C7D0D4;
   border-radius: 4px;
@@ -873,14 +885,17 @@ footer {
   width: 100%;
 }
 
+.descriptionContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .description {
   font: #0E2730;
   font-size: clamp(1.5rem, 3vw, 3rem);
   white-space: pre-line;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin: 50px 0;
 }
 
 @media (max-width: 1000px) {
@@ -895,6 +910,10 @@ footer {
   }
   .bannerImage {
     height: 200px;
+  }
+  .descriptionContainer {
+    min-height: calc(100vh - 600px);
+    text-align: center;
   }
   h1 {
     display: flex;
@@ -960,5 +979,9 @@ footer {
   }
   .bannerImage {
     height: 150px;
+  }
+  .descriptionContainer {
+    min-height: calc(100vh - 505px);
+    text-align: center;
   }
 }

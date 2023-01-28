@@ -90,6 +90,18 @@
 	width: 100px;
 }
 
+.logoTrain {
+  position: absolute;
+  font-size: 1.8rem;
+  color: $lightGreen;
+  font-family: $latoBold;
+  z-index: 20;
+  bottom: 0;
+  right: 50%;
+  transform: translateX(50%);
+  margin-bottom: 8px;
+}
+
 .windows {
 	background-color: $lightGreen;
 	border-radius: 4px;

@@ -21,12 +21,16 @@
   width: 100%;
 }
 
+.descriptionContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .description {
   font: $navy;
   font-size: clamp(1.5rem, 3vw, 3rem);
   white-space: pre-line;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  margin: 50px 0;
 }
+
