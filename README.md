@@ -2,4 +2,4 @@ This app was created using two APIs from the City of Edmonton's Open Data portal
 
 This app uses the City of Edmonton's brand colours, found in the city's brand standards: https://www.edmonton.ca/sites/default/files/public-files/assets/PDF/VIS_Book_1.pdf
 
-Live link: https://extraordinary-cheesecake-dec349.netlify.app/
+Live link: https://etstransitalerts.netlify.app/
