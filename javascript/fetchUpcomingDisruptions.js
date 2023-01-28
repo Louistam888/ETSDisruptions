@@ -20,6 +20,6 @@ const fetchUpcomingDisruptions = async () => {
     document.querySelector(".upcomingServiceDisruptions").append(newLi2);
 
   return error;
-  }
-}
+  };
+};
 

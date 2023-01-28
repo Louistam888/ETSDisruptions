@@ -16,19 +16,7 @@ const getUpcomingEntry = (disruption, currentTimeUnix) =>
 
 const renderUpcomingDisruptions = async () => {
   
-  const currentTime = (new Date).toLocaleString('en-CA', {
-    timeZone: "America/Edmonton", 
-    year:"numeric", month:"numeric", 
-    day:"numeric", 
-    hour12:false, 
-    hour: "numeric", 
-    minute:"2-digit", 
-    second: "2-digit"
-  });
-
-  const currentTimeUnix = Date.parse(currentTime.replace(",", ""))
-  const bustStopsInfo = await fetchBusStopInfo();
-
+  const busStopsInfo = await fetchBusStopInfo();
 
   fetchUpcomingDisruptions().then((disruption) => {
     
@@ -42,19 +30,15 @@ const renderUpcomingDisruptions = async () => {
     }).reduce((accumulator, current) => {
 
       if (!accumulator.find((item) => (item.description_text === current.description_text && item.stop_id === current.stop_id && item.route_id === current.route_id))) {
-
         accumulator.push(current);
-
       } 
 
       return accumulator;
     }, []).sort((a,b) => {
-      
       if ((a.route_id ?? Number.MAX_VALUE) < (b.route_id ?? Number.MAX_VALUE)) return -1;
       if ((a.route_id ?? Number.MAX_VALUE) > (b.route_id ?? Number.MAX_VALUE)) return 1;
       return 0;
     });
-
 
     if (filteredArrayUpcoming.length === 0 ) {
       document.querySelector(".upcomingServiceDisruptions").replaceChildren();
@@ -66,7 +50,6 @@ const renderUpcomingDisruptions = async () => {
       document.querySelector(".upcomingServiceDisruptions").replaceChildren();
       
       filteredArrayUpcoming.forEach((log)=> {
-          
         const route = log.route_id;
         const routeName = log.route_long_name;
         const causeRaw = log.cause;
@@ -75,7 +58,16 @@ const renderUpcomingDisruptions = async () => {
         const shortDescription = log.header_text;
         const start = convertTime(log.start_dttm);
         const end = convertTime(log.end_dttm);
-        const stop = log.stop_id;
+        const stopArray = log.stop_id 
+                            ? log.stop_id.split(", ")
+                            : "undefined"
+
+        const stopDetails = createStopString(stopArray, busStopsInfo);
+
+        let t=0;
+        const stopInfo = stopDetails
+          .toString()
+          .replace(/,/g, match=> ++t >= 2 ? " " : match);  
 
         const description = log.description_text
           .replace(/(\r\n|\n|\r)/gm, "")
@@ -100,8 +92,7 @@ const renderUpcomingDisruptions = async () => {
                 } --- Starting
                 ${
                   start
-                }
-            
+                }     
               </div>
               <div class="accordionItemBody">
                 <div class="accordionContent">
@@ -109,48 +100,45 @@ const renderUpcomingDisruptions = async () => {
                     ${description
                       ? description 
                       : "Information not available"}
-                  </div>
+                  </div><!--briefDescription div end-->
                   <div class="doubleInfoContainer">
                       ${cause
                       ? `<div class="doubleLeft">
                           CAUSE
-                        </div>
+                        </div><!--doubleLeft div end -->
                         <div class="doubleRight">
                           ${cause}
-                        </div>
-                      `
+                        </div>` // <!--doubleRight div end-->
                       : "No cause specified"}
-                  </div>
+                  </div> <!--doubleInfoContainer div end-->
                   <div class="doubleInfoContainer">
                     ${start
                       ? `<div class="doubleLeft">
                           DISRUPTION START
-                        </div>
+                        </div><!--doubleLeft div end -->
                         <div class="doubleRight">
                           ${start}
-                        </div>`
+                        </div>` // <!--doubleRight div end-->
                       : "No disruption start time specifed"}
-                  </div>
+                  </div><!--doubleInfoContainer div end-->
                   <div class="doubleInfoContainer">
                     ${end
                       ? `<div class="doubleLeft">
                           DISRUPTION END
-                        </div>
+                        </div><!--doubleLeft div end -->
                         <div class="doubleRight">
                           ${end}
-                        </div>`
+                        </div>` // <!--doubleRight div end-->
                       : "No disruption end time specifed"}
-                  </div>
-                  <div class="doubleInfoContainer">
-                      ${stop
-                      ? `<div class="doubleLeft">
-                        STOP(S) AFFECTED
-                      </div>
-                      <div class="doubleRight">
-                        ${stop}
-                      </div>`
-                      : "No affected stops specified"}
-                  </div>
+                  </div><!--doubleInfoContainer div end-->
+                  <div class="doubleInfoContainer">            
+                    <div class="doubleLeft">
+                      STOP(S) AFFECTED
+                    </div><!--doubleLeft div end-->
+                    <div class="doubleRight stop">
+                      ${stopInfo}
+                    </div><!--doubleRight stop div end-->
+                  </div><!--doubleInfoContainer div end -->
                 </div><!--accordionContent div end -->
               </div> <!--accordionitembody div end-->
             </div><!--accordionItem div end-->

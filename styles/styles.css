@@ -769,6 +769,9 @@ main {
 .doubleInfoContainer .doubleRight:last-child {
   flex-wrap: wrap;
 }
+.doubleInfoContainer .stop {
+  display: inline;
+}
 
 .h3Header {
   border-left: 1px solid black;

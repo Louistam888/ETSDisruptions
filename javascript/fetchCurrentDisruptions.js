@@ -19,5 +19,5 @@ const fetchCurrentDisruptions = async () => {
     document.querySelector(".serviceDisruptions").append(newLi);
 
   return error;
-  }
+  };
 };
