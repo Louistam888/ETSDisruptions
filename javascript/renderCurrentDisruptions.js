@@ -66,9 +66,10 @@ const renderCurrentDisruptions = async () => {
         let t=0;
         const stopInfo = stopDetails
           .toString()
-          .replace(/,/g, match=> ++t >= 2 ? " " : match);       
-
+          .replace(/,/g, match=> ++t >= 2 ? " " : match);  
+                 
         const description = log.description_text
+          .replace(/\n/g, " ")
           .replace(/(\r\n|\n|\r)/gm, "")
           .replace("---", "unspecified reasons")
           .replace(/Affected Stops: Please use:$/, "")

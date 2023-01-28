@@ -70,6 +70,7 @@ const renderUpcomingDisruptions = async () => {
           .replace(/,/g, match=> ++t >= 2 ? " " : match);  
 
         const description = log.description_text
+          .replace(/\n/g, " ")
           .replace(/(\r\n|\n|\r)/gm, "")
           .replace("---", "unspecified reasons")
           .replace(/Affected Stops: Please use:$/, "")
