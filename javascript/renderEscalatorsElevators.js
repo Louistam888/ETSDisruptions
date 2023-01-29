@@ -2,9 +2,15 @@
 
 const renderEscalatorsElevators = () => {
   
-  fetchElevator().then((elevator)=> {
+  fetchElevator().then((elevatorRaw)=> {
     document.querySelector(".elevatorOutages").replaceChildren();
     
+    const elevator = elevatorRaw.sort((a,b) => {
+      if (a.lrt_station_name > b.lrt_station_name ) return 1;
+      if (a.lrt_station_name < b.lrt_station_name ) return -1;
+      return 0;
+    })
+
     if (elevator.length === 0) {
       document.querySelector(".elevatorOutagesHeader").style.display = "none"
       const newLi = document.createElement("li");
@@ -46,8 +52,14 @@ const renderEscalatorsElevators = () => {
     };
   });
   
-  fetchEscalator().then((escalator) => {
+  fetchEscalator().then((escalatorRaw) => {
     document.querySelector(".escalatorOutages").replaceChildren();  
+
+    const escalator = escalatorRaw.sort((a,b) => {
+      if (a.lrt_station_name > b.lrt_station_name ) return 1;
+      if (a.lrt_station_name < b.lrt_station_name ) return -1;
+      return 0;
+    })
 
     if (escalator.length === 0) {
       document.querySelector(".escalatorOutagesHeader").style.display = "none";
