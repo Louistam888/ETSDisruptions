@@ -50,30 +50,15 @@ const renderCurrentDisruptions = async () => {
     filteredArrayCurrent.forEach((log)=> {
       const route = log.route_id;
       const routeName = log.route_long_name;
-      const causeRaw = log.cause;
-      const cause = causeRaw.charAt(0).toUpperCase()+causeRaw.slice(1).toLowerCase().replace("_", " ");
-      const effect = log.effect.replace("_", " ");
+      const cause = cleanedCause(log.cause);
+      const effect = cleanedEffect(log.effect);
       const shortDescription = log.header_text;
       const start = convertTime(log.start_dttm);
       const end = convertTime(log.end_dttm);
-      const stopArray = log.stop_id 
-                          ? log.stop_id.split(", ")
-                          : "undefined"
-
+      const stopArray = stopArrayTenary(log.stop_id);
       const stopDetails = createStopString(stopArray, busStopsInfo);
-
-      let t=0;
-      const stopInfo = stopDetails
-        .toString()
-        .replace(/,/g, match=> ++t >= 2 ? " " : match);  
-                
-      const description = log.description_text
-        .replace(/\n/g, " ")
-        .replace(/(\r\n|\n|\r)/gm, "")
-        .replace("---", "unspecified reasons")
-        .replace(/Affected Stops: Please use:$/, "")
-        .replace(/Please use:$/, "")
-        .replace(/Affected Stops:$/, "");
+      const stopInfo = cleanedStopInfo(stopDetails)
+      const description = cleanedDescription(log.description_text);
 
       const newLi = document.createElement("li");
       newLi.classList.add("disruptionsHeader");

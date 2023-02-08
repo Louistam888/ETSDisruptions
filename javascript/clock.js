@@ -11,13 +11,6 @@ refreshTime();
 setInterval(refreshTime, 1000);
 
 
-//FUNCTION FOR CONVERTING TIME OBJECTS
-
-const convertTime = (timeObj) => { 
-  return luxon.DateTime.fromISO(timeObj).toFormat("ccc. MMM d, yyyy @ h:mm a");
-}
-
-
 //FUNCTIONS FOR CONVERTING CURRENT TIME TO UNIX TIME 
 
 const currentTime = (new Date).toLocaleString('en-CA', {
