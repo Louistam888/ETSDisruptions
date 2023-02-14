@@ -60,6 +60,8 @@ const renderCurrentDisruptions = async () => {
       const stopInfo = cleanedStopInfo(stopDetails)
       const description = cleanedDescription(log.description_text);
 
+      console.log(log.description_text)
+
       const newLi = document.createElement("li");
       newLi.classList.add("disruptionsHeader");
       newLi.innerHTML = 

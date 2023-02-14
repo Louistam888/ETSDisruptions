@@ -28,13 +28,14 @@ const stopArrayTenary = (array) => {
 const cleanedDescription = (description) => {
   const cleanedDesc = description
     .replace("---", "unspecified reasons")
-    .replace(/\n/g, " ")
-    .replace(/(\r\n|\n|\r)/gm, "")
     .replace(/  Affected Stops:   Please use:$/, "")
     .replace(/Affected Stops: Please use:$/, "")
     .replace(/Affected Stops:$/, "")
     .replace(/Please use:$/, "")
-    .replace(/Use$/, "");
+    .replace(/Use$/, "")
+    .replace(/\n$/, "")
+    .replace(/\n$/, "")
+    .replace(/\n$/, "");
   return cleanedDesc;
 }
 
