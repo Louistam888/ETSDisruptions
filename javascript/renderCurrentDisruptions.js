@@ -123,7 +123,7 @@ const renderCurrentDisruptions = async () => {
                 </div><!--doubleInfoContainer div end -->
                 <div class="doubleInfoContainer">            
                   <div class="doubleLeft">
-                    STOP(S) AFFECTED
+                    STOP LOCATION(S)
                   </div><!--doubleRight div end-->
                   <div class="doubleRight stop">
                     ${stopInfo}

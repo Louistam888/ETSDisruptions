@@ -119,7 +119,7 @@ const renderUpcomingDisruptions = async () => {
                 </div><!--doubleInfoContainer div end-->
                 <div class="doubleInfoContainer">            
                   <div class="doubleLeft">
-                    STOP(S) AFFECTED
+                    STOP LOCATION(S)
                   </div><!--doubleLeft div end-->
                   <div class="doubleRight stop">
                     ${stopInfo}
