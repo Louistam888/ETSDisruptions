@@ -1,4 +1,4 @@
-//FUNCTION FOR CLOCK IN HEADER 
+//FUNCTION FOR CLOCK IN HEADER SECTION
 
 const refreshTime = () => {
   const timeNow = luxon.DateTime.now().setZone("America/Edmonton").toFormat("cccc, MMM d, yyyy | h:mm:ss a");
