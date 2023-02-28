@@ -49,13 +49,13 @@ const createStopString = (array1, array2) => {
           
         } else if (j === (array2.length - 1) && array1[i] !== array2[j].id && match === false) {
     
-          const stopString = `${array1[i]} (Location info not available)`;
+          const stopString = `${array1[i]} (Stop location info not available)`;
           stopList.push(stopString);
         };
       };
     };
   } else if ( array1 === "undefined") {
-    const stopString = "No affected stops specified";
+    const stopString = "Stop location info not available";
     stopList.push(stopString);
   }
   return stopList;
