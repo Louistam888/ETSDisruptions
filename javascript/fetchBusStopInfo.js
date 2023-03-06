@@ -18,8 +18,7 @@ const fetchBusStopInfo = async () => {
     }));
   } catch (error) {
     return [""];
-    return error;
-  }
+  };
 };
 
 const createStopString = (array1, array2) => {
