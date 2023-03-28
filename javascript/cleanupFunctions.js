@@ -39,11 +39,7 @@ const cleanedDescription = (description) => {
                         .replace(/\n$/, "")
                       : "No Description Available"
 
-  if (cleanedDesc !== undefined) {
-    return cleanedDesc
-  } else {
-    return "No description available";
-  };
+  return cleanedDesc;
 };
 
 const cleanedStopInfo = (stop) => {
