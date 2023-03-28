@@ -27,17 +27,24 @@ const stopArrayTenary = (array) => {
 
 const cleanedDescription = (description) => {
   const cleanedDesc = description
-    .replace("---", "unspecified reasons")
-    .replace(/  Affected Stops:   Please use:$/, "")
-    .replace(/Affected Stops: Please use:$/, "")
-    .replace(/Affected Stops:$/, "")
-    .replace(/Please use:$/, "")
-    .replace(/Use$/, "")
-    .replace(/\n$/, "")
-    .replace(/\n$/, "")
-    .replace(/\n$/, "");
-  return cleanedDesc;
-}
+                      ? description            
+                        .replace("---", "unspecified reasons")
+                        .replace(/Affected Stops:   Please use:$/, "")
+                        .replace(/Affected Stops: Please use:$/, "")
+                        .replace(/Affected Stops:$/, "")
+                        .replace(/Please use:$/, "")
+                        .replace(/Use$/, "")
+                        .replace(/\n$/, "")
+                        .replace(/\n$/, "")
+                        .replace(/\n$/, "")
+                      : "No Description Available"
+
+  if (cleanedDesc !== undefined) {
+    return cleanedDesc
+  } else {
+    return "No description available";
+  };
+};
 
 const cleanedStopInfo = (stop) => {
   let t=0;
