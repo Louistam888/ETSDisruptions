@@ -36,8 +36,8 @@ const cleanedDescription = (description) => {
                         .replace(/Use$/, "")
                         .replace(/\n$/, "")
                         .replace(/\n$/, "")
-                        .replace(/\n$/, "")
-                      : "No disruption description provided"
+                        .replace(/\n$/, "")        
+                      : "No description provided"
 
   return cleanedDesc;
 };
