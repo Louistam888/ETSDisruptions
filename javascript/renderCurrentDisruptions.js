@@ -28,7 +28,7 @@ const renderCurrentDisruptions = async () => {
       if (
         !accumulator.find(
           (item) =>
-            item.description_text === current.description_text &&
+            item.description_text.replace(/ \nUse$/, "") === current.description_text.replace(/ \nUse$/, "") &&
             item.stop_id === current.stop_id &&
             item.route_id === current.route_id
         )
@@ -43,7 +43,7 @@ const renderCurrentDisruptions = async () => {
       if ((a.route_id ?? Number.MAX_VALUE) > (b.route_id ?? Number.MAX_VALUE)) return 1;
       return 0;
     });
-
+console.log(filteredArrayCurrent)
   if (filteredArrayCurrent.length === 0) {
     document.querySelector(".serviceDisruptions").replaceChildren();
     const newLi = document.createElement("li");

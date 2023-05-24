@@ -29,7 +29,7 @@ const renderUpcomingDisruptions = async () => {
       if (
         !accumulator.find(
           (item) =>
-            item.description_text === current.description_text &&
+            item.description_text.replace(/ \nUse$/, "") === current.description_text .replace(/ \nUse$/, "") &&
             item.stop_id === current.stop_id &&
             item.route_id === current.route_id
         )
