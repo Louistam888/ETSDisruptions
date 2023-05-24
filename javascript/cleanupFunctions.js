@@ -31,6 +31,7 @@ const cleanedDescription = (description) => {
         .replace(/\n$/, "")
         .replace(/\n$/, "")
         .replace(/\n$/, "")
+        
     : "No description provided";
 
   return cleanedDesc;
