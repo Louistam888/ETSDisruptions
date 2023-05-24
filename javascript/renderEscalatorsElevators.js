@@ -1,39 +1,33 @@
 // FUNCTION TO RENDER ESCALTOR AND ELEVATOR OUTAGES
 
 const renderEscalatorsElevators = async () => {
-
   const elevatorRaw = await fetchElevator();
   const escalatorRaw = await fetchEscalator();
-  
+
   document.querySelector(".elevatorOutages").replaceChildren();
-  
-  const elevator = elevatorRaw.sort((a,b) => {
-    if (a.lrt_station_name > b.lrt_station_name ) return 1;
-    if (a.lrt_station_name < b.lrt_station_name ) return -1;
+
+  const elevator = elevatorRaw.sort((a, b) => {
+    if (a.lrt_station_name > b.lrt_station_name) return 1;
+    if (a.lrt_station_name < b.lrt_station_name) return -1;
     return 0;
   });
 
   if (elevator.length === 0) {
-    document.querySelector(".elevatorOutagesHeader").style.display = "none"
+    document.querySelector(".elevatorOutagesHeader").style.display = "none";
     const newLi = document.createElement("li");
     newLi.classList.add("apiError");
     newLi.innerHTML = `All elevators are currently operational`;
     document.querySelector(".elevatorOutages").append(newLi);
-
   } else {
-
-    elevator.forEach((elevatorObj)=>{
-
+    elevator.forEach((elevatorObj) => {
       const stationName = elevatorObj.lrt_station_name;
       const deviceLocation = elevatorObj.lrt_device_location;
       const device_op_status = elevatorObj.device_op_status;
-      const offlineStartDate = convertTime(elevatorObj.since_time_stamp)
-      const lastUpdated = convertTime(elevatorObj.polled_time_stamp)
+      const offlineStartDate = convertTime(elevatorObj.since_time_stamp);
+      const lastUpdated = convertTime(elevatorObj.polled_time_stamp);
       const newLi = document.createElement("li");
       newLi.classList.add("stationGridElevator");
-      newLi.innerHTML = 
-  
-          `<div> 
+      newLi.innerHTML = `<div> 
             ${stationName}
           </div>
           <div> 
@@ -47,17 +41,17 @@ const renderEscalatorsElevators = async () => {
           </div>
           <div> 
             ${lastUpdated}
-          </div>`
-      
+          </div>`;
+
       document.querySelector(".elevatorOutages").append(newLi);
     });
-  };
-  
-  document.querySelector(".escalatorOutages").replaceChildren();  
+  }
 
-  const escalator = escalatorRaw.sort((a,b) => {
-    if (a.lrt_station_name > b.lrt_station_name ) return 1;
-    if (a.lrt_station_name < b.lrt_station_name ) return -1;
+  document.querySelector(".escalatorOutages").replaceChildren();
+
+  const escalator = escalatorRaw.sort((a, b) => {
+    if (a.lrt_station_name > b.lrt_station_name) return 1;
+    if (a.lrt_station_name < b.lrt_station_name) return -1;
     return 0;
   });
 
@@ -67,21 +61,17 @@ const renderEscalatorsElevators = async () => {
     newLi.classList.add("apiError");
     newLi.innerHTML = `All escalators are currently operational`;
     document.querySelector(".escalatorOutages").append(newLi);
-
   } else {
-
-    escalator.forEach((escalatorObj)=>{
-
+    escalator.forEach((escalatorObj) => {
       const stationName = escalatorObj.lrt_station_name;
-      const deviceLocation = escalatorObj.lrt_device_location; 
+      const deviceLocation = escalatorObj.lrt_device_location;
       const device_op_status = escalatorObj.device_op_status;
       const offlineStartDate = convertTime(escalatorObj.since_time_stamp);
       const lastUpdated = convertTime(escalatorObj.polled_time_stamp);
-  
+
       const newLi = document.createElement("li");
       newLi.classList.add("stationGridEscalator");
-      newLi.innerHTML = 
-          `<div> 
+      newLi.innerHTML = `<div> 
             ${stationName}
           </div>
           <div> 
@@ -95,10 +85,10 @@ const renderEscalatorsElevators = async () => {
           </div>
           <div> 
             ${lastUpdated}
-          </div>`
-      document.querySelector(".escalatorOutages").append(newLi)
+          </div>`;
+      document.querySelector(".escalatorOutages").append(newLi);
     });
-  };
+  }
 };
 
 renderEscalatorsElevators();
