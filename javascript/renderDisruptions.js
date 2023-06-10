@@ -1,25 +1,36 @@
-//FUNCTION FOR SORTING UPCOMING DISRUPTIONS
+//SET PAGE CLASS FOR DISRUPTIONS UL ON EACH PAGE
+let pageClass;
 
-const getUpcomingEntry = (disruption, currentTimeUnix) =>
+//FUNCTION FOR SORTING CURRENT DISRUPTIONS
+
+const getEntry = (disruption, currentTimeUnix) =>
   disruption.filter((entry) => {
     const disruptionStart = Date.parse(entry.start_dttm);
+    const disruptionEnd = Date.parse(entry.end_dttm);
     const startCounting = currentTimeUnix + 300;
     const route = entry.route_id;
 
-    if (disruptionStart >= startCounting && route !== undefined) {
-      return entry;
+    if (window.location.pathname === "/currentDisruptions.html") {
+      pageClass = ".serviceDisruptions"
+      if (currentTimeUnix >= disruptionStart && currentTimeUnix <= disruptionEnd && route !== undefined) {
+        return entry;
+      }
+    } else if (window.location.pathname === "/upcomingDisruptions.html") {
+      pageClass = ".upcomingServiceDisruptions"
+      if (disruptionStart >= startCounting && route !== undefined) {
+        return entry;
+      }
     }
   });
 
-// FUNCTION TO RENDER UPCOMING DISRUPTIONS
+//FUNCTION TO RENDER UPCOMING DISRUPTIONS
 
-const renderUpcomingDisruptions = async () => {
+const renderDisruptions = async () => {
   const busStopsInfo = await fetchBusStopInfo();
-  const upcomingDisruptions = await fetchUpcomingDisruptions();
+  const disruptions = await fetchDisruptions();
 
-  const filteredArrayUpcomingRaw = getUpcomingEntry(upcomingDisruptions, currentTimeUnix);
-
-  const filteredArrayUpcoming = filteredArrayUpcomingRaw
+  const filteredArrayRaw = getEntry(disruptions, currentTimeUnix);
+  const filteredArray = filteredArrayRaw
     .sort((a, b) => {
       if ((a.start_dttm ?? Number.MAX_VALUE) > (b.start_dttm ?? Number.MAX_VALUE)) return -1;
       if ((a.start_dttm ?? Number.MAX_VALUE) < (b.start_dttm ?? Number.MAX_VALUE)) return 1;
@@ -29,7 +40,7 @@ const renderUpcomingDisruptions = async () => {
       if (
         !accumulator.find(
           (item) =>
-            item.description_text.replace(/ \nUse$/, "") === current.description_text .replace(/ \nUse$/, "") &&
+            item.description_text.replace(/ \nUse$/, "") === current.description_text.replace(/ \nUse$/, "") &&
             item.stop_id === current.stop_id &&
             item.route_id === current.route_id
         )
@@ -45,16 +56,17 @@ const renderUpcomingDisruptions = async () => {
       return 0;
     });
 
-  if (filteredArrayUpcoming.length === 0) {
-    document.querySelector(".upcomingServiceDisruptions").replaceChildren();
+  if (filteredArray.length === 0) {
+
+    document.querySelector(pageClass).replaceChildren();
     const newLi = document.createElement("li");
     newLi.classList.add("apiError");
-    newLi.innerHTML = `There are no planned service disruptions in the near future`;
-    document.querySelector(".upcomingServiceDisruptions").append(newLi);
+    newLi.innerHTML = `There are no current service disruptions`;
+    document.querySelector(pageClass).append(newLi);
   } else {
-    document.querySelector(".upcomingServiceDisruptions").replaceChildren();
+    document.querySelector(pageClass).replaceChildren();
 
-    filteredArrayUpcoming.forEach((log) => {
+    filteredArray.forEach((log) => {
       const route = log.route_id;
       const routeName = log.route_long_name;
       const cause = cleanedCause(log.cause);
@@ -66,15 +78,14 @@ const renderUpcomingDisruptions = async () => {
       const stopDetails = createStopString(stopArray, busStopsInfo);
       const stopInfo = cleanedStopInfo(stopDetails);
       const description = cleanedDescription(log.description_text);
-
       const newLi = document.createElement("li");
-      newLi.classList.add("upcomingDisruptionsHeader");
+      newLi.classList.add("disruptionsHeader");
       newLi.innerHTML = `<div class="accordion">
           <div class="accordionItem">
             <div class="accordionItemHeader">
               ${route ? route : shortDescription}
-              ${routeName ? routeName : ""} --- Starting
-              ${start}     
+              ${routeName ? routeName : ""}
+              ${effect ? (effect === "UNKNOWN EFFECT" ? "" : effect) : ""}
             </div>
             <div class="accordionItemBody">
               <div class="accordionContent">
@@ -92,7 +103,7 @@ const renderUpcomingDisruptions = async () => {
                       </div>` // <!--doubleRight div end-->
                         : "No cause specified"
                     }
-                </div> <!--doubleInfoContainer div end-->
+                </div><!--doubleInfoContainer div end -->
                 <div class="doubleInfoContainer">
                   ${
                     start
@@ -104,7 +115,7 @@ const renderUpcomingDisruptions = async () => {
                       </div>` // <!--doubleRight div end-->
                       : "No disruption start time specifed"
                   }
-                </div><!--doubleInfoContainer div end-->
+                </div><!--doubleInfoContainer div end -->
                 <div class="doubleInfoContainer">
                   ${
                     end
@@ -116,11 +127,11 @@ const renderUpcomingDisruptions = async () => {
                       </div>` // <!--doubleRight div end-->
                       : "No disruption end time specifed"
                   }
-                </div><!--doubleInfoContainer div end-->
+                </div><!--doubleInfoContainer div end -->
                 <div class="doubleInfoContainer">            
                   <div class="doubleLeft">
                     STOP LOCATION(S)
-                  </div><!--doubleLeft div end-->
+                  </div><!--doubleRight div end-->
                   <div class="doubleRight stop">
                     ${stopInfo}
                   </div><!--doubleRight stop div end-->
@@ -129,7 +140,7 @@ const renderUpcomingDisruptions = async () => {
             </div> <!--accordionitembody div end-->
           </div><!--accordionItem div end-->
         </div><!--accordion div end-->`;
-      document.querySelector(".upcomingServiceDisruptions").append(newLi);
+      document.querySelector(pageClass).append(newLi);
     });
     sameHeights(false);
     window.onresize = () => {
@@ -139,5 +150,5 @@ const renderUpcomingDisruptions = async () => {
   }
 };
 
-renderUpcomingDisruptions();
-setInterval(renderUpcomingDisruptions, 300000);
+renderDisruptions();
+setInterval(renderDisruptions, 300000);
