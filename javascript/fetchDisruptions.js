@@ -2,7 +2,6 @@
 let errorPage;
 
 // FUNCTION FOR FETCHING DISRUPTIONS
-
 const fetchDisruptions = async () => {
   try {
     let url;
