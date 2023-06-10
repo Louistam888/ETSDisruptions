@@ -18,7 +18,7 @@ const fetchDisruptions = async () => {
       $$app_token: app.token,
       $limit: 100000,
     });
-
+    
     const response = await fetch(url);
     const data = await response.json();
     return data;
