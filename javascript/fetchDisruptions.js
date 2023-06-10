@@ -23,11 +23,13 @@ const fetchDisruptions = async () => {
     const data = await response.json();
     return data;
   } catch (error) {
-    document.querySelector(errorPage).replaceChildren();
-    const newLi = document.createElement("li");
-    newLi.classList.add("apiError");
-    newLi.innerHTML = `Sorry information on service outages is not available at this time, please try again later.`;
-    document.querySelector(errorPage).append(newLi);
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelector(errorPage).replaceChildren();
+      const newLi = document.createElement("li");
+      newLi.classList.add("apiError");
+      newLi.innerHTML = `Sorry information on service outages is not available at this time, please try again later.`;
+      document.querySelector(errorPage).append(newLi);
+    });
 
     return error;
   }
