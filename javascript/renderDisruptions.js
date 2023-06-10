@@ -10,28 +10,29 @@ const getEntry = async (disruption, currentTimeUnix) => {
     const startCounting = currentTimeUnix + 300;
     const route = entry.route_id;
 
-    if (window.location.pathname === "/currentDisruptions.html") {
-      pageClass = ".serviceDisruptions";
-      if (currentTimeUnix >= disruptionStart && currentTimeUnix <= disruptionEnd && route !== undefined) {
-        return entry;
-      }
-    } else if (window.location.pathname === "/upcomingDisruptions.html") {
-      pageClass = ".upcomingServiceDisruptions";
-      if (disruptionStart >= startCounting && route !== undefined) {
-        return entry;
-      }
-    }
+    return (
+      window.location.pathname === "/currentDisruptions.html" ?
+        (pageClass = ".serviceDisruptions",
+        currentTimeUnix >= disruptionStart && currentTimeUnix <= disruptionEnd && route !== undefined ?
+          entry : null) :
+        window.location.pathname === "/upcomingDisruptions.html" ?
+          (pageClass = ".upcomingServiceDisruptions",
+          disruptionStart >= startCounting && route !== undefined ?
+            entry : null) :
+          null
+    );
   });
 
   return filteredArray;
 };
+
 
 //FUNCTION TO RENDER UPCOMING DISRUPTIONS
 
 const renderDisruptions = async () => {
   const busStopsInfo = await fetchBusStopInfo();
   const disruptions = await fetchDisruptions();
-  
+
   console.log(disruptions);
 
   const filteredArrayRaw = await getEntry(disruptions, currentTimeUnix);
