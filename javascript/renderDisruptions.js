@@ -11,19 +11,15 @@ const getEntry = (disruption, currentTimeUnix) =>
     const route = entry.route_id;
 
     if (window.location.pathname === "/currentDisruptions.html") {
-      document.addEventListener("DOMContentLoaded", () => {
-        pageClass = ".serviceDisruptions";
-        if (currentTimeUnix >= disruptionStart && currentTimeUnix <= disruptionEnd && route !== undefined) {
-          return entry;
-        }
-      });
+      pageClass = ".serviceDisruptions";
+      if (currentTimeUnix >= disruptionStart && currentTimeUnix <= disruptionEnd && route !== undefined) {
+        return entry;
+      }
     } else if (window.location.pathname === "/upcomingDisruptions.html") {
-      document.addEventListener("DOMContentLoaded", () => {
-        pageClass = ".upcomingServiceDisruptions";
-        if (disruptionStart >= startCounting && route !== undefined) {
-          return entry;
-        }
-      });
+      pageClass = ".upcomingServiceDisruptions";
+      if (disruptionStart >= startCounting && route !== undefined) {
+        return entry;
+      }
     }
   });
 
@@ -61,17 +57,13 @@ const renderDisruptions = async () => {
     });
 
   if (filteredArray.length === 0) {
-    document.addEventListener("DOMContentLoaded", () => {
-      document.querySelector(pageClass).replaceChildren();
-      const newLi = document.createElement("li");
-      newLi.classList.add("apiError");
-      newLi.innerHTML = `There are no current service disruptions`;
-      document.querySelector(pageClass).append(newLi);
-    });
+    document.querySelector(pageClass).replaceChildren();
+    const newLi = document.createElement("li");
+    newLi.classList.add("apiError");
+    newLi.innerHTML = `There are no current service disruptions`;
+    document.querySelector(pageClass).append(newLi);
   } else {
-    document.addEventListener("DOMContentLoaded", () => {
-      document.querySelector(pageClass).replaceChildren();
-    });
+    document.querySelector(pageClass).replaceChildren();
 
     filteredArray.forEach((log) => {
       const route = log.route_id;
