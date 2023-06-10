@@ -5,20 +5,21 @@ let errorPage;
 const fetchDisruptions = async () => {
   try {
     let url;
-
-    if (window.location.pathname === "/currentDisruptions.html") {
-      errorPage = ".serviceDisruptions";
-      url = new URL("https://data.edmonton.ca/resource/5yvt-mcye.json");
-    } else if (window.location.pathname === "/upcomingDisruptions.html") {
-      errorPage = ".upcomingServiceDisruptions";
-      url = new URL("https://data.edmonton.ca/resource/5yvt-mcye.json");
-    }
-
+    await new Promise((resolve) => {
+      if (window.location.pathname === "/currentDisruptions.html") {
+        errorPage = ".serviceDisruptions";
+        url = new URL("https://data.edmonton.ca/resource/5yvt-mcye.json");
+      } else if (window.location.pathname === "/upcomingDisruptions.html") {
+        errorPage = ".upcomingServiceDisruptions";
+        url = new URL("https://data.edmonton.ca/resource/5yvt-mcye.json");
+      }
+      resolve();
+    });
     url.search = new URLSearchParams({
       $$app_token: app.token,
       $limit: 100000,
     });
-    
+
     const response = await fetch(url);
     const data = await response.json();
     return data;
