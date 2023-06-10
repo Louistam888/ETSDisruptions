@@ -1,3 +1,6 @@
+//SET PAGE CLASS FOR DISRUPTIONS UL ON EACH PAGE
+let errorPage;
+
 // FUNCTION FOR FETCHING DISRUPTIONS
 
 const fetchDisruptions = async () => {
@@ -5,9 +8,10 @@ const fetchDisruptions = async () => {
     let url;
 
     if (window.location.pathname === "/currentDisruptions.html") {
+      errorPage = ".serviceDisruptions";
       url = new URL("https://data.edmonton.ca/resource/5yvt-mcye.json");
-      // https://data.edmonton.ca/resource/5yvt-mcye.json
     } else if (window.location.pathname === "/upcomingDisruptions.html") {
+      errorPage = ".upcomingServiceDisruptions";
       url = new URL("https://data.edmonton.ca/resource/5yvt-mcye.json");
     }
 
@@ -20,22 +24,12 @@ const fetchDisruptions = async () => {
     const data = await response.json();
     return data;
   } catch (error) {
-    if (window.location.pathname === "/currentDisruptions.html") {
-      document.querySelector(".serviceDisruptions").replaceChildren();
-      const newLi = document.createElement("li");
-      newLi.classList.add("apiError");
-      newLi.innerHTML = `Sorry information on service outages is not available at this time, please try again later.`;
-      document.querySelector(".serviceDisruptions").append(newLi);
+    document.querySelector(errorPage).replaceChildren();
+    const newLi = document.createElement("li");
+    newLi.classList.add("apiError");
+    newLi.innerHTML = `Sorry information on service outages is not available at this time, please try again later.`;
+    document.querySelector(errorPage).append(newLi);
 
-      return error;
-    } else if (window.location.pathname === "/upcomingDisruptions.html") {
-      document.querySelector(".upcomingServiceDisruptions").replaceChildren();
-      const newLi2 = document.createElement("li");
-      newLi2.classList.add("apiError");
-      newLi2.innerHTML = `Sorry information on service outages is not available at this time, please try again later.`;
-      document.querySelector(".upcomingServiceDisruptions").append(newLi2);
-
-      return error;
-    }
+    return error;
   }
 };

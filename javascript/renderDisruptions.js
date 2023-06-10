@@ -11,12 +11,12 @@ const getEntry = (disruption, currentTimeUnix) =>
     const route = entry.route_id;
 
     if (window.location.pathname === "/currentDisruptions.html") {
-      pageClass = ".serviceDisruptions"
+      pageClass = ".serviceDisruptions";
       if (currentTimeUnix >= disruptionStart && currentTimeUnix <= disruptionEnd && route !== undefined) {
         return entry;
       }
     } else if (window.location.pathname === "/upcomingDisruptions.html") {
-      pageClass = ".upcomingServiceDisruptions"
+      pageClass = ".upcomingServiceDisruptions";
       if (disruptionStart >= startCounting && route !== undefined) {
         return entry;
       }
@@ -57,7 +57,6 @@ const renderDisruptions = async () => {
     });
 
   if (filteredArray.length === 0) {
-
     document.querySelector(pageClass).replaceChildren();
     const newLi = document.createElement("li");
     newLi.classList.add("apiError");
