@@ -26,7 +26,7 @@ const getEntry = (disruption, currentTimeUnix) =>
 //FUNCTION TO RENDER UPCOMING DISRUPTIONS
 
 const renderDisruptions = async () => {
-
+console.log(pageClass)
   const busStopsInfo = await fetchBusStopInfo();
   const disruptions = await fetchDisruptions();
   console.log(disruptions)
