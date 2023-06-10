@@ -3,32 +3,25 @@ let pageClass;
 
 //FUNCTION FOR SORTING CURRENT DISRUPTIONS
 
-const getEntry = (disruption, currentTimeUnix) => {
-  const filteredArray = disruption.filter((entry) => {
+const getEntry = (disruption, currentTimeUnix) =>
+  disruption.filter((entry) => {
     const disruptionStart = Date.parse(entry.start_dttm);
     const disruptionEnd = Date.parse(entry.end_dttm);
     const startCounting = currentTimeUnix + 300;
     const route = entry.route_id;
 
-    // return window.location.pathname === "/currentDisruptions.html"
-    //   ? ((pageClass = ".serviceDisruptions"),
-    //     currentTimeUnix >= disruptionStart && currentTimeUnix <= disruptionEnd && route !== undefined ? entry : null)
-    //   : window.location.pathname === "/upcomingDisruptions.html"
-    //   ? ((pageClass = ".upcomingServiceDisruptions"),
-    //     disruptionStart >= startCounting && route !== undefined ? entry : null)
-    //   : null;
-
     if (window.location.pathname === "/currentDisruptions.html") {
-      pageClass = ".serviceDisruptions"
-    }
-
-    if (currentTimeUnix >= disruptionStart && currentTimeUnix <= disruptionEnd && route !== undefined) {
-      return entry;
+      pageClass = ".serviceDisruptions";
+      if (currentTimeUnix >= disruptionStart && currentTimeUnix <= disruptionEnd && route !== undefined) {
+        return entry;
+      }
+    } else if (window.location.pathname === "/upcomingDisruptions.html") {
+      pageClass = ".upcomingServiceDisruptions";
+      if (disruptionStart >= startCounting && route !== undefined) {
+        return entry;
+      }
     }
   });
-
-  return filteredArray;
-};
 
 //FUNCTION TO RENDER UPCOMING DISRUPTIONS
 
