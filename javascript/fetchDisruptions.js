@@ -5,16 +5,15 @@ let errorPage;
 const fetchDisruptions = async () => {
   try {
     let url;
-    await new Promise((resolve) => {
-      if (window.location.pathname === "/currentDisruptions.html") {
-        errorPage = ".serviceDisruptions";
-        url = new URL("https://data.edmonton.ca/resource/5yvt-mcye.json");
-      } else if (window.location.pathname === "/upcomingDisruptions.html") {
-        errorPage = ".upcomingServiceDisruptions";
-        url = new URL("https://data.edmonton.ca/resource/5yvt-mcye.json");
-      }
-      resolve();
-    });
+
+    if (window.location.pathname === "/currentDisruptions.html") {
+      errorPage = ".serviceDisruptions";
+      url = new URL("https://data.edmonton.ca/resource/5yvt-mcye.json");
+    } else if (window.location.pathname === "/upcomingDisruptions.html") {
+      errorPage = ".upcomingServiceDisruptions";
+      url = new URL("https://data.edmonton.ca/resource/5yvt-mcye.json");
+    }
+
     url.search = new URLSearchParams({
       $$app_token: app.token,
       $limit: 100000,
@@ -22,6 +21,7 @@ const fetchDisruptions = async () => {
 
     const response = await fetch(url);
     const data = await response.json();
+    
     return data;
   } catch (error) {
     document.addEventListener("DOMContentLoaded", () => {

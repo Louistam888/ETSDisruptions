@@ -4,38 +4,36 @@ let pageClass;
 //FUNCTION FOR SORTING CURRENT DISRUPTIONS
 
 const getEntry = async (disruption, currentTimeUnix) => {
-  return new Promise((resolve) => {
-    const filteredArray = disruption.filter((entry) => {
-      const disruptionStart = Date.parse(entry.start_dttm);
-      const disruptionEnd = Date.parse(entry.end_dttm);
-      const startCounting = currentTimeUnix + 300;
-      const route = entry.route_id;
+  const filteredArray = disruption.filter((entry) => {
+    const disruptionStart = Date.parse(entry.start_dttm);
+    const disruptionEnd = Date.parse(entry.end_dttm);
+    const startCounting = currentTimeUnix + 300;
+    const route = entry.route_id;
 
-      if (window.location.pathname === "/currentDisruptions.html") {
-        pageClass = ".serviceDisruptions";
-        if (currentTimeUnix >= disruptionStart && currentTimeUnix <= disruptionEnd && route !== undefined) {
-          return entry;
-        }
-      } else if (window.location.pathname === "/upcomingDisruptions.html") {
-        pageClass = ".upcomingServiceDisruptions";
-        if (disruptionStart >= startCounting && route !== undefined) {
-          return entry;
-        }
+    if (window.location.pathname === "/currentDisruptions.html") {
+      pageClass = ".serviceDisruptions";
+      if (currentTimeUnix >= disruptionStart && currentTimeUnix <= disruptionEnd && route !== undefined) {
+        return entry;
       }
-    });
-
-    resolve(filteredArray);
+    } else if (window.location.pathname === "/upcomingDisruptions.html") {
+      pageClass = ".upcomingServiceDisruptions";
+      if (disruptionStart >= startCounting && route !== undefined) {
+        return entry;
+      }
+    }
   });
-};
 
+  return filteredArray;
+};
 
 //FUNCTION TO RENDER UPCOMING DISRUPTIONS
 
 const renderDisruptions = async () => {
   const busStopsInfo = await fetchBusStopInfo();
   const disruptions = await fetchDisruptions();
-  console.log(disruptions)
- 
+  
+  console.log(disruptions);
+
   const filteredArrayRaw = await getEntry(disruptions, currentTimeUnix);
   const filteredArray = filteredArrayRaw
     .sort((a, b) => {
