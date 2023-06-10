@@ -29,6 +29,8 @@ const renderDisruptions = async () => {
   const disruptions = await fetchDisruptions();
 
   const filteredArrayRaw = await getEntry(disruptions, currentTimeUnix);
+  
+  console.log(filteredArrayRaw)
   const filteredArray = filteredArrayRaw
     .sort((a, b) => {
       if ((a.start_dttm ?? Number.MAX_VALUE) > (b.start_dttm ?? Number.MAX_VALUE)) return -1;

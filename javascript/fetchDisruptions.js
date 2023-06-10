@@ -5,7 +5,6 @@ let errorPage;
 const fetchDisruptions = async () => {
   try {
     let url;
-    console.log(window.location.pathname)
 
     if (window.location.pathname === "/currentDisruptions.html") {
       errorPage = ".serviceDisruptions";
