@@ -29,7 +29,7 @@ const renderDisruptions = async () => {
   const busStopsInfo = await fetchBusStopInfo();
   const disruptions = await fetchDisruptions();
 
-  const filteredArrayRaw = getEntry(disruptions, currentTimeUnix);
+  const filteredArrayRaw = await getEntry(disruptions, currentTimeUnix);
   const filteredArray = filteredArrayRaw
     .sort((a, b) => {
       if ((a.start_dttm ?? Number.MAX_VALUE) > (b.start_dttm ?? Number.MAX_VALUE)) return -1;
