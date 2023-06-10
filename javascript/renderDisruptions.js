@@ -26,9 +26,11 @@ const getEntry = (disruption, currentTimeUnix) =>
 //FUNCTION TO RENDER UPCOMING DISRUPTIONS
 
 const renderDisruptions = async () => {
+
   const busStopsInfo = await fetchBusStopInfo();
   const disruptions = await fetchDisruptions();
-
+  console.log(disruptions)
+ 
   const filteredArrayRaw = await getEntry(disruptions, currentTimeUnix);
   const filteredArray = filteredArrayRaw
     .sort((a, b) => {
