@@ -10,13 +10,21 @@ const getEntry = (disruption, currentTimeUnix) => {
     const startCounting = currentTimeUnix + 300;
     const route = entry.route_id;
 
-    return window.location.pathname === "/currentDisruptions.html"
-      ? ((pageClass = ".serviceDisruptions"),
-        currentTimeUnix >= disruptionStart && currentTimeUnix <= disruptionEnd && route !== undefined ? entry : null)
-      : window.location.pathname === "/upcomingDisruptions.html"
-      ? ((pageClass = ".upcomingServiceDisruptions"),
-        disruptionStart >= startCounting && route !== undefined ? entry : null)
-      : null;
+    // return window.location.pathname === "/currentDisruptions.html"
+    //   ? ((pageClass = ".serviceDisruptions"),
+    //     currentTimeUnix >= disruptionStart && currentTimeUnix <= disruptionEnd && route !== undefined ? entry : null)
+    //   : window.location.pathname === "/upcomingDisruptions.html"
+    //   ? ((pageClass = ".upcomingServiceDisruptions"),
+    //     disruptionStart >= startCounting && route !== undefined ? entry : null)
+    //   : null;
+
+    if (window.location.pathname === "/currentDisruptions.html") {
+      pageClass = ".serviceDisruptions"
+    }
+
+    if (currentTimeUnix >= disruptionStart && currentTimeUnix <= disruptionEnd && route !== undefined) {
+      return entry;
+    }
   });
 
   return filteredArray;
