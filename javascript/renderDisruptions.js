@@ -3,7 +3,7 @@ let pageClass;
 
 //FUNCTION FOR SORTING CURRENT DISRUPTIONS
 
-const getEntry = async (disruption, currentTimeUnix) => {
+const getEntry = (disruption, currentTimeUnix) => {
   const filteredArray = disruption.filter((entry) => {
     const disruptionStart = Date.parse(entry.start_dttm);
     const disruptionEnd = Date.parse(entry.end_dttm);
@@ -29,8 +29,6 @@ const renderDisruptions = async () => {
   const disruptions = await fetchDisruptions();
 
   const filteredArrayRaw = await getEntry(disruptions, currentTimeUnix);
-  
-  console.log(filteredArrayRaw)
   const filteredArray = filteredArrayRaw
     .sort((a, b) => {
       if ((a.start_dttm ?? Number.MAX_VALUE) > (b.start_dttm ?? Number.MAX_VALUE)) return -1;
@@ -150,7 +148,5 @@ const renderDisruptions = async () => {
   }
 };
 
-document.addEventListener("DOMContentLoaded", () => {
-  renderDisruptions();
-  setInterval(renderDisruptions, 300000);
-});
+renderDisruptions();
+setInterval(renderDisruptions, 300000);
