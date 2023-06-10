@@ -24,17 +24,14 @@ const sameHeights = (resize) => {
   let allHeights = [];
 
   if (resize === true) {
-    for (let i = 0; i < accordionHeights.length; i++) {
-      accordionHeights[i].style.height = "auto";
-    }
+    [...accordionHeights].forEach((accordionHeight) => {
+      accordionHeight.style.height = "auto";
+    });
   }
 
-  for (let i = 0; i < accordionHeights.length; i++) {
-    const height = accordionHeights[i].clientHeight;
-    allHeights.push(height);
-  }
+  allHeights = [...accordionHeights].map((accordionHeight) => accordionHeight.clientHeight);
 
-  for (let i = 0; i < accordionHeights.length; i++) {
-    accordionHeights[i].style.height = Math.max(...allHeights) + "px";
-  }
+  [...accordionHeights].forEach((accordionHeight) => {
+    accordionHeight.style.height = Math.max(...allHeights) + "px";
+  });
 };
